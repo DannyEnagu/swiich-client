@@ -1,0 +1,44 @@
+:root {
+  /* Max content with*/
+  /* --content-max-width: 90rem; */ /* 1440px */
+  --content-max-width: 76.875rem; /* 1230px */
+
+  /* Colors */
+  --clr-primary: #0061d8;
+  --clr-secondary: #fcc3c0;
+  --clr-tetiary: #231645;
+  --clr-grey: #c3c8d8;
+  --clr-accent: #F7F7FF;
+  --clr-white: #FFFFFF;
+  --clr-background: #fdd54f;
+
+  /* https://www.cssgradienteditor.com/ */
+
+  /* Gradients */
+  --primary-glow: linear-gradient(-90deg, var(--clr-primary), var(--clr-secondary));
+
+  /* Fonts */
+
+  /* Font family */
+  --ff-base: var(--ff-inter), sans-serif;
+  --ff-title: var(--ff-poppins), sans-serif;
+
+  /* Font Weights */
+  --fw-body: 400;
+  --fw-bold: 800;
+  --fw-title: 700;
+
+  /* Font Sizes */
+  /*
+      @link https://utopia.fyi/type/calculator?c=320,15,1.2,1240,20,1.25,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12
+  */
+  --fs-100: clamp(0.651rem, 0.5992rem + 0.2591vi, 0.8rem);
+  --fs-200: clamp(0.7813rem, 0.7052rem + 0.3804vi, 1rem);
+  --fs-300: clamp(0.9375rem, 0.8288rem + 0.5435vi, 1.25rem);
+  --fs-400: clamp(1.125rem, 0.9728rem + 0.7609vi, 1.5625rem);
+  --fs-500: clamp(1.35rem, 1.1402rem + 1.0489vi, 1.9531rem);
+  --fs-600: clamp(1.62rem, 1.3343rem + 1.4285vi, 2.4414rem);
+  --fs-700: clamp(1.944rem, 1.5587rem + 1.9265vi, 3.0518rem);
+  --fs-800: clamp(2.3328rem, 1.8174rem + 2.5772vi, 3.8147rem);
+  --fs-900: clamp(2.7994rem, 2.1145rem + 3.4244vi, 4.7684rem);
+}

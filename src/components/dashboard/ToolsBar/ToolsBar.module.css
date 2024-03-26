@@ -1,0 +1,32 @@
+.wrapper {
+  align-self: center;
+  border: var(--border);
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.tools {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3em;
+  margin: 0;
+  padding: 0.5em;
+}
+
+.toolLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--clr-dashboard-text);
+  text-decoration: none;
+}
+
+.toolLinkActive {
+  font-weight: var(--fw-bold);
+  color: var(--clr-dashboard-accent);
+}
+
+.toolLabel {
+  font-size: var(--fs-100);
+}

@@ -1,0 +1,20 @@
+.MainContainer  {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 30px);
+}
+
+.contentWrapperInner {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.messages {
+  margin: 0;
+  padding: 0;
+}

@@ -10,7 +10,17 @@
   --clr-grey: #c3c8d8;
   --clr-accent: #F7F7FF;
   --clr-white: #FFFFFF;
+  --clr-red: #fd5d5c;
   --clr-background: #fdd54f;
+
+  /* Dashboard Colors */
+  --clr-dashboard-canvas: #ffffff;
+  --clr-dashboard-bg: #fafafa;
+  --clr-dashboard-text: #131313;
+  --clr-dashboard-active-chat-bg: #e6f5f4;
+  --clr-dashboard-accent: #0a9c93;
+  --clr-dashboard-natural: #d4d4d4;
+
 
   /* https://www.cssgradienteditor.com/ */
 
@@ -41,4 +51,6 @@
   --fs-700: clamp(1.944rem, 1.5587rem + 1.9265vi, 3.0518rem);
   --fs-800: clamp(2.3328rem, 1.8174rem + 2.5772vi, 3.8147rem);
   --fs-900: clamp(2.7994rem, 2.1145rem + 3.4244vi, 4.7684rem);
+
+  --border: 1px solid var(--clr-dashboard-accent);
 }

@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
 import { inter, poppins } from "../../styles/fonts";
 import "../../styles/main.css";
 
@@ -8,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children
   }: Readonly<{
     children: React.ReactNode;
   }>) {

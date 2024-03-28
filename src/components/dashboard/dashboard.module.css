@@ -6,15 +6,29 @@
 .contentWrapper {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 30px);
+  height: calc(100vh - 52px);
 }
 
 .contentWrapperInner {
   flex: 1;
+  padding: 1em;
   overflow-y: auto;
 }
 
 .messages {
   margin: 0;
   padding: 0;
+}
+
+.messages > li + li {
+  margin-top: 1em;
+}
+
+.toggleProfile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
 }

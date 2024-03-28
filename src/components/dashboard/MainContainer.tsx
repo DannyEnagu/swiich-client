@@ -3,15 +3,18 @@ import styles from './dashboard.module.css';
 
 interface MainProps {
   children: React.ReactNode;
+  showRightSideBar?: boolean;
 }
 
 export default function Main({
-  children }: MainProps
+  children, showRightSideBar }: MainProps
   ) {
   return (
     <div className={styles.MainContainer}>
       { children }
-      <RightSideBar />
+
+      {/* Display the right sidebar if the prop is true */}
+      { showRightSideBar && <RightSideBar />}
     </div>
   );
 }

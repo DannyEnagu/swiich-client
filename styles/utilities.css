@@ -31,10 +31,16 @@
 
 /* Dashboard on dark theme */
 .dark-mode {
+  --border: 1px solid var(--clr-dashboard-accent);
+
   --clr-dashboard-canvas: #131313;
   --clr-dashboard-bg: #202329;
   --clr-dashboard-text: #ffffff;
   --clr-dashboard-active-chat-bg: #2e333d;
   --clr-dashboard-accent: #6b8afd;
   --clr-dashboard-natural: #85879b;
+}
+
+.rounded-img {
+  border-radius: 10px;
 }

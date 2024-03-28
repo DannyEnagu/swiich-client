@@ -3,10 +3,11 @@ import styles from './dashboard.module.css';
 
 interface ContentWrapperProps {
   children: React.ReactNode;
+  showFooter?: boolean;
 }
 
 export default function ContentWrapper({ 
-  children }: ContentWrapperProps
+  children, showFooter }: ContentWrapperProps
   ) {
   return (
     <div className={styles.contentWrapper}>
@@ -14,7 +15,7 @@ export default function ContentWrapper({
         { children }
       </div>
 
-      <Footer />
+      { showFooter && <Footer />}
     </div>
   );
 }

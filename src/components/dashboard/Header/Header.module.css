@@ -1,3 +1,57 @@
 .header {
   background-color: var(--clr-dashboard-canvas);
+  border: 1px solid #1313131A;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 10px;
+}
+
+.headerRight,
+.headerLeft {
+  --gap: 0.5em;
+
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.headerRight {
+  --gap: 1.5em;
+  padding-right: .5em;
+}
+
+.headerName {
+  margin: 0;
+  font-size: var(--fs-100);
+}
+
+.headerText {
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+}
+
+.headerTextBtn {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  color: #131313B2;
+}
+
+.headerTextBtn:hover {
+  color: #131313;
+}
+
+.headerIconsSearch,
+.headerIconsElipsis {
+  color: #131313B2;
+  cursor: pointer;
+}
+
+.headerIconsSearch {
+  font-size: var(--fs-100);
 }

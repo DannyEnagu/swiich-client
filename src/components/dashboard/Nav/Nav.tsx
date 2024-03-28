@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styles from './Nav.module.css';
 import NavItem from './NavItem';
 import NavList from './NavList';
-import SenderItem from './SenderItem';
+import Contact from './Contact';
 
 export default function Nav() {
   return (
@@ -28,14 +28,14 @@ export default function Nav() {
             href="/"
             className={styles.navLink}
           >
-            <SenderItem
+            <Contact
               messageStatus='unread'
               userName="John Doe"
               senderStatus="Online"
-              timeStamps="10:00"
+              timeStamps="10 m"
               profilePic="https://via.placeholder.com/50"
               messagesCount={3}
-              lastMessage="Hello"
+              lastMessage="Hello Jonh Doe, how are you doing?"
             />
           </Link>
         </NavItem>
@@ -44,7 +44,15 @@ export default function Nav() {
             href="/dashboard/1/group/1"
             className={styles.navLink}
           >
-            Group
+            <Contact
+              messageStatus='read'
+              userName="Tina Doe"
+              senderStatus="Online"
+              timeStamps="10 m"
+              profilePic="https://via.placeholder.com/50"
+              messagesCount={99}
+              lastMessage="Hello Jonh Doe, how are you doing?"
+            />
           </Link>
         </NavItem>
         <NavItem>
@@ -52,7 +60,15 @@ export default function Nav() {
           href="/dashboard/1/dm/1"
           className={styles.navLink}
           >
-            Direct Msg
+            <Contact
+              messageStatus='unread'
+              userName="Linus Torvalds"
+              senderStatus="offline"
+              timeStamps="10 m"
+              profilePic="https://via.placeholder.com/50"
+              messagesCount={10}
+              lastMessage=""
+            />
           </Link>
         </NavItem>
         <NavItem>
@@ -60,7 +76,118 @@ export default function Nav() {
           href="/dashboard/1/tasks/1"
           className={styles.navLink}
           >
-            Tasks
+            <Contact
+              messageStatus='unread'
+              userName="Jeff Dannyplus"
+              senderStatus="Online"
+              timeStamps="10 m"
+              profilePic="https://via.placeholder.com/50"
+              messagesCount={3}
+              typing={true}
+              lastMessage="Hello Jonh Doe, how are you doing?"
+            />
+          </Link>
+        </NavItem>
+        <NavItem>
+          <Link
+          href="/dashboard/1/tasks/1"
+          className={styles.navLink}
+          >
+            <Contact
+              messageStatus='unread'
+              userName="Jeff Dannyplus"
+              senderStatus="Online"
+              timeStamps="10 m"
+              profilePic="https://via.placeholder.com/50"
+              messagesCount={3}
+              typing={true}
+              lastMessage="Hello Jonh Doe, how are you doing?"
+            />
+          </Link>
+        </NavItem>
+        <NavItem>
+          <Link
+          href="/dashboard/1/tasks/1"
+          className={styles.navLink}
+          >
+            <Contact
+              messageStatus='unread'
+              userName="Jeff Dannyplus"
+              senderStatus="Online"
+              timeStamps="10 m"
+              profilePic="https://via.placeholder.com/50"
+              messagesCount={3}
+              typing={true}
+              lastMessage="Hello Jonh Doe, how are you doing?"
+            />
+          </Link>
+        </NavItem>
+        <NavItem>
+          <Link
+          href="/dashboard/1/tasks/1"
+          className={styles.navLink}
+          >
+            <Contact
+              messageStatus='unread'
+              userName="Jeff Dannyplus"
+              senderStatus="Online"
+              timeStamps="10 m"
+              profilePic="https://via.placeholder.com/50"
+              messagesCount={3}
+              typing={true}
+              lastMessage="Hello Jonh Doe, how are you doing?"
+            />
+          </Link>
+        </NavItem>
+        <NavItem>
+          <Link
+          href="/dashboard/1/tasks/1"
+          className={styles.navLink}
+          >
+            <Contact
+              messageStatus='unread'
+              userName="Jeff Dannyplus"
+              senderStatus="Online"
+              timeStamps="10 m"
+              profilePic="https://via.placeholder.com/50"
+              messagesCount={3}
+              typing={true}
+              lastMessage="Hello Jonh Doe, how are you doing?"
+            />
+          </Link>
+        </NavItem>
+        <NavItem>
+          <Link
+          href="/dashboard/1/tasks/1"
+          className={styles.navLink}
+          >
+            <Contact
+              messageStatus='unread'
+              userName="Jeff Dannyplus"
+              senderStatus="Online"
+              timeStamps="10 m"
+              profilePic="https://via.placeholder.com/50"
+              messagesCount={3}
+              typing={true}
+              lastMessage="Hello Jonh Doe, how are you doing?"
+            />
+          </Link>
+        </NavItem>
+        <NavItem>
+          <Link
+          href="/dashboard/1/tasks/1"
+          className={styles.navLink}
+          >
+            <Contact
+              messageStatus='unread'
+              userName="Jeff Dannyplus"
+              senderStatus="Online"
+              timeStamps="10 m"
+              profilePic="https://via.placeholder.com/50"
+              messagesCount={3}
+              typing={true}
+              lastMessage="Hello Jonh Doe, how are you doing?"
+            />
           </Link>
         </NavItem>
       </NavList>

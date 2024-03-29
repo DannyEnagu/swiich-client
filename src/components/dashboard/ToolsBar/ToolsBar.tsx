@@ -16,7 +16,7 @@ export default function ToolsBar() {
       <ul className={styles.tools} role='list'>
         <li className={styles.tool}>
           <Link
-            href="/dashboard/1/group/1"
+            href="/dashboard/1/inbox/1"
             className={`${styles.toolLink} ${styles.toolLinkActive}`}
           >
             <span className={styles.toolIcon}>
@@ -42,7 +42,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
           <Link
-            href="/dashboard/1/group/1"
+            href="/dashboard/1/dm/1"
             className={styles.toolLink}
           >
             <span className={styles.toolIcon}>
@@ -55,7 +55,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
           <Link
-            href="/dashboard/1/group/1"
+            href="/dashboard/1/tasks/1"
             className={styles.toolLink}
           >
             <span className={styles.toolIcon}>
@@ -68,7 +68,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
           <Link
-            href="/dashboard/1/group/1"
+            href="/dashboard/1/inbox/1"
             className={styles.toolLink}
           >
             <span className={styles.toolIcon}>
@@ -81,7 +81,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
           <Link
-            href="/dashboard/1/group/1"
+            href="/dashboard/1/inbox/1"
             className={styles.toolLink}
           >
             <span className={styles.toolIcon}>

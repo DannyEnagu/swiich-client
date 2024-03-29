@@ -69,12 +69,15 @@
   width: 100%;
 }
 
+.groupContact,
 .sender {
   display: flex;
+  align-items: center;
   gap: 0.5em;
   width: 100%;
 }
 
+.visuals,
 .senderImg {
   position: relative;
 }
@@ -100,6 +103,7 @@
   justify-content: space-between;
 }
 
+.groupTitle,
 .senderInfo h3 {
   font-size: var(--fs-100);
 }
@@ -114,6 +118,7 @@
   font-size: 8px;
 }
 
+.groupMsgCount,
 .senderLastMsgCount {
   background-color: var(--clr-dashboard-accent);
   color: var(--clr-white);
@@ -124,4 +129,21 @@
   font-size: 8px;
   height: 14px;
   width: 14px;
+}
+
+.groupMsgCount {
+  margin-left: auto;
+}
+
+.groupIsPublic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  font-size: 8px;
+  height: 5px;
+  width: 5px;
+  color: var(--clr-dashboard-accent);
 }

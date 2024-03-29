@@ -1,8 +1,9 @@
-import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckDouble } from '@fortawesome/free-solid-svg-icons';
 import { limitString } from '@/utils/helpers';
+import StringAvatar from '@/components/Avatar/StringAvatar';
 import styles from './Nav.module.css';
+import Avatar from '@/components/Avatar/Avatar';
 
 interface ContactProps {
   userName: string;
@@ -28,13 +29,18 @@ export default function Contact({
   return (
     <div className={styles.sender}>
       <div className={styles.senderImg}>
-        <Image
-          className='rounded-img'
-          src={profilePic}
-          width={46}
-          height={46}
-          alt={`${userName}`}
-        />
+        {/* Display user image if available */}
+        {/* Display user icon if no image is available */}
+        {profilePic 
+        ? <Avatar
+            imgSrc={profilePic}
+            size={46}
+            imgAlt={`user ${userName} profile picture`}
+          />
+        : <StringAvatar 
+            name={userName}
+            size={46}
+          />}
 
         {senderStatus === 'Online' && (
           <span className={styles.senderStatus} />)

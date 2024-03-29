@@ -1,0 +1,7 @@
+.stringAvatar {
+  font-size: var(--fs-100);
+  font-weight: var(--fw-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

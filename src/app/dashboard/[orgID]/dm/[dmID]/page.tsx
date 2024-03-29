@@ -1,14 +1,14 @@
 import Main from "@/components/dashboard/MainContainer";
 import Header from "@/components/dashboard/Header/Header";
-import Nav from "@/components/dashboard/Nav/Nav";
 import ContentWrapper from "@/components/dashboard/ContentWrapper";
 import Messages from "@/components/dashboard/Messages";
+import NavContainer from "./NavContainer";
 
 export default function page() {
   return (
     <div className="dd-content">
-      <Nav />
-      <Header />
+      <NavContainer />
+      <Header isDm />
       <Main>
         <ContentWrapper showFooter>
           <Messages />

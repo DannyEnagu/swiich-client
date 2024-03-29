@@ -1,5 +1,6 @@
-import Image from 'next/image';
 import styles from './ChatBubble.module.css';
+import Avatar from '@/components/Avatar/Avatar';
+import StringAvatar from '@/components/Avatar/StringAvatar';
 
 interface ChatBubbleProps {
   profilePic: string;
@@ -24,13 +25,17 @@ export default function ChatBubble({
       ${isSender ? styles.bubbleSent : ''}
     `
     }>
-      <Image
-        src={profilePic}
-        width={45}
-        height={45}
-        alt='Profile Picture'
-        className='rounded-img'
-      />
+      {profilePic 
+        ? <Avatar
+            imgSrc={profilePic}
+            size={45}
+            imgAlt={`user ${senerName} profile picture`}
+          />
+        : <StringAvatar 
+            name={senerName}
+            size={45}
+          />}
+
       <div className={styles.bubbleContent}>
         <div className={`
           ${styles.bubbleSenderInfo}

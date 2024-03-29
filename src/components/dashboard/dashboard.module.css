@@ -15,14 +15,21 @@
   overflow-y: auto;
 }
 
+.posts,
 .messages {
   margin: 0;
   padding: 0;
 }
 
+.posts > li + li,
 .messages > li + li {
   margin-top: 1em;
 }
+
+/* .posts > li,
+.messages > li {
+  border: 1px solid #ccc;
+} */
 
 .toggleProfile {
   display: flex;

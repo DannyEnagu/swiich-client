@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMicrophone,
   faPaperclip,
-  faFaceLaugh
  } from '@fortawesome/free-solid-svg-icons';
+import { faFaceLaugh } from '@fortawesome/free-regular-svg-icons';
 
 export default function TextEditorWrapper() {
   return (

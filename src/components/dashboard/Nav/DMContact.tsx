@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckDouble } from '@fortawesome/free-solid-svg-icons';
+import { faCheckDouble, faUsersLine } from '@fortawesome/free-solid-svg-icons';
 import { limitString } from '@/utils/helpers';
 import StringAvatar from '@/components/Avatar/StringAvatar';
 import styles from './Nav.module.css';
 import Avatar from '@/components/Avatar/Avatar';
 
 interface ContactProps {
-  userName: string;
+  contactName: string;
   senderStatus: string;
   messageStatus: string;
   profilePic: string;
@@ -17,7 +17,7 @@ interface ContactProps {
 };
 
 export default function Contact({
-  userName,
+  contactName,
   senderStatus,
   messageStatus,
   timeStamps,
@@ -35,10 +35,10 @@ export default function Contact({
         ? <Avatar
             imgSrc={profilePic}
             size={46}
-            imgAlt={`user ${userName} profile picture`}
+            imgAlt={`user ${contactName} profile picture`}
           />
         : <StringAvatar 
-            name={userName}
+            name={contactName}
             size={46}
           />}
 
@@ -48,7 +48,7 @@ export default function Contact({
       </div>
       <div className={styles.senderInfo}>
         <h3>
-          <span className={styles.senderName}>{userName}</span>
+          <span className={styles.senderName}>{contactName}</span>
           {!typing && (<div>
               {messageStatus === 'read' && (
                 <FontAwesomeIcon icon={faCheckDouble} className={styles.senderRead} />)

@@ -11,7 +11,7 @@ export default function Avatar({imgSrc, size, imgAlt}: AvatarProps) {
   return (
     <Image
       className={`${styles.avatar}
-        ${size > 21 ? 'rounded-img' : 'rounded-img-sm'}`
+        ${size > 35 ? 'rounded-img' : 'rounded-img-sm'}`
       }
       src={imgSrc || 'https://via.placeholder.com/50'}
       width={size}

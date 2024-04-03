@@ -11,7 +11,7 @@ export default function NavContainer() {
           <NavLink to="/">
             <Contact
               messageStatus='unread'
-              userName="John Doe"
+              contactName="John Doe"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic="https://via.placeholder.com/50"
@@ -24,7 +24,7 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/group/1">
             <Contact
               messageStatus='read'
-              userName="Mathew Ayo"
+              contactName="Mathew Ayo"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic=""
@@ -37,7 +37,7 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/dm/1">
             <Contact
               messageStatus='unread'
-              userName="Mira Kira"
+              contactName="Mira Kira"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic=""
@@ -50,7 +50,7 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/dm/1">
             <Contact
               messageStatus='unread'
-              userName="Jeff Dannyplus"
+              contactName="Jeff Dannyplus"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic="https://via.placeholder.com/50"
@@ -64,13 +64,13 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/dm/1">
             <Contact
               messageStatus='unread'
-              userName="Jeff Dannyplus"
+              contactName="Jeff Dannyplus"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic="https://via.placeholder.com/50"
               messagesCount={3}
               typing={true}
-              lastMessage="Hello Jonh Doe, how are you doing?"
+              lastMessage="Jonh Doe: how are you doing?"
             />
           </NavLink>
         </NavItem>
@@ -78,13 +78,13 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/dm/1">
             <Contact
               messageStatus='unread'
-              userName="Jeff Dannyplus"
+              contactName="Jeff Dannyplus"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic="https://via.placeholder.com/50"
               messagesCount={3}
               typing={true}
-              lastMessage="Hello Jonh Doe, how are you doing?"
+              lastMessage="Tina: Where are we on the task?"
             />
           </NavLink>
         </NavItem>
@@ -92,7 +92,7 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/dm/1">
             <Contact
               messageStatus='unread'
-              userName="Alexandra Olamide segundo"
+              contactName="Alexandra Olamide segundo"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic=""
@@ -106,7 +106,7 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/dm/1">
             <Contact
               messageStatus='unread'
-              userName="Jeff Dannyplus"
+              contactName="Jeff Dannyplus"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic="https://via.placeholder.com/50"
@@ -120,7 +120,7 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/dm/1">
             <Contact
               messageStatus='unread'
-              userName="Jeff Dannyplus"
+              contactName="Jeff Dannyplus"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic="https://via.placeholder.com/50"
@@ -134,7 +134,7 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/dm/1">
             <Contact
               messageStatus='unread'
-              userName="Hasley Lee"
+              contactName="Hasley Lee"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic="https://via.placeholder.com/50"
@@ -148,7 +148,7 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/dm/1">
             <Contact
               messageStatus='unread'
-              userName="Michael Jackson"
+              contactName="Michael Jackson"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic=""
@@ -162,7 +162,7 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/dm/1">
             <Contact
               messageStatus='unread'
-              userName="Jeff Dannyplus"
+              contactName="Jeff Dannyplus"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic="https://via.placeholder.com/50"
@@ -176,7 +176,7 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/dm/1">
             <Contact
               messageStatus='unread'
-              userName="Tiwa Savage"
+              contactName="Tiwa Savage"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic=""
@@ -190,7 +190,7 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/dm/1">
             <Contact
               messageStatus='unread'
-              userName="Jeff Dannyplus"
+              contactName="Jeff Dannyplus"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic="https://via.placeholder.com/50"
@@ -204,7 +204,7 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/dm/1">
             <Contact
               messageStatus='unread'
-              userName="Zara Green"
+              contactName="Zara Green"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic=""
@@ -218,7 +218,7 @@ export default function NavContainer() {
           <NavLink to="/dashboard/1/dm/1">
             <Contact
               messageStatus='unread'
-              userName="Jeff Aba"
+              contactName="Jeff Aba"
               senderStatus="Online"
               timeStamps="10 m"
               profilePic=""

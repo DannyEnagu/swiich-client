@@ -21,14 +21,14 @@ function stringToColorCode(str: string) {
 export default function StringAvatar({name, size}: StringAvatarProps) {
   return (
     <div 
-      className={`${styles.stringAvatar} ${size > 21 ? 'rounded-img' : 'rounded-img-sm'}`}
+      className={`${styles.stringAvatar} ${size > 35 ? 'rounded-img' : 'rounded-img-sm'}`}
       style={{
         backgroundColor: stringToColorCode(name),
         width: size,
         height: size
       }}
     >
-      {`${name.split(' ')[0][0]}${name.split(' ')[1][0]}`}
+      {`${name.split(' ')[0][0]}${name.split(' ')[1] ? name.split(' ')[1][0] : ''}`}
     </div>
   );
 }

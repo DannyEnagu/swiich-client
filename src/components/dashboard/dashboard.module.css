@@ -26,11 +26,6 @@
   margin-top: 1em;
 }
 
-/* .posts > li,
-.messages > li {
-  border: 1px solid #ccc;
-} */
-
 .toggleProfile {
   display: flex;
   align-items: center;
@@ -38,4 +33,12 @@
   cursor: pointer;
   border: none;
   background-color: transparent;
+}
+
+.welcome {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

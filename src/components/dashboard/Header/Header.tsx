@@ -1,12 +1,11 @@
 import styles from './Header.module.css';
-import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMagnifyingGlass,
   faEllipsisVertical,
   faAngleDown,
   faUsersLine,
-  faUser
+  faUserPlus
 } from '@fortawesome/free-solid-svg-icons';
 import Avatar from '@/components/Avatar/Avatar';
 import StringAvatar from '@/components/Avatar/StringAvatar';
@@ -76,6 +75,28 @@ function GroupMessageHeader({groupTitle, groupImg}: GroupMessageHeaderProps) {
       </div>
     </div>
     <div className={styles.headerRight}>
+      <div className={styles.groupUsers}>
+        <div className={styles.groupUsersAvatarList}>
+          <Avatar
+            imgSrc='https://via.placeholder.com/50'
+            size={32}
+            imgAlt='User 1'
+          />
+          <StringAvatar
+            name='User Two'
+            size={32}
+          />
+        </div>
+        <div className={styles.groupUsersCount}>
+          <span>+2</span>
+        </div>
+        <div className={styles.divider} />
+        <div className={styles.groupUsersAdd}>
+          <button className={`btn btn-icon`}>
+            <FontAwesomeIcon icon={faUserPlus} />
+          </button>
+        </div>
+      </div>
     </div>
   </>)
 };

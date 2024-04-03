@@ -16,7 +16,7 @@ export default function ToolsBar() {
       <ul className={styles.tools} role='list'>
         <li className={styles.tool}>
           <Link
-            href="/dashboard/1/inbox/1"
+            href="/dashboard/1"
             className={`${styles.toolLink} ${styles.toolLinkActive}`}
           >
             <span className={styles.toolIcon}>

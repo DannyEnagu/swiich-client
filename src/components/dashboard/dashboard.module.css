@@ -1,0 +1,39 @@
+.MainContainer  {
+  display: grid;
+  grid-template-columns: 1fr auto;
+
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 52px);
+}
+
+.contentWrapperInner {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.contentWrapperFooter {
+  background-color: var(--clr-dashboard-canvas);
+}
+
+.posts,
+.messages {
+  margin: 0;
+  padding: 1em;
+}
+
+.posts > li + li,
+.messages > li + li {
+  margin-top: 1em;
+}
+
+.welcome {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

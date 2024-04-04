@@ -1,0 +1,149 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--clr-dashboard-canvas);
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  width: var(--dashboard-left-width);
+  height: 100vh;
+}
+
+.navHeader {
+  padding-top: 2em;
+}
+
+.navSearch {
+  border: var(--border);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-inline: auto;
+  width: 60%;
+  padding: 0.23em 0.8em;
+}
+
+.navSearchIcon {
+  font-size: var(--fs-200);
+}
+
+.navSearchInput {
+  font-size: var(--fs-200);
+  font-weight: var(--fw-body);
+  border: none;
+  outline: none;
+  display: inline;
+  width: 90%;
+  background-color: var(--clr-dashboard-canvas);
+  color: var(--clr-dashboard-text);
+}
+
+.navContent {
+  /* flex: 1; */
+  height: 90%;
+  overflow-y: auto;
+  margin-top: 0.8em;
+  padding: 0.5em;
+}
+
+.navList {
+  padding: 0;
+  margin: 0;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+}
+
+.navItemActive {
+  border: var(--border);
+  border-radius: 15px;
+  background-color: var(--clr-dashboard-active-chat-bg);
+}
+
+.navLink {
+  color: var(--clr-dashboard-text);
+  text-decoration: none;
+  width: 100%;
+}
+
+.groupContact,
+.sender {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  width: 100%;
+}
+
+.visuals,
+.senderImg {
+  position: relative;
+}
+
+.senderStatus {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background-color: var(--clr-dashboard-accent);
+  z-index: 1;
+}
+
+.senderInfo {
+  flex: 1;
+}
+
+.senderInfo p,
+.senderInfo h3 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.groupTitle,
+.senderInfo h3 {
+  font-size: var(--fs-100);
+}
+
+.senderInfo p {
+  margin-top: 0.3em;
+  font-size: 10px;
+}
+
+.senderTime {
+  margin-left: 0.8em;
+  font-size: 8px;
+}
+
+.groupMsgCount,
+.senderLastMsgCount {
+  background-color: var(--clr-dashboard-accent);
+  color: var(--clr-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  height: 14px;
+  width: 14px;
+}
+
+.groupMsgCount {
+  margin-left: auto;
+}
+
+.groupIsPublic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  font-size: 8px;
+  height: 5px;
+  width: 5px;
+  color: var(--clr-dashboard-accent);
+}

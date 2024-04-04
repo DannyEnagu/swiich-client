@@ -1,0 +1,109 @@
+.wrapper {
+  width: min(var(--content-max-width), 100% - 2rem);
+  margin-inline: auto;
+}
+
+.sr-only {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.row {
+  --gap: 0.8em;
+
+  display: flex;
+  gap: var(--gap);
+  align-items: center;
+}
+
+.grid {
+  --gap: 0.5em;
+
+  display: grid;
+  gap: 2rem;
+}
+
+.hero-pattern {
+  background-image:
+  linear-gradient(40deg, rgba(255,198,194,1) 0%, rgba(255,255,255,0) 50%), linear-gradient(140deg, rgba(255,255,255,1) 50%, rgba(153,199,255,1) 100%);
+  background-size: auto, auto;
+  background-position: 0% 0%, 0% 0%;
+  background-repeat: repeat, repeat;
+  background-color: rgba(0,0,0,0);
+}
+
+/* Dashboard on dark theme */
+.dark-mode {
+  --border: 1px solid var(--clr-dashboard-accent);
+
+  --clr-dashboard-canvas: #131313;
+  --clr-dashboard-bg: #202329;
+  --clr-dashboard-text: #ffffff;
+  --clr-dashboard-active-chat-bg: #2e333d;
+  --clr-dashboard-accent: #6b8afd;
+  --clr-dashboard-natural: #85879b;
+  --clr-dashboard-border: var(--clr-dashboard-natural);
+}
+
+.rounded-img {
+  border-radius: 10px;
+}
+
+.rounded-img-sm {
+  border-radius: 5px;
+}
+
+.p-sm {
+  padding: 0.5rem;
+}
+
+.p-md {
+  padding: 1rem;
+}
+
+.p-lg {
+  padding: 2rem;
+}
+
+.px-sm {
+  padding-inline: 0.5rem;
+}
+
+.py-sm {
+  padding-block: 0.5rem;
+}
+
+.m-sm {
+  margin: 0.5rem;
+}
+
+.mx-sm {
+  margin-inline: 0.5rem;
+}
+
+.my-sm {
+  margin-block: 0.5rem;
+}
+
+.m-md {
+  margin: 1rem;
+}
+
+.m-lg {
+  margin: 2rem;
+}

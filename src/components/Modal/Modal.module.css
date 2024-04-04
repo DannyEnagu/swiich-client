@@ -19,11 +19,9 @@
 }
 
 .modalToggle {
-  display: flex;
-  align-items: center;
+  text-align: left;
   font-size: var(--fs-100);
-  gap: 0.8em;
-  padding-inline: 0;
+  padding: 0;
   width: 100%;
 }
 

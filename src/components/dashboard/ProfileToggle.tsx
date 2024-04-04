@@ -1,16 +1,24 @@
-import Image from "next/image";
-import styles from "./dashboard.module.css";
+import Avatar from "../Avatar/Avatar";
+import StringAvatar from "../Avatar/StringAvatar";
 
-export default function ProfileToggle() {
+interface ProfileToggleProps {
+  currentUserName: string;
+  profilePic: string;
+};
+
+export default function ProfileToggle({ currentUserName, profilePic }: ProfileToggleProps) {
   return (
-    <button className={styles.toggleProfile}>
-      <Image
-        src="https://via.placeholder.com/50"
-        width={45}
-        height={45}
-        alt="Profile Picture"
-        className="rounded-img"
-      />
-    </button>
+    <>
+      {profilePic
+      ? <Avatar
+        size={45}
+        imgSrc={profilePic}
+        imgAlt={`${currentUserName} is the current Loged in user`}
+        />
+      : <StringAvatar
+          name="John Doe"
+          size={45}
+        />}
+    </>
   );
 }

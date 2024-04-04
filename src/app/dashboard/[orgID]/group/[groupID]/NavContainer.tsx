@@ -4,6 +4,7 @@ import NavLink from "@/components/dashboard/Nav/NavLink";
 import Nav from "@/components/dashboard/Nav/Nav";
 import GroupContact from "@/components/dashboard/Nav/GroupContact";
 import Modal from "@/components/Modal/Modal";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function NavContainer() {
@@ -58,9 +59,10 @@ export default function NavContainer() {
         </NavItem>
         <NavItem>
           <Modal
-            toggleText="Create Group"
-            icon={faPlus}
-            iconSize="xl"
+            modalLauncherContent={<span className="py-sm row">
+              <FontAwesomeIcon icon={faPlus} size="xl" />
+              <span className="mx-sm">Add Group</span>
+            </span>}
           >
             <p>Modal Content</p>
           </Modal>

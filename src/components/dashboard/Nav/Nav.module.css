@@ -4,7 +4,7 @@
   background-color: var(--clr-dashboard-canvas);
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
-  width: 250px;
+  width: var(--dashboard-left-width);
   height: 100vh;
 }
 

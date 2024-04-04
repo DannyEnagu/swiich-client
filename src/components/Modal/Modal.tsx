@@ -2,16 +2,15 @@ import { useState } from 'react';
 import styles from './Modal.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
 
 interface ModalProps {
   children: React.ReactNode;
-  toggleText?: string;
-  icon: IconProp;
-  iconSize?: SizeProp;
+  modalLauncherContent: React.ReactNode;
 }
 
-export default function Modal({ children, toggleText, icon, iconSize }: ModalProps) {
+export default function Modal({
+  children, modalLauncherContent 
+}: ModalProps) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -20,10 +19,7 @@ export default function Modal({ children, toggleText, icon, iconSize }: ModalPro
       onClick={() => setIsModalOpen(!isModalOpen)}
       className={`btn btn-icon ${styles.modalToggle}`}
     >
-      {icon && <FontAwesomeIcon icon={icon} size={iconSize} />}
-      <span>
-        {toggleText || 'Open Modal'}
-      </span>
+      {modalLauncherContent}
     </button>
     <div className={`
         ${styles.modal}

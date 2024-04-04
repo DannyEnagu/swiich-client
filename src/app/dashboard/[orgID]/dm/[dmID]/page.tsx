@@ -10,7 +10,7 @@ export default function page() {
       <NavContainer />
       <Header isDm />
       <Main>
-        <ContentWrapper showFooter>
+        <ContentWrapper showEditor>
           <Messages />
         </ContentWrapper>
       </Main>

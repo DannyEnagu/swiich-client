@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -8,16 +9,38 @@ import {
   faRectangleList,
   faSliders
  } from '@fortawesome/free-solid-svg-icons';
+import { usePathname } from 'next/navigation';
 import styles from './ToolsBar.module.css';
 
 export default function ToolsBar() {
+  const currPathname = usePathname();
+  const changeActiveTool = () => {
+    const toolLinks = document.querySelectorAll(`.${styles.toolLink}`) as NodeListOf<HTMLAnchorElement>;
+    toolLinks.forEach((toolLink) => {
+      // Remove active class from all tool links
+
+      // Add active class to the tool link that matches the current pathname
+      toolLink.classList.remove(styles.toolLinkIsActive);
+      const extractPathname = toolLink.href.split('/').slice(3).join('/');
+      const toolPathname = `/${extractPathname}`;
+
+      if (toolPathname === currPathname) {
+        toolLink.classList.add(styles.toolLinkIsActive);
+      }
+    });
+  }
+
+  useEffect(() => {
+    changeActiveTool();
+  }, [currPathname]);
+
   return (
     <div className={styles.wrapper}>
       <ul className={styles.tools} role='list'>
         <li className={styles.tool}>
           <Link
             href="/dashboard/1"
-            className={`${styles.toolLink} ${styles.toolLinkActive}`}
+            className={styles.toolLink}
           >
             <span className={styles.toolIcon}>
               <FontAwesomeIcon icon={faComment} />
@@ -36,7 +59,7 @@ export default function ToolsBar() {
             <FontAwesomeIcon icon={faUsers} />
             </span>
             <span className={styles.toolLabel}>
-              Group
+              Groups
             </span>
           </Link>
         </li>

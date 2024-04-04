@@ -1,13 +1,13 @@
-import Footer from "@/components/dashboard/Footer/Footer";
+import TextEditor from './TextEditor/TextEditor';
 import styles from './dashboard.module.css';
 
 interface ContentWrapperProps {
   children: React.ReactNode;
-  showFooter?: boolean;
+  showEditor?: boolean;
 }
 
 export default function ContentWrapper({ 
-  children, showFooter }: ContentWrapperProps
+  children, showEditor }: ContentWrapperProps
   ) {
   return (
     <div className={styles.contentWrapper}>
@@ -15,7 +15,9 @@ export default function ContentWrapper({
         { children }
       </div>
 
-      { showFooter && <Footer />}
+      { showEditor && <div className={styles.contentWrapperFooter}>
+        <TextEditor />
+      </div>}
     </div>
   );
 }

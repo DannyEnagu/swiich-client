@@ -13,7 +13,7 @@ export default function page() {
       <NavContainer />
       <Header isDm={false} />
       <Main showRightSideBar>
-        <ContentWrapper showFooter>
+        <ContentWrapper showEditor>
           <Posts />
         </ContentWrapper>
       </Main>

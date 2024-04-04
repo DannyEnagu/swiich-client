@@ -21,7 +21,7 @@
   text-decoration: none;
 }
 
-.toolLinkActive {
+.toolLinkIsActive {
   font-weight: var(--fw-bold);
   color: var(--clr-dashboard-accent);
 }

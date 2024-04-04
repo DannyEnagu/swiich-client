@@ -3,6 +3,10 @@
   /* --content-max-width: 90rem; */ /* 1440px */
   --content-max-width: 76.875rem; /* 1230px */
 
+  /* Dashboard sides widths */
+  --dashboard-left-width: 250px;
+  --dashboard-right-width: 428px;
+
   /* Colors */
   --clr-primary: #0061d8;
   --clr-secondary: #fcc3c0;
@@ -20,6 +24,7 @@
   --clr-dashboard-active-chat-bg: #e6f5f4;
   --clr-dashboard-accent: #0a9c93;
   --clr-dashboard-natural: #d4d4d4;
+  --clr-dashboard-border: var(--clr-dashboard-natural);
 
 
   /* https://www.cssgradienteditor.com/ */

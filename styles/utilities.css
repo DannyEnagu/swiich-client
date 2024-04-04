@@ -57,6 +57,7 @@
   --clr-dashboard-active-chat-bg: #2e333d;
   --clr-dashboard-accent: #6b8afd;
   --clr-dashboard-natural: #85879b;
+  --clr-dashboard-border: var(--clr-dashboard-natural);
 }
 
 .rounded-img {
@@ -65,4 +66,44 @@
 
 .rounded-img-sm {
   border-radius: 5px;
+}
+
+.p-sm {
+  padding: 0.5rem;
+}
+
+.p-md {
+  padding: 1rem;
+}
+
+.p-lg {
+  padding: 2rem;
+}
+
+.px-sm {
+  padding-inline: 0.5rem;
+}
+
+.py-sm {
+  padding-block: 0.5rem;
+}
+
+.m-sm {
+  margin: 0.5rem;
+}
+
+.mx-sm {
+  margin-inline: 0.5rem;
+}
+
+.my-sm {
+  margin-block: 0.5rem;
+}
+
+.m-md {
+  margin: 1rem;
+}
+
+.m-lg {
+  margin: 2rem;
 }

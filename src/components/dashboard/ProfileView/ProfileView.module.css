@@ -1,0 +1,97 @@
+.wrapper {
+  border-left: 1px solid var(--clr-dashboard-border);
+  background-color: var(--clr-dashboard-canvas);
+  width: var(--dashboard-right-width);
+}
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 1em 0;
+}
+
+.content > * + * {
+  border-top: 1px solid var(--clr-dashboard-border);
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+}
+
+.userInfo,
+.userGroups,
+.attachments {
+  margin-bottom: 0.5em;
+  padding: 0 0.5em;
+  padding-top: 0.5em;
+}
+
+.userInfo h3,
+.userInfo p,
+.userGroups h3,
+.userGroups p,
+.attachments h3
+{
+  font-size: var(--fs-200);
+  margin: 0;
+}
+
+.userInfo h3,
+.userGroups h3,
+.attachments h3 {
+  margin-bottom: 0.8em;
+}
+
+.label, .value {
+  display: block;
+  color: #13131380;
+  margin-top: 0.5em;
+  font-weight: var(--fw-title);
+}
+
+.value {
+  color: #131313;
+}
+
+.groupsList,
+.filesList {
+  padding: 0;
+  margin: 0;
+}
+
+.groupsList li {
+  font-size: var(--fs-100);
+  font-weight: var(--fw-title);
+  margin-top: 0.2em;
+}
+
+.toggle {
+  --gap: 0.5em;
+
+  font-size: var(--fs-100);
+  font-weight: var(--fw-title);
+}
+
+.files {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.filesList {
+  --gap: 0.3em;
+
+  display: flex;
+  gap: var(--gap);
+  margin: 0.5em 0;
+}
+
+.viewMore {
+  height: 100%;
+  font-size: var(--fs-100);
+  font-weight: var(--fw-title);
+  background-color: #D4D4D4;
+}

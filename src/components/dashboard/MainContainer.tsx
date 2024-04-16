@@ -1,4 +1,6 @@
-import RightSideContainer from './RightSide/RightSideContainer';
+"use client"
+
+import RightSide from './RightSide/RightSide';
 import styles from './dashboard.module.css';
 
 interface MainProps {
@@ -14,7 +16,7 @@ export default function Main({
       { children }
 
       {/* Display the right sidebar if the prop is true */}
-      { showRightSideBar && <RightSideContainer />}
+      { showRightSideBar && <RightSide />}
     </div>
   );
 }

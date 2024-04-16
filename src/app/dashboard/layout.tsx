@@ -15,7 +15,14 @@ export default function DashboardLayout({
         <ToolsBar />
 
         <div>
-          <Modal modalLauncherContent={<ProfileToggle currentUserName='John Doe' profilePic="" />}>
+          <Modal
+            modalLauncherContent={
+              <ProfileToggle
+                currentUserName='John Doe'
+                profilePic="" 
+              />
+            }
+          >
             <div>
               <h3>Modal Title</h3>
               <p>Modal Content</p>

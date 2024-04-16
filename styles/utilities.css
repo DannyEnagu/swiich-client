@@ -28,6 +28,17 @@
 
   display: flex;
   gap: var(--gap);
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
   align-items: center;
 }
 
@@ -60,6 +71,7 @@
   --clr-dashboard-border: var(--clr-dashboard-natural);
 }
 
+/* Border Redius */
 .rounded-img {
   border-radius: 10px;
 }
@@ -68,6 +80,11 @@
   border-radius: 5px;
 }
 
+/* ============================
+  Spacing
+=============================== */
+
+/* Padding */
 .p-sm {
   padding: 0.5rem;
 }
@@ -88,6 +105,7 @@
   padding-block: 0.5rem;
 }
 
+/* Margins */
 .m-sm {
   margin: 0.5rem;
 }
@@ -106,4 +124,12 @@
 
 .m-lg {
   margin: 2rem;
+}
+
+/* ================================
+  Typography
+=================================== */
+
+.db-txt-accent {
+  color: var(--clr-dashboard-accent);
 }

@@ -5,7 +5,7 @@
 
   /* Dashboard sides widths */
   --dashboard-left-width: 250px;
-  --dashboard-right-width: 428px;
+  --dashboard-right-width: 350px;
 
   /* Colors */
   --clr-primary: #0061d8;
@@ -23,6 +23,7 @@
   --clr-dashboard-text: #131313;
   --clr-dashboard-active-chat-bg: #e6f5f4;
   --clr-dashboard-accent: #0a9c93;
+  --clr-dashboard-danger: #EB4335;
   --clr-dashboard-natural: #d4d4d4;
   --clr-dashboard-border: var(--clr-dashboard-natural);
 
@@ -40,8 +41,10 @@
 
   /* Font Weights */
   --fw-body: 400;
-  --fw-bold: 800;
   --fw-title: 700;
+  --fw-medium: 600;
+  --fw-bold: 800;
+
 
   /* Font Sizes */
   /*
@@ -58,4 +61,6 @@
   --fs-900: clamp(2.7994rem, 2.1145rem + 3.4244vi, 4.7684rem);
 
   --border: 1px solid var(--clr-dashboard-accent);
+  --border-accent: 1px solid var(--clr-dashboard-accent);
+  --db-divider: 1px solid var(--clr-dashboard-border);
 }

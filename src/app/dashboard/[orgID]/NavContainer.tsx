@@ -9,9 +9,11 @@ export default function NavContainer() {
   return (
     <Nav>
       <NavList>
-        <NavItem isActive={true}>
+        <NavItem>
           <NavLink
-          to="/">
+            to="/dashboard/1"
+            isActive={true}
+          >
             <Contact
               messageStatus='unread'
               contactName="Jeff Dannyplus"

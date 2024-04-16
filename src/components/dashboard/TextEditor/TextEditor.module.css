@@ -7,7 +7,7 @@
 
 .editor {
   flex: 1;
-  background-color: #D4D4D4;
+  background-color: var(--clr-dashboard-natural);
   border-radius: 10px;
   display: flex;
   align-items: center;

@@ -8,7 +8,7 @@ interface ContentWrapperProps {
 
 export default function ContentWrapper({ 
   children, showEditor }: ContentWrapperProps
-  ) {
+) {
   return (
     <div className={styles.contentWrapper}>
       <div className={styles.contentWrapperInner}>

@@ -104,7 +104,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
           <Link
-            href="/dashboard/1/inbox/1"
+            href="/dashboard/1/settings"
             className={styles.toolLink}
           >
             <span className={styles.toolIcon}>

@@ -11,8 +11,11 @@ export default function NavContainer() {
   return (
     <Nav>
       <NavList>
-        <NavItem isActive={true}>
-          <NavLink to="/">
+        <NavItem>
+          <NavLink
+            to="/"
+            isActive={true}
+          >
             <GroupContact
               groupTitle="General"
               groupMsgCount={5}

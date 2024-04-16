@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsersLine, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faHashtag, faLock } from '@fortawesome/free-solid-svg-icons';
 import styles from './Nav.module.css';
 import Avatar from '@/components/Avatar/Avatar';
 
@@ -27,7 +27,7 @@ export default function GroupContact({
               size={20}
               imgAlt={`group ${groupTitle} image`}
             />
-          : <FontAwesomeIcon icon={faUsersLine} size='sm' />}
+          : <FontAwesomeIcon icon={faHashtag} />}
         
         {isPublicGroup && (
           <div className={styles.groupIsPublic}>

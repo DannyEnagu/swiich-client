@@ -7,8 +7,11 @@ import Nav from "@/components/dashboard/Nav/Nav";
 export default function NavContainer() {
   return (<Nav>
       <NavList>
-        <NavItem isActive={true}>
-          <NavLink to="/">
+        <NavItem>
+          <NavLink
+            to="/dashboard/1"
+            isActive={true}
+          >
             <Contact
               messageStatus='unread'
               contactName="John Doe"

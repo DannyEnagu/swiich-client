@@ -1,0 +1,128 @@
+.wrapper {
+  padding: 1em 2em;
+}
+
+.sections {
+  margin-bottom: 1em;
+}
+
+.sections h2 {
+  margin: 0;
+  font-size: var(--fs-500);
+  font-weight: var(--fw-title);
+  text-transform: uppercase;
+}
+
+.sections h2::after {
+  content: " ";
+  display: block;
+  margin-top: -3px;
+  height: 2px;
+  width: 100%;
+  background-color: var(--clr-dashboard-border);
+}
+
+.sections h2 span {
+  color: var(--clr-dashboard-accent);
+  text-decoration: underline;
+}
+
+.settingOption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settingOption h5 {
+  font-size: var(--fs-300);
+  font-weight: var(--fw-title);
+  margin: 0.8em 0 0;
+}
+
+.setting p {
+  margin-top: 0;
+  font-size: var(--fs-100);
+}
+
+.toggleSwitch input {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.toggleSwitch .switch {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 13.5px;
+  background-color: var(--clr-dashboard-accent);
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.toggleSwitch .switch:hover {
+  opacity: 0.8;
+}
+
+.switch .switchSlider {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  left: 2px;
+  bottom: 2px;
+  background-color: var(--clr-dashboard-bg);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.toggleSwitch input:checked + .switch {
+  background-color: var(--clr-dashboard-danger);
+}
+
+.toggleSwitch input:checked + .switch .switchSlider {
+  transform: translateX(11px);
+}
+
+.langSelect select {
+  padding: 1em;
+  font-size: var(--fs-200);
+  font-weight: var(--fw-medium);
+  background-color: var(--clr-dashboard-active-chat-bg);
+  border: var(--border);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.langSelect select:hover {
+  opacity: 0.8;
+}
+
+.langSelect select:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--clr-dashboard-accent);
+}
+
+.themeOption {
+  font-size: var(--fs-100);
+  font-weight: var(--fw-medium);
+  padding-block: 0.1em;
+  padding-inline: 1.2em;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.themeOption:hover {
+  opacity: 0.8;
+}
+
+.themeOptionLight {
+  background-color: var(--clr-dashboard-active-chat-bg);
+  border: var(--border-accent);
+}
+
+.themeOptionDark {
+  background-color: var(--clr-dashboard-accent);
+  color: var(--clr-dashboard-bg);
+}

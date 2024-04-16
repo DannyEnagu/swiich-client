@@ -1,0 +1,45 @@
+.header {
+  margin-bottom: 1em;
+  padding: 0 0.5em 1em;
+  position: relative;
+}
+
+.header::after {
+  content: " ";
+  position: absolute;
+  left: -0.5em;
+  top: 34px;
+  display: block;
+  width: var(--dashboard-left-width);
+  height: 1px;
+  background-color: var(--clr-dashboard-border);
+  clear: both;
+}
+
+.header h2 {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-300);
+  margin-top: 0;
+}
+
+.settingsButton {
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+  gap: 0.5em;
+  width: 100%;
+  border: var(--border);
+  border-color: var(--clr-dashboard-border);
+}
+
+.settingsButtonActive {
+  border-color: var(--clr-dashboard-accent);
+  /* border-radius: 15px; */
+  background-color: var(--clr-dashboard-active-chat-bg);
+}
+
+.settingsIcon,
+.settingsLable {
+  font-size: var(--fs-200);
+  font-weight: var(--fw-medium);
+}

@@ -54,19 +54,19 @@
 .navItem {
   display: flex;
   align-items: center;
-  padding: 0.5em;
-}
-
-.navItemActive {
-  border: var(--border);
-  border-radius: 15px;
-  background-color: var(--clr-dashboard-active-chat-bg);
 }
 
 .navLink {
   color: var(--clr-dashboard-text);
   text-decoration: none;
+  padding: 0.5em;
   width: 100%;
+}
+
+.navLinkActive {
+  border: var(--border);
+  border-radius: 15px;
+  background-color: var(--clr-dashboard-active-chat-bg);
 }
 
 .groupContact,

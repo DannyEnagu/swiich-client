@@ -1,0 +1,27 @@
+.wrapper {
+  background-color: var(--clr-dashboard-canvas);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  padding-left: 2em;
+  border-bottom: var(--db-divider);
+  border-left: var(--db-divider);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+}
+
+.actions button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-dashboard-natural);
+  border-radius: 100%;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}

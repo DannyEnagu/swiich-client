@@ -1,7 +1,7 @@
 "use client";
 
 import Main from "@/components/dashboard/MainContainer";
-import Header from "@/components/dashboard/Header/Header";
+import Header from "@/components/dashboard/ChatHeader/Header";
 import ContentWrapper from "@/components/dashboard/ContentWrapper";
 import Posts from "@/components/dashboard/Posts";
 import NavContainer from "./NavContainer";

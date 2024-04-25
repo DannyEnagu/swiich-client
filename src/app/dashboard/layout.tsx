@@ -16,7 +16,7 @@ export default function DashboardLayout({
 
         <div>
           <Modal
-            modalLauncherContent={
+            summary={
               <ProfileToggle
                 currentUserName='John Doe'
                 profilePic="" 

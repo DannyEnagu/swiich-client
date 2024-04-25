@@ -67,7 +67,7 @@ export default function ProfileView() {
             </h3>
             <div className={styles.attachment}>
               <Dropdown
-                buttonLabel={
+                summary={
                   <span className={`row align-center ${styles.toggle}`}>
                     <FontAwesomeIcon icon={faImage} className='db-txt-accent' />
                     <span className={styles.files}>
@@ -100,7 +100,7 @@ export default function ProfileView() {
                 </ul>
               </Dropdown>
               <Dropdown
-                buttonLabel={
+                summary={
                   <span className={`row align-center ${styles.toggle}`}>
                     <FontAwesomeIcon icon={faVideo} className='db-txt-accent' />
                     <span className={styles.files}>
@@ -133,7 +133,7 @@ export default function ProfileView() {
                 </ul>
               </Dropdown>
               <Dropdown
-                buttonLabel={
+                summary={
                   <span className={`row align-center ${styles.toggle}`}>
                     <FontAwesomeIcon icon={faFile} className='db-txt-accent' />
                     <span className={styles.files}>
@@ -166,7 +166,7 @@ export default function ProfileView() {
                 </ul>
               </Dropdown>
               <Dropdown
-                buttonLabel={
+                summary={
                   <span className={`row align-center ${styles.toggle}`}>
                     <FontAwesomeIcon icon={faMicrophone} className='db-txt-accent' />
                     <span className={styles.files}>

@@ -1,5 +1,5 @@
 import Main from "@/components/dashboard/MainContainer";
-import Header from "@/components/dashboard/Header/Header";
+import Header from "@/components/dashboard/ChatHeader/Header";
 import ContentWrapper from "@/components/dashboard/ContentWrapper";
 import Messages from "@/components/dashboard/Messages";
 import NavContainer from "./NavContainer";

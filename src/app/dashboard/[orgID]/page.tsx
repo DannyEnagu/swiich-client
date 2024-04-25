@@ -1,3 +1,5 @@
+"use client";
+
 import Main from "@/components/dashboard/MainContainer";
 import ContentWrapper from "@/components/dashboard/ContentWrapper";
 import NavContainer from "./NavContainer";

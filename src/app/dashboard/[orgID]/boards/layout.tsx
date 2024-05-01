@@ -1,18 +1,21 @@
-"use client";
+// Purpose: Layout for the board page.
 
 import ContentWrapper from "@/components/dashboard/ContentWrapper";
 import Main from "@/components/dashboard/MainContainer";
-import Header from "@/components/dashboard/Header/Header";
-import { ProjectList, Content } from "../Components";
+import { ProjectList, Header } from "./Components";
 
-export default function Page() {
+export default function BoardLayout({
+    children,
+  }: {
+    children: React.ReactNode
+}) {
   return (
     <div className="dd-content">
       <ProjectList />
       <Header />
       <Main>
         <ContentWrapper>
-          <Content />
+          {children}
         </ContentWrapper>
       </Main>
     </div>

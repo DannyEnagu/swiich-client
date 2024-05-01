@@ -1,0 +1,17 @@
+.popup {
+    position: relative;
+}
+
+.popupContent {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 0.3em;
+    margin-top: 0.5em;
+    position: absolute;
+    z-index: 1000;
+}
+
+.popupContent.positionBottomStart {
+    right: 0;
+}

@@ -1,0 +1,59 @@
+.wrapper {
+    background-color: var(--clr-dashboard-canvas);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3em;
+    border-bottom: var(--db-divider);
+    border-left: var(--db-divider);
+}
+
+.title {
+    font-size: var(--fs-200);
+    font-weight: var(--fw-title);
+    font-family: var(--ff-title);
+    color: var(--clr-dashboard-text);
+}
+
+.actions {
+    --gap: 0.3em;
+}
+
+.actionsIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    padding: 0.3em 0;
+    font-size: var(--fs-200);
+    color: var(--clr-dashboard-txt-muted);
+}
+
+.createTaskBtn {
+    display: flex;
+    font-size: var(--fs-200);
+    font-weight: var(--fw-title);
+    font-family: var(--ff-title);
+    align-items: center;
+    padding: 0;
+    color: #ffffff;
+    background-color: var(--clr-dashboard-accent);
+    transition: all 0.3s;
+}
+
+.createTaskBtn:hover {
+    background-color: #10bcb0;
+}
+
+.createTaskBtn > span {
+    border-right: var(--db-divider);
+    border-color: var(--clr-dashboard-txt-muted);
+    border-width: 2px;
+    padding: 0.3em 0.5em;
+    flex: 2;
+}
+
+.createTaskBtn > svg {
+    padding: 0.3em;
+    flex: 1;
+}

@@ -8,10 +8,10 @@ import styles from './Dropdown.module.css';
 
 interface DropdownProps {
   children: React.ReactNode;
-  buttonLabel: React.ReactNode |  string;
+  summary: React.ReactNode |  string;
 };
 
-export default function Dropdown({ children, buttonLabel }: DropdownProps) {
+export default function Dropdown({ children, summary }: DropdownProps) {
   const [showDropdown, setShowDropdown] = useState(false);
 
   return (
@@ -20,7 +20,7 @@ export default function Dropdown({ children, buttonLabel }: DropdownProps) {
         className={`btn row justify-between ${styles.dropdownToggle}`}
         onClick={() => setShowDropdown(!showDropdown)}
       >
-        {buttonLabel}
+        {summary}
         <FontAwesomeIcon
           icon={showDropdown ? faChevronUp : faChevronDown}
           className={`${showDropdown ? 'db-txt-accent' : ''}`}

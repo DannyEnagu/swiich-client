@@ -1,0 +1,51 @@
+.project {
+    padding: 0.2em 0.5em;
+    color: var(--clr-dashboard-text);
+    width: 100%;
+}
+
+.project:hover,
+.createBoard:hover {
+    background-color: var(--clr-dashboard-hover-chat-bg);
+}
+ 
+.projectIsActive {
+    border: var(--border-accent);
+    border-radius: 10px;
+    background-color: var(--clr-dashboard-active-chat-bg);
+}
+
+.projectIsActive:hover {
+    background-color: var(--clr-dashboard-active-chat-bg);
+}
+
+.project summary {
+    font-size: var(--fs-200);
+    font-weight: var(--fw-medium);
+    font-family: var(--ff-title);
+    list-style-type: none;
+}
+
+.project[open] .projectIcon {
+    transform: rotate(180deg);
+}
+
+.project summary > :first-child {
+    padding: 0;
+}
+
+.project summary:hover {
+    cursor: pointer;
+}
+
+.taskList {
+    padding-left: 10px;
+}
+
+.createBoard {
+    padding: 0.2em 0.5em;
+    font-size: var(--fs-100);
+    font-weight: var(--fw-medium);
+    font-family: var(--ff-title);
+    margin-top: 0.5em;
+}

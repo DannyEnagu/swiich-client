@@ -71,6 +71,13 @@
   --clr-dashboard-border: var(--clr-dashboard-natural);
 }
 
+/* Border */
+.v-divider {
+  background-color: #131313;
+  height: 100%;
+  width: 1px;
+}
+
 /* Border Redius */
 .rounded-img {
   border-radius: 10px;
@@ -132,4 +139,8 @@
 
 .db-txt-accent {
   color: var(--clr-dashboard-accent);
+}
+
+.db-txt-muted {
+  color: var(--clr-dashboard-txt-muted);
 }

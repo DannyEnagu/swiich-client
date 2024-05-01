@@ -73,6 +73,14 @@ textarea:not([rows]) {
   min-height: 10em;
 }
 
+details summary {
+  list-style-type: none;
+}
+
+details summary:hover {
+  cursor: pointer;
+}
+
 /* Anything that has been anchored to should have extra scroll margin */
 :target {
   scroll-margin-block: 5ex;

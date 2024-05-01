@@ -26,6 +26,8 @@ export default function ToolsBar() {
 
       if (toolPathname === currPathname) {
         toolLink.classList.add(styles.toolLinkIsActive);
+      } else if (currPathname.includes('boards') && toolPathname.includes('boards')) {
+        toolLink.classList.add(styles.toolLinkIsActive);
       }
     });
   }
@@ -78,7 +80,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
           <Link
-            href="/dashboard/1/tasks/1"
+            href="/dashboard/1/boards"
             className={styles.toolLink}
           >
             <span className={styles.toolIcon}>

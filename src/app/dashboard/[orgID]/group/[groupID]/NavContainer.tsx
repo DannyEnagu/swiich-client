@@ -61,13 +61,16 @@ export default function NavContainer() {
           </NavLink>
         </NavItem>
         <NavItem>
-          <Modal
-            modalLauncherContent={<span className="py-sm row">
-              <FontAwesomeIcon icon={faPlus} size="xl" />
-              <span className="mx-sm">Add Group</span>
-            </span>}
-          >
-            <p>Modal Content</p>
+          <Modal>
+            <Modal.Summary>
+              <span className="py-sm row">
+                <FontAwesomeIcon icon={faPlus} size="xl" />
+                <span className="mx-sm">Add Group</span>
+              </span>
+            </Modal.Summary>
+            <Modal.Content>
+              <p>Modal Content</p>
+            </Modal.Content>
           </Modal>
         </NavItem>
       </NavList>

@@ -15,18 +15,19 @@ export default function DashboardLayout({
         <ToolsBar />
 
         <div>
-          <Modal
-            summary={
+          <Modal>
+            <Modal.Summary>
               <ProfileToggle
                 currentUserName='John Doe'
                 profilePic="" 
-              />
-            }
-          >
-            <div>
-              <h3>Modal Title</h3>
-              <p>Modal Content</p>
-            </div>
+              /> 
+            </Modal.Summary>
+            <Modal.Content>
+              <div>
+                <h3>Modal Title</h3>
+                <p>Modal Content</p>
+              </div>
+              </Modal.Content>
           </Modal>
         </div>
       </aside>

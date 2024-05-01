@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 // This hook will be used to detect clicks outside of a component
 type refType = React.MutableRefObject<HTMLElement | null>;
+
 export const useClickOutside = (ref:refType , handler: Function) => {
   useEffect(() => {
     const listener = (event: MouseEvent | TouchEvent) => {

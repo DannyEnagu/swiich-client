@@ -54,17 +54,23 @@ export default function ProjectList() {
               </summary>
               <ul className={styles.taskList} role="list">
                   <li>
-                    <Modal summary={
+                    <Modal>
+                      <Modal.Summary>
                       <span className={styles.taskSmmry}>Task 1</span>
-                    }>
-                      <TaskDetails />
+                      </Modal.Summary>
+                      <Modal.Content>
+                        <TaskDetails />
+                      </Modal.Content>
                     </Modal>
                   </li>
                   <li>
-                    <Modal summary={
+                    <Modal>
+                      <Modal.Summary>
                       <span className={styles.taskSmmry}>Task 2</span>
-                    }>
-                      <TaskDetails />
+                      </Modal.Summary>
+                      <Modal.Content>
+                        <TaskDetails />
+                      </Modal.Content>
                     </Modal>
                   </li>
               </ul>
@@ -81,17 +87,23 @@ export default function ProjectList() {
               </summary>
               <ul className={styles.taskList} role="list">
                   <li>
-                    <Modal summary={
+                    <Modal>
+                      <Modal.Summary>
                       <span className={styles.taskSmmry}>Task 1</span>
-                    }>
-                      <TaskDetails />
+                      </Modal.Summary>
+                      <Modal.Content>
+                        <TaskDetails />
+                      </Modal.Content>
                     </Modal>
                   </li>
                   <li>
-                    <Modal summary={
+                    <Modal>
+                      <Modal.Summary>
                       <span className={styles.taskSmmry}>Task 2</span>
-                    }>
-                      <TaskDetails />
+                      </Modal.Summary>
+                      <Modal.Content>
+                        <TaskDetails />
+                      </Modal.Content>
                     </Modal>
                   </li>
               </ul>
@@ -108,32 +120,39 @@ export default function ProjectList() {
               </summary>
               <ul className={styles.taskList} role="list">
                   <li>
-                    <Modal summary={
+                    <Modal>
+                      <Modal.Summary>
                       <span className={styles.taskSmmry}>Task 1</span>
-                    }>
-                      <TaskDetails />
+                      </Modal.Summary>
+                      <Modal.Content>
+                        <TaskDetails />
+                      </Modal.Content>
                     </Modal>
                   </li>
                   <li>
-                    <Modal summary={
+                    <Modal>
+                      <Modal.Summary>
                       <span className={styles.taskSmmry}>Task 2</span>
-                    }>
-                      <TaskDetails />
+                      </Modal.Summary>
+                      <Modal.Content>
+                        <TaskDetails />
+                      </Modal.Content>
                     </Modal>
                   </li>
               </ul>
           </details>
         </NavItem>
         <NavItem>
-          <Modal summary={
-            <div className={`row align-center ${styles.createBoard}`}>
-              <FontAwesomeIcon icon={faPlus} />
-              <span>Create Board</span>
-            </div>
-          }>
-            <div>
-              <h1>Create Project</h1>
-            </div>
+          <Modal>
+            <Modal.Summary>
+              <div className={`row align-center ${styles.createBoard}`}>
+                <FontAwesomeIcon icon={faPlus} />
+                <span>Create Board</span>
+              </div>
+            </Modal.Summary>
+            <Modal.Content>
+              <h1>Create Board</h1>
+            </Modal.Content>
           </Modal>
         </NavItem>
       </NavList>

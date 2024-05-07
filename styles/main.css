@@ -3,6 +3,8 @@
 @import './base.css';
 @import './utilities.css';
 
+/* Dashboard */
+
 .dd-canvas {
   background-color: var(--clr-dashboard-bg);
   color: var(--clr-dashboard-text);
@@ -51,5 +53,130 @@
 .dd-content > :last-child {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
+}
+
+/* Auth */
+
+.auth-page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.auth-page__content {
+  min-width: 90%;
+  display: flex;
+  padding: 2em 0;
+}
+
+.auth-page__img {
+  display: none;
+}
+
+.auth-page__img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.auth-page__form {
+  width: 90%;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 2em;
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+}
+
+.auth-page__form h1 {
+  font-size: var(--fs-500);
+  font-weight: var(--fw-medium);
+  margin-bottom: 1em;
+}
+
+.auth__divider {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin: 1em 0;
+}
+
+.auth__divider::before,
+.auth__divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--clr-grey);
+}
+
+.password-help {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-100);
+  margin-top: 1em;
+}
+
+.password-help a {
+  color: var(--clr-primary);
+  text-decoration: none;
+}
+
+.auth__opt button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  width: 100%;
+}
+
+.auth__help {
+  margin-top: 2em;
+  font-size: var(--fs-200);
+}
+
+.auth__help a {
+  font-style: normal;
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+  color: var(--clr-primary);
+}
+
+@media screen and (min-width: 768px) {
+  .auth-page {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .auth-page__img {
+    width: 50%;
+    display: block;
+  }
+
+  .auth-page__content {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: initial;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .auth-page__img {
+    display: none;
+  }
+
+  .auth-page {
+    height: inherit;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .auth-page__img {
+    width: 60%;
+  }
+
+  .auth-page__content {
+    width: 40%;
+  }
 }
 

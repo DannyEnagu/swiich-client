@@ -12,7 +12,7 @@ import NavItem from "@/components/dashboard/Nav/NavItem";
 import NavList from "@/components/dashboard/Nav/NavList";
 import NavLink from "@/components/dashboard/Nav/NavLink";
 import styles from "./ProjectList.module.css";
-import Modal from "@/components/Modal/Modal";
+import Modal from "@/components/ui/Modal/Modal";
 import { TaskDetails } from "..";
 
 export default function ProjectList() {

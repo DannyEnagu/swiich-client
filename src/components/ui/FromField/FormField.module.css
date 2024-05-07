@@ -1,0 +1,29 @@
+.formGroup {
+    background-color: #E6F5F4;
+    border: var(--border-accent);
+    border-radius: 5px;
+    display: flex;
+    font-weight: var(--fw-body);
+    height: 45px;
+    align-items: center;
+    padding-left: 0.6em;
+    gap: 0.5em;
+}
+
+.formGroup input {
+    outline: none;
+    border: none;
+    font-size: 14px;
+    background-color: transparent;
+    width: 100%;
+}
+
+.formField .errorMsg {
+    margin-top: 2px;
+    color: var(--clr-red);
+    font-size: var(--fs-100);
+}
+
+.formGroup input::placeholder {
+    font-size: var(--fs-100);
+}

@@ -1,5 +1,5 @@
 "use client";
-import Modal from "@/components/Modal/Modal";
+import Modal from "@/components/ui/Modal/Modal";
 import ProfileToggle from "@/components/dashboard/ProfileToggle";
 import ToolsBar from "@/components/dashboard/ToolsBar/ToolsBar";
 

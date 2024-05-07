@@ -1,6 +1,6 @@
 import styles from './ProfileView.module.css';
 import ContentWrapper from '../ContentWrapper';
-import Avatar from '@/components/Avatar/Avatar';
+import Avatar from '@/components/ui/Avatar/Avatar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCircleXmark,
@@ -13,7 +13,7 @@ import {
   faVideo,
   faMicrophone
 } from '@fortawesome/free-solid-svg-icons';
-import Dropdown from '@/components/Dropdown/Dropdown';
+import Dropdown from '@/components/ui/Dropdown/Dropdown';
 
 export default function ProfileView() {
 

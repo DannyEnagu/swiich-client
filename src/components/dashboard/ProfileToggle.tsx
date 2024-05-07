@@ -1,5 +1,5 @@
-import Avatar from "../Avatar/Avatar";
-import StringAvatar from "../Avatar/StringAvatar";
+import Avatar from "../ui/Avatar/Avatar";
+import StringAvatar from "../ui/Avatar/StringAvatar";
 
 interface ProfileToggleProps {
   currentUserName: string;

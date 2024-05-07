@@ -72,10 +72,7 @@ export default function Modal({
   return (
     <ModalContext.Provider
       value={{isModalOpen, setIsModalOpen}}>
-      <div className={`
-          ${styles.modal}
-          ${isModalOpen ? styles.modalShow : styles.modalHidden}`
-        }>
+      <div>
           {children}
       </div>
     </ModalContext.Provider>);

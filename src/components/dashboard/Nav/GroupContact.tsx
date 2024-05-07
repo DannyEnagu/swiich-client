@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHashtag, faLock } from '@fortawesome/free-solid-svg-icons';
 import styles from './Nav.module.css';
-import Avatar from '@/components/Avatar/Avatar';
+import Avatar from '@/components/ui/Avatar/Avatar';
 
 interface ContactProps {
   groupTitle: string;

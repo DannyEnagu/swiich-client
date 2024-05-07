@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckDouble, faUsersLine } from '@fortawesome/free-solid-svg-icons';
 import { limitString } from '@/utils/helpers';
-import StringAvatar from '@/components/Avatar/StringAvatar';
+import StringAvatar from '@/components/ui/Avatar/StringAvatar';
 import styles from './Nav.module.css';
-import Avatar from '@/components/Avatar/Avatar';
+import Avatar from '@/components/ui/Avatar/Avatar';
 
 interface ContactProps {
   contactName: string;

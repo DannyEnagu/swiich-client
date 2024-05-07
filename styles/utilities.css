@@ -23,6 +23,18 @@
   background-color: transparent;
 }
 
+.btn-primary {
+  color: #ffffff;
+  background-color: var(--clr-dashboard-accent);
+}
+
+.btn-outline {
+  color: var(--clr-dashboard-accent);
+  border: var(--border-accent);
+  background-color: transparent;
+  border-radius: 5px;
+}
+
 .row {
   --gap: 0.8em;
 
@@ -117,6 +129,18 @@
   margin: 0.5rem;
 }
 
+.mt-sm {
+  margin-top: 0.5rem;
+}
+
+.mt-md {
+  margin-top: 1rem;
+}
+
+.mb-sm {
+  margin-bottom: 0.5rem;
+}
+
 .mx-sm {
   margin-inline: 0.5rem;
 }
@@ -136,6 +160,15 @@
 /* ================================
   Typography
 =================================== */
+
+/* Text */
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
 
 .db-txt-accent {
   color: var(--clr-dashboard-accent);

@@ -1,0 +1,238 @@
+.form > * + * {
+    margin-top: 0.8em;
+}
+
+.formGroup label {
+    display: block;
+    font-size: var(--fs-100);
+    margin-bottom: 0.5em;
+}
+
+.formGroup input {
+    font-size: var(--fs-200);
+    font-weight: var(--fw-medium);
+    border: var(--border-accent);
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+}
+
+.formGroup input::selection {
+    background-color: var(--clr-dashboard-active-chat-bg);
+}
+
+.formGroup input[type="file"] {
+    display: none;
+}
+
+.formGroup input:focus,
+.formGroup input:focus-visible,
+.formGroup input:active {
+    outline-color: var(--clr-dashboard-accent);
+}
+
+.upLoadArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.upLoadArea label {
+    display: block;
+    height: 150px;
+    width: 100%;
+    text-align: center;
+    text-justify: center;
+    font-size: var(--fs-200);
+    color: var(--clr-dashboard-natural);
+    padding: 2em 0.5em;
+    cursor: pointer;
+    border: 4px dashed var(--clr-dashboard-natural);
+    transition: all 0.3s;
+}
+
+.upLoadArea label:hover {
+    border-color: var(--clr-dashboard-accent);
+}
+
+.upLoadArea label svg {
+    padding: 0.5em;
+    background-color: #E6F5F4;
+}
+
+.upLoadArea label span {
+    color: var(--clr-dashboard-accent);
+    display: block;
+    margin-top: 1rem;
+}
+
+.formGroup .copyLink {
+    position: relative;   
+}
+
+.formGroup .copyLink input {
+    padding-block: 8px;
+    font-size: var(--fs-100);
+}
+
+.btnCopy {
+    background-color: #E6F5F4;
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    z-index: 2;
+    padding: 3px 8px;
+}
+
+.btnCopy:hover {
+    outline: 1px solid var(--clr-dashboard-accent);
+}
+
+.btnCopy span {
+    display: inline-block;
+    font-size: var(--fs-100);
+    margin-right: 0.3em;
+    font-weight: var(--fw-medium);
+}
+
+.formButtons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.formButtons button {
+    width: 43%;
+    padding: .4em;
+}
+
+.autocomplete {
+    position: relative;
+    background-color: var(--clr-dashboard-canvas);
+    padding: 4px;
+}
+
+.autocomplete.autocompleteBordered {
+    border: var(--border-accent);
+    border-radius: 5px;
+}
+
+.autocomplete.autocompleteIsFocused {
+    outline: 1px solid var(--clr-dashboard-accent);;
+}
+
+
+.textField label.optionsLabel {
+    display: flex;
+    margin: 0;
+    padding-right: 0.5em;
+    /* border: 1px solid black; */
+}
+
+.optionsLabel:hover {
+    cursor: text;
+}
+
+.selectedOptions,
+.optionsCount,
+.firstOption {
+    background-color: #E6F5F4;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 0.5em;
+    font-size: var(--fs-100);
+    margin-right: 0.4em;
+}
+
+.textField input {
+    background-color: transparent;
+    border: none;
+    /* width: initial; */
+}
+
+.textField input.hasOptions {
+    width: 45%;
+}
+
+.textField input:focus,
+.textField input:focus-visible,
+.textField input:active {
+    /* outline-color: var(--clr-dashboard-accent); */
+    outline: none;
+}
+
+.textField input:focus .autocomplete.autocompleteBordered {
+    border-width: 10px;
+}
+
+.autocompleteToggle {
+    position: absolute;
+    right: 0;
+    top: -3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    padding: 0;
+}
+
+.autocompleteDrop {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    width: 100%;
+    max-height: 300px;
+    z-index: 5;
+    background-color: var(--clr-dashboard-bg);
+    overflow: auto;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+    padding: 0.5em .9em;
+}
+
+.autocompleteDrop ul {
+    padding: 0;
+    margin: 0;
+}
+
+.autocompleteDrop li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.autocompleteDrop .noOptions,
+.autocompleteDrop li span {
+    font-size: var(--fs-200);
+}
+
+.autocompleteDrop .selectedIcon {
+    color: var(--clr-dashboard-accent);
+}
+
+.optionActionsBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+}
+
+.optionActionsBtn button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3em;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #E6F5F4;
+    color: var(--clr-dashboard-accent);
+    height: 20px;
+    width: 20px;
+    padding: 0;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.optionActionsBtn .btnRemove {
+    background-color: rgb(251, 229, 229);
+}

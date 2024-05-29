@@ -1,18 +1,24 @@
 
 "use client";
-
+import { signIn, useSession } from "next-auth/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-// import { FormData } from "@/types";
 import FormField from "@/components/ui/FromField/FormField";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
     faEnvelope,
     faLock,
-    faUser
+    faUser,
+    faSpinner
 }
 from "@fortawesome/free-solid-svg-icons";
-import styles from "./UserFrom.module.css";
+import styles from "./AuthForm.module.css";
+import { RegisterBody} from "@/services/auth";
+import { useRouter, useSearchParams } from 'next/navigation';
+import { setCredentials } from "@/lib/features/authSlice";
+import { useDispatch } from "react-redux";
 
 interface UserFormProps {
     type: "sign-up" | "sign-in";
@@ -21,8 +27,8 @@ interface UserFormProps {
 // Regex: Full Name must contain only alphabets and two words separated by a space
 const fullNameRegex = /^[a-zA-Z]+\s[a-zA-Z]+$/
 
-const schema = z.object({
-    fullName: z.string()
+const mainSchema = z.object({
+    name: z.string()
         .min(1, {
             message: "Full Name is required"
         })
@@ -53,9 +59,26 @@ const schema = z.object({
             })
   }).required();
 
-type FormData = z.infer<typeof schema>;
+  const signInSchema = mainSchema.partial({
+    name: true,
+    confirmPassword: true,
+  
+  });
 
 export default function UserFrom({ type }: UserFormProps) {
+    const router = useRouter();
+    // Get page full url path
+    const searchParams = useSearchParams();
+    const loginCallbackUrl = searchParams.get('callbackUrl') || '';
+    const dispatch = useDispatch();
+    // omit confirmPassword and name from schema
+    const schema = type === "sign-in" ? signInSchema : mainSchema;
+
+    const { data: session } = useSession();
+
+    // Infer the type of the schema
+    type FormData = z.infer<typeof schema>;
+
     const {
         register,
         handleSubmit,
@@ -65,14 +88,48 @@ export default function UserFrom({ type }: UserFormProps) {
         resolver: zodResolver(schema),
     });
 
-    const onSubmit: SubmitHandler<FormData> = async (data) => {
-        try {
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-            console.log(data);
-          } catch (error) {
+
+    const generateReqBody = (params: RegisterBody) => {
+        return {
+            'sign-in': {
+                email: params.email,
+                password: params.password,
+                url: '/auth/login',
+                redirect: false,
+                callbackUrl: loginCallbackUrl,
+            },
+            'sign-up': {
+                email: params.email,
+                name: params.name,
+                password: params.password ,
+                url: '/auth/signup', 
+                redirect: false,
+                callbackUrl: loginCallbackUrl,
+            }
+        }
+    };
+
+
+    const onSubmit: SubmitHandler<FormData> = async (params) => {
+        const reqBody = generateReqBody(params);
+        const res = await signIn("credentials", reqBody[type]);
+        if (res?.error) {
             setError("root", {
-              message: "This email is already taken",
+                message: 'Invalid Email or Password',
             });
+            return;
+        }
+        if (session?.user) {
+            dispatch(
+                setCredentials({
+                    user: session.user,
+                    token: session.token
+                })
+            )
+            // Extract page url path from callbackUrl
+            const url = new URL(loginCallbackUrl);
+            const path = url.pathname;
+            router.push(path);
         }
     };
 
@@ -81,6 +138,11 @@ export default function UserFrom({ type }: UserFormProps) {
             className={styles.form}
             onSubmit={handleSubmit(onSubmit)}
         >
+            
+            <span>
+                {errors.confirmPassword?.message}
+                {errors.name?.message}
+            </span>
             {errors.root &&
                 <div className={styles.formError}>    
                     {errors.root?.message}
@@ -90,10 +152,10 @@ export default function UserFrom({ type }: UserFormProps) {
             {type == 'sign-up' && (
                 <FormField
                     type="text"
-                    name="fullName"
+                    name="name"
                     placeholder="Full Name"
                     register={register}
-                    error={errors.fullName}
+                    error={errors.name}
                     iconType={faUser}
                 />
             )}
@@ -127,7 +189,9 @@ export default function UserFrom({ type }: UserFormProps) {
                 disabled={isSubmitting}
                 className="btn btn-primary mt-md"
                 type="submit">
-                {isSubmitting ? "Loading..." : "Submit"}
+                {isSubmitting
+                ? <FontAwesomeIcon icon={faSpinner} spinPulse />
+                : "Submit"}
             </button>
         </form>
     );

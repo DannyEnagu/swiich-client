@@ -28,10 +28,17 @@
   background-color: var(--clr-dashboard-accent);
 }
 
-.btn-outline {
+.btn-outline-primary {
   color: var(--clr-dashboard-accent);
   border: var(--border-accent);
-  background-color: transparent;
+  background-color: var(--clr-dashboard-active-chat-bg);
+  border-radius: 5px;
+}
+
+.btn-outline-muted {
+  color: var(--clr-dashboard-natural);
+  border: var(--border-accent);
+  background-color: var(--clr-dashboard-bg);
   border-radius: 5px;
 }
 
@@ -176,4 +183,8 @@
 
 .db-txt-muted {
   color: var(--clr-dashboard-txt-muted);
+}
+
+.toast-medium {
+  width: 450px;
 }

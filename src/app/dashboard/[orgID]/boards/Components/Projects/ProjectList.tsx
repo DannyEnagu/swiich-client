@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,7 +17,6 @@ import { TaskDetails } from "..";
 
 export default function ProjectList() {
   const currPathname = usePathname();
-  const router = useRouter();
   
   const changeActiveProject = useCallback(() => {
     const projectLinks = document.querySelectorAll(`.${styles.project}`) as NodeListOf<HTMLDetailsElement>;

@@ -1,4 +1,4 @@
-.modalContentWrapper {
+.modalContentBackdrop {
   position: fixed;
   left: 0;
   top: 0;
@@ -8,7 +8,6 @@
   background-color: rgba(0, 0, 0, 0.4);
   overflow: auto;
   z-index: 1;
-  border: 1px solid red;
 }
 
 .modalContentHidden {
@@ -19,6 +18,22 @@
   display: block;
 }
 
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5em;
+}
+
+.modalHeader h2 {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  font-size: var(--fs-300);
+  text-align: center;
+}
+
 .modalToggle {
   text-align: left;
   font-size: var(--fs-100);
@@ -27,12 +42,12 @@
 }
 
 .modalClose {
-  position: absolute;
-  top: -1px;
-  right: -1px;
-  padding: 0 0.8em;
-  background-color: var(--clr-dashboard-danger);
-  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  width: 36px;
+  border: var(--border-accent);
 }
 
 .modalContent {
@@ -41,7 +56,7 @@
   padding: 20px;
   border: 1px solid var(--clr-dashboard-border);
   width: 80%;
-  max-width: 500px;
+  width: min(80%, 500px);
   border-radius: 10px;
   position: relative;
   z-index: 1000;

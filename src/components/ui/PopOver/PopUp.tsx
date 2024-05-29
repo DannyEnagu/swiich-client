@@ -8,7 +8,7 @@ interface PopUpProps {
     position?: 'auto' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end';
 };
 
-// Clone only postion type from PopUpProps
+// Clone only position type from PopUpProps
 type PopUpPosition = Pick<PopUpProps, 'position'>;
 
 const defaultObj: PopUpPosition = {position: 'auto'};

@@ -56,7 +56,6 @@
 }
 
 /* Auth */
-
 .auth-page {
   display: flex;
   justify-content: center;
@@ -64,8 +63,8 @@
 }
 
 .auth-page__content {
-  min-width: 90%;
   display: flex;
+  min-width: 90%;
   padding: 2em 0;
 }
 

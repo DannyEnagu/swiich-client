@@ -1,0 +1,45 @@
+.form h1 {
+    text-align: center;
+    font-size: var(--fs-400);
+    font-weight: var(--fw-medium);
+    margin-bottom: 1em;
+}
+
+.form p {
+    font-size: var(--fs-200);
+    font-weight: var(--fw-medium);
+    margin-bottom: 1em;
+}
+
+.formGroup {
+    margin-bottom: 0.5em;
+}
+
+.formInput {
+    font-size: var(--fs-200);
+    width: 100%;
+    padding: 0.5em;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #131313;
+}
+
+.formInput::placeholder {
+    font-size: var(--fs-100);
+    color: #757373;
+    font-weight: var(--fw-medium);
+}
+
+.formButton {
+    width: 100%;
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-200);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.formButton:hover {
+    opacity: 0.8;
+}

@@ -16,7 +16,7 @@ export default function ProfileToggle({ currentUserName, profilePic }: ProfileTo
         imgAlt={`${currentUserName} is the current Loged in user`}
         />
       : <StringAvatar
-          name="John Doe"
+          name={currentUserName}
           size={45}
         />}
     </>

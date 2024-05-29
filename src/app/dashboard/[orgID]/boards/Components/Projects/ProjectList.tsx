@@ -53,7 +53,7 @@ export default function ProjectList() {
               </summary>
               <ul className={styles.taskList} role="list">
                   <li>
-                    <Modal>
+                    <Modal title=''>
                       <Modal.Summary>
                       <span className={styles.taskSmmry}>Task 1</span>
                       </Modal.Summary>
@@ -63,7 +63,7 @@ export default function ProjectList() {
                     </Modal>
                   </li>
                   <li>
-                    <Modal>
+                    <Modal title=''>
                       <Modal.Summary>
                       <span className={styles.taskSmmry}>Task 2</span>
                       </Modal.Summary>
@@ -86,7 +86,7 @@ export default function ProjectList() {
               </summary>
               <ul className={styles.taskList} role="list">
                   <li>
-                    <Modal>
+                    <Modal title=''>
                       <Modal.Summary>
                       <span className={styles.taskSmmry}>Task 1</span>
                       </Modal.Summary>
@@ -96,7 +96,7 @@ export default function ProjectList() {
                     </Modal>
                   </li>
                   <li>
-                    <Modal>
+                    <Modal title=''>
                       <Modal.Summary>
                       <span className={styles.taskSmmry}>Task 2</span>
                       </Modal.Summary>
@@ -119,7 +119,7 @@ export default function ProjectList() {
               </summary>
               <ul className={styles.taskList} role="list">
                   <li>
-                    <Modal>
+                    <Modal title=''>
                       <Modal.Summary>
                       <span className={styles.taskSmmry}>Task 1</span>
                       </Modal.Summary>
@@ -129,7 +129,7 @@ export default function ProjectList() {
                     </Modal>
                   </li>
                   <li>
-                    <Modal>
+                    <Modal title=''>
                       <Modal.Summary>
                       <span className={styles.taskSmmry}>Task 2</span>
                       </Modal.Summary>
@@ -142,7 +142,7 @@ export default function ProjectList() {
           </details>
         </NavItem>
         <NavItem>
-          <Modal>
+          <Modal title=''>
             <Modal.Summary>
               <div className={`row align-center ${styles.createBoard}`}>
                 <FontAwesomeIcon icon={faPlus} />

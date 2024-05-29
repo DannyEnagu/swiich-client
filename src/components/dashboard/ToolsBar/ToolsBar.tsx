@@ -17,24 +17,25 @@ import CreateTeam from '@/components/CreatTeam/CreateTeam';
 
 export default function ToolsBar() {
   const currPathname = usePathname();
-
-  const changeActiveTool = () => {
-    const toolLinks = document.querySelectorAll(`.${styles.toolLink}`) as NodeListOf<HTMLAnchorElement>;
-    toolLinks.forEach((toolLink) => {
-      // Remove active class from all tool links
-      toolLink.classList.remove(styles.toolLinkIsActive);
-      const extractPathname = toolLink.href.split('/').slice(3).join('/');
-      const toolPathname = `/${extractPathname}`;
-      // Add active class to the tool link that matches the current pathname
-      if (toolPathname === currPathname) {
-        toolLink.classList.add(styles.toolLinkIsActive);
-      } else if (currPathname.includes('boards') && toolPathname.includes('boards')) {
-        toolLink.classList.add(styles.toolLinkIsActive);
-      }
-    });
-  }
-
+  
   useEffect(() => {
+
+    const changeActiveTool = () => {
+      const toolLinks = document.querySelectorAll(`.${styles.toolLink}`) as NodeListOf<HTMLAnchorElement>;
+      toolLinks.forEach((toolLink) => {
+        // Remove active class from all tool links
+        toolLink.classList.remove(styles.toolLinkIsActive);
+        const extractPathname = toolLink.href.split('/').slice(3).join('/');
+        const toolPathname = `/${extractPathname}`;
+        // Add active class to the tool link that matches the current pathname
+        if (toolPathname === currPathname) {
+          toolLink.classList.add(styles.toolLinkIsActive);
+        } else if (currPathname.includes('boards') && toolPathname.includes('boards')) {
+          toolLink.classList.add(styles.toolLinkIsActive);
+        }
+      });
+    }
+    
     changeActiveTool();
   }, [currPathname]);
 

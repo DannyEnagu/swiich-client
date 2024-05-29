@@ -61,7 +61,7 @@ export default function NavContainer() {
           </NavLink>
         </NavItem>
         <NavItem>
-          <Modal>
+          <Modal title="">
             <Modal.Summary>
               <span className="py-sm row">
                 <FontAwesomeIcon icon={faPlus} size="xl" />

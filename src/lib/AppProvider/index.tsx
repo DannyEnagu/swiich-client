@@ -7,8 +7,8 @@ interface AppProviderProps {
     children: React.ReactNode;
 }
 
-export default function AppProvider({ children }: AppProviderProps) {
-    const session = getServerSession();
+export default async function AppProvider({ children }: AppProviderProps) {
+    const session = await getServerSession();
     return (
         <ToastProvider>
             <StoreProvider>

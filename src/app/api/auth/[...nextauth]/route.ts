@@ -32,7 +32,7 @@ const providers = [
 //   GoogleProvider({}),
 ]
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers,
   callbacks: {
     async signIn() {
@@ -76,5 +76,3 @@ export const authOptions: NextAuthOptions = {
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
-
-

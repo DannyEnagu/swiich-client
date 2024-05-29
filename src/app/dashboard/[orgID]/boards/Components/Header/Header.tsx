@@ -9,7 +9,7 @@ import {
     faAngleDown,
     faFilter
 } from '@fortawesome/free-solid-svg-icons';
-import PopUp from "@/components/PopUp/PopUp";
+import PopUp from "@/components/ui/PopOver/PopUp";
 
 
 export default function Header() {

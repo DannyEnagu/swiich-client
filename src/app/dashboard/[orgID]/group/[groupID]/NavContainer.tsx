@@ -3,7 +3,7 @@ import NavItem from "@/components/dashboard/Nav/NavItem";
 import NavLink from "@/components/dashboard/Nav/NavLink";
 import Nav from "@/components/dashboard/Nav/Nav";
 import GroupContact from "@/components/dashboard/Nav/GroupContact";
-import Modal from "@/components/Modal/Modal";
+import Modal from "@/components/ui/Modal/Modal";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 

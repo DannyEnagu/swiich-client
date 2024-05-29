@@ -1,6 +1,6 @@
 import styles from './ChatBubble.module.css';
-import Avatar from '@/components/Avatar/Avatar';
-import StringAvatar from '@/components/Avatar/StringAvatar';
+import Avatar from '@/components/ui/Avatar/Avatar';
+import StringAvatar from '@/components/ui/Avatar/StringAvatar';
 
 interface ChatBubbleProps {
   profilePic: string;

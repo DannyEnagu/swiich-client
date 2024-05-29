@@ -11,19 +11,21 @@ import {
  } from '@fortawesome/free-solid-svg-icons';
 import { usePathname } from 'next/navigation';
 import styles from './ToolsBar.module.css';
+import Modal from '@/components/ui/Modal/Modal';
+import Avatar from '@/components/ui/Avatar/Avatar';
+import CreateTeam from '@/components/CreatTeam/CreateTeam';
 
 export default function ToolsBar() {
   const currPathname = usePathname();
+
   const changeActiveTool = () => {
     const toolLinks = document.querySelectorAll(`.${styles.toolLink}`) as NodeListOf<HTMLAnchorElement>;
     toolLinks.forEach((toolLink) => {
       // Remove active class from all tool links
-
-      // Add active class to the tool link that matches the current pathname
       toolLink.classList.remove(styles.toolLinkIsActive);
       const extractPathname = toolLink.href.split('/').slice(3).join('/');
       const toolPathname = `/${extractPathname}`;
-
+      // Add active class to the tool link that matches the current pathname
       if (toolPathname === currPathname) {
         toolLink.classList.add(styles.toolLinkIsActive);
       } else if (currPathname.includes('boards') && toolPathname.includes('boards')) {
@@ -39,6 +41,22 @@ export default function ToolsBar() {
   return (
     <div className={styles.wrapper}>
       <ul className={styles.tools} role='list'>
+        <li className={styles.tool}>
+          <span className={styles.toolIcon}>
+            <Modal title="Create a Team">
+              <Modal.Summary>
+                <Avatar
+                  size={35}
+                  imgSrc=""
+                  imgAlt=""
+                />
+              </Modal.Summary>
+              <Modal.Content>
+                <CreateTeam />
+              </Modal.Content>
+            </Modal>
+          </span>
+        </li>
         <li className={styles.tool}>
           <Link
             href="/dashboard/1"

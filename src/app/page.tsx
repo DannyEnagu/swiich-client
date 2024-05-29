@@ -8,6 +8,11 @@ export default function Home() {
       <ul>
         <li>
           <Link href="/dashboard/1">Dashboard</Link>
+          <br />
+          <Link href="/sign-in">Sign In</Link>
+          <br />
+          <Link href="/sign-up">Sign up</Link>
+          <br />
         </li>
       </ul>
     </main>

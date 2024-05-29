@@ -7,8 +7,8 @@ import {
   faUsersLine,
   faUserPlus
 } from '@fortawesome/free-solid-svg-icons';
-import Avatar from '@/components/Avatar/Avatar';
-import StringAvatar from '@/components/Avatar/StringAvatar';
+import Avatar from '@/components/ui/Avatar/Avatar';
+import StringAvatar from '@/components/ui/Avatar/StringAvatar';
 
 interface DirectMessageHeaderProps {
   userName: string;

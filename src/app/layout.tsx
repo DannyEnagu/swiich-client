@@ -4,6 +4,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 import { inter, poppins } from "../../styles/fonts";
 import "../../styles/main.css";
+import AppProvider from "@/lib/AppProvider";
 
 export const metadata: Metadata = {
   title: "Swiich Office App",
@@ -15,10 +16,13 @@ export default function RootLayout({
   }: Readonly<{
     children: React.ReactNode;
   }>) {
+    
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body>
-        {children}
+        <AppProvider>
+          {children}
+        </AppProvider>
       </body>
     </html>
   );

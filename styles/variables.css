@@ -8,7 +8,7 @@
   --dashboard-right-width: 350px;
 
   /* Colors */
-  --clr-primary: #0061d8;
+  --clr-primary: #0a9c93;
   --clr-secondary: #fcc3c0;
   --clr-tetiary: #231645;
   --clr-grey: #c3c8d8;
@@ -65,4 +65,7 @@
   --border: 1px solid var(--clr-dashboard-accent);
   --border-accent: 1px solid var(--clr-dashboard-accent);
   --db-divider: 1px solid var(--clr-dashboard-border);
+
+  /* Shadows */
+  --shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.25);
 }

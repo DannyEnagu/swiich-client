@@ -1,5 +1,5 @@
-import Avatar from "../Avatar/Avatar";
-import StringAvatar from "../Avatar/StringAvatar";
+import Avatar from "../ui/Avatar/Avatar";
+import StringAvatar from "../ui/Avatar/StringAvatar";
 
 interface ProfileToggleProps {
   currentUserName: string;
@@ -16,7 +16,7 @@ export default function ProfileToggle({ currentUserName, profilePic }: ProfileTo
         imgAlt={`${currentUserName} is the current Loged in user`}
         />
       : <StringAvatar
-          name="John Doe"
+          name={currentUserName}
           size={45}
         />}
     </>

@@ -11,21 +11,26 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 interface ModalProps {
   children: React.ReactNode;
+  title: string;
 }
 
 type DefaultObjectType = {
   isModalOpen: boolean,
+  title?: string,
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 };
 
 const defaultObj: DefaultObjectType = {
   isModalOpen: false,
+  title: '',
   setIsModalOpen: () => {}
 };
 
 export const ModalContext = createContext(defaultObj);
 
-const ModalSummary = ({ children }: ModalProps) => {
+// ModalSummary is responsible for Opening the Modal
+const ModalSummary = ({ children }:
+  Pick<ModalProps, 'children'>) => {
   const { isModalOpen, setIsModalOpen } = useContext(ModalContext);
   return (
       <button
@@ -37,9 +42,14 @@ const ModalSummary = ({ children }: ModalProps) => {
   );
 };
 
-const ModalContent = ({ children }: ModalProps) => {
+/**
+ * ModalContent is responsible for the content of the Modal
+ * It will be hidden by default and will be shown when the ModalSummary is clicked
+ */
+const ModalContent = ({ children }:
+  Pick<ModalProps, 'children'>) => {
   const modalContentRef = useRef<HTMLDivElement | null>(null);
-  const { isModalOpen, setIsModalOpen } = useContext(ModalContext);
+  const { isModalOpen, setIsModalOpen, title } = useContext(ModalContext);
 
   useClickOutside(modalContentRef, () => {
     setIsModalOpen(false);
@@ -47,37 +57,51 @@ const ModalContent = ({ children }: ModalProps) => {
 
   return (
     <div
-      className={`${styles.modalContentWrapper} ${isModalOpen ? styles.modalContentShow : styles.modalContentHidden}`} 
+      className={`${styles.modalContentBackdrop} ${isModalOpen ? styles.modalContentShow : styles.modalContentHidden}`} 
     >
       <div
         className={styles.modalContent}
         ref={modalContentRef}
        >
-        <button
-          className={`btn btn-icon ${styles.modalClose}`}
-          onClick={() => setIsModalOpen(!isModalOpen)}>
-          <FontAwesomeIcon icon={faTimes} />
-        </button>
+        <header className={styles.modalHeader}>
+          <h2>
+            {title}
+          </h2>
+          <button
+            className={`btn btn-icon ${styles.modalClose}`}
+            onClick={() => setIsModalOpen(!isModalOpen)}>
+            <FontAwesomeIcon icon={faTimes} size='xl' />
+          </button>
+        </header>
         {children}
       </div>
     </div>
   );
 };
 
+/**
+ * Modal is the parent component that will wraps ModalSummary and ModalContent
+ * @children The content of the Modal
+ * @title The title that will be displayed in at the top of the Modal
+ */
 export default function Modal({
   children,
+  title
 }: ModalProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <ModalContext.Provider
-      value={{isModalOpen, setIsModalOpen}}>
-      <div className={`
-          ${styles.modal}
-          ${isModalOpen ? styles.modalShow : styles.modalHidden}`
-        }>
-          {children}
-      </div>
+      value={
+        {
+          isModalOpen,
+          setIsModalOpen,
+          title
+        }
+      }
+    >
+
+      {children}
     </ModalContext.Provider>);
 }
 

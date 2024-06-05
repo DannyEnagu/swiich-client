@@ -16,7 +16,9 @@
 }
 
 .contentWrapperFooter {
+  border-left: var(--db-divider);
   background-color: var(--clr-dashboard-canvas);
+  width: 100%;
 }
 
 .posts,

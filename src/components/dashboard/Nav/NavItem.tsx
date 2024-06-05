@@ -9,7 +9,7 @@ export default function NavItem({
 }: NavItemProps
 ) {
   return (
-    <li className={`${styles.navItem}`}>
+    <li className={styles.navItem}>
       {children}
     </li>
   );

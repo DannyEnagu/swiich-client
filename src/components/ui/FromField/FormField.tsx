@@ -1,8 +1,26 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Input from '../Input';
+import type { IconProp } from "@fortawesome/fontawesome-svg-core";
+import type { FieldError, UseFormRegister } from "react-hook-form";
 import styles from './FormField.module.css';
-import { FormFieldProps } from '@/types';
+
+interface FormFieldProps {
+    type: string;
+    placeholder: string;
+    name: ValidFieldNames;
+    register: UseFormRegister<AuthFormDataType>;
+    error: FieldError | undefined;
+    valueAsNumber?: boolean;
+    iconType: IconProp;
+};
+
+
+type ValidFieldNames =
+    | "email"
+    | "name"
+    | "password"
+    | "confirmPassword";
 
 export default function FormField({ 
     type,

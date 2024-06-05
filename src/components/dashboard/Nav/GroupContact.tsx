@@ -3,22 +3,17 @@ import { faHashtag, faLock } from '@fortawesome/free-solid-svg-icons';
 import styles from './Nav.module.css';
 import Avatar from '@/components/ui/Avatar/Avatar';
 
-interface ContactProps {
-  groupTitle: string;
-  groupMsgCount: number;
-  groupImg?: string;
-  isPublicGroup: boolean;
-};
 
 export default function GroupContact({
+  groupID,
   groupTitle,
   groupMsgCount,
   groupImg,
   isPublicGroup,
-}: ContactProps) {
+}: GroupContactProps) {
   return (
     <div className={styles.groupContact}>
-      <div className={styles.visuals}>
+      <span className={styles.visuals}>
         { /* Display group image if available */}
         { /* Display group icon if no image is available */}
         {groupImg
@@ -27,16 +22,19 @@ export default function GroupContact({
               size={20}
               imgAlt={`group ${groupTitle} image`}
             />
-          : <FontAwesomeIcon icon={faHashtag} />}
+          : <FontAwesomeIcon className={styles.visualsIcon} icon={faHashtag} />}
         
         {isPublicGroup && (
           <div className={styles.groupIsPublic}>
             <FontAwesomeIcon icon={faLock} />
-          </div>)
-        }
-      </div>
-        <span className={styles.groupTitle}>{groupTitle}</span>
-        <span className={styles.groupMsgCount}>{groupMsgCount}</span>
+          </div>)}
+      </span>
+      <span className={styles.groupTitle}>{groupTitle}</span>
+      {// Display the number of unread messages
+        groupMsgCount > 0 && (
+          <span className={styles.groupMsgCount}>{groupMsgCount}</span>
+        )
+      }
     </div>
   );
 }

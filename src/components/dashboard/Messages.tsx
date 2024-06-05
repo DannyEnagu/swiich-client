@@ -8,7 +8,7 @@ export default function Messages() {
       <li>
         <ChatBubble 
           profilePic="https://via.placeholder.com/50"
-          senerName="John"
+          userName="John"
           time="2:30 PM"
           message="Hello, how are you?"
           isSender={false}
@@ -17,7 +17,7 @@ export default function Messages() {
       <li>
         <ChatBubble 
           profilePic="https://via.placeholder.com/50"
-          senerName="Dami"
+          userName="Dami"
           time="2:30 PM"
           message="Hi, I'm cool boss and you?"
           isSender={true}
@@ -26,7 +26,7 @@ export default function Messages() {
       <li>
         <ChatBubble 
           profilePic="https://via.placeholder.com/50"
-          senerName="John"
+          userName="John"
           time="2:30 PM"
           message="Grateful, thanks for asking. I'm doing great. How's work?"
           isSender={false}
@@ -35,7 +35,7 @@ export default function Messages() {
       <li>
         <ChatBubble 
           profilePic="https://via.placeholder.com/50"
-          senerName="Dami"
+          userName="Dami"
           time="2:30 PM"
           message="Work is fine, just a little bit of stress here and there. But I'm good."
           isSender={true}
@@ -44,7 +44,7 @@ export default function Messages() {
       <li>
         <ChatBubble 
           profilePic="https://via.placeholder.com/50"
-          senerName="John"
+          userName="John"
           time="2:30 PM"
           message="I understand, it's normal to feel that way. Just take it easy."
           isSender={false}
@@ -53,7 +53,7 @@ export default function Messages() {
       <li>
         <ChatBubble 
           profilePic="https://via.placeholder.com/50"
-          senerName="Dami"
+          userName="Dami"
           time="2:30 PM"
           message="Thanks, I will. I appreciate your concern."
           isSender={true}
@@ -62,7 +62,7 @@ export default function Messages() {
       <li>
         <ChatBubble 
           profilePic="https://via.placeholder.com/50"
-          senerName="John"
+          userName="John"
           time="2:30 PM"
           message="You're welcome. I'm always here for you."
           isSender={false}
@@ -71,7 +71,7 @@ export default function Messages() {
       <li>
         <ChatBubble 
           profilePic="https://via.placeholder.com/50"
-          senerName="Dami"
+          userName="Dami"
           time="2:30 PM"
           message="I know, thanks. I appreciate you."
           isSender={true}
@@ -80,7 +80,7 @@ export default function Messages() {
       <li>
         <ChatBubble 
           profilePic="https://via.placeholder.com/50"
-          senerName="John"
+          userName="John"
           time="2:30 PM"
           message="You're welcome... Anytime, any day."
           isSender={false}

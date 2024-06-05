@@ -1,6 +1,10 @@
-import styles from './TasksGrid.module.scss';
+import styles from './Details.module.css';
 
-export default function Details() {
+interface TaskDetailProps {
+    name: string
+}
+
+export default function Details(task: any) {
     return (
         <div>
             Task Details

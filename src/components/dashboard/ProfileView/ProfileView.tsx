@@ -1,6 +1,3 @@
-import styles from './ProfileView.module.css';
-import ContentWrapper from '../ContentWrapper';
-import Avatar from '@/components/ui/Avatar/Avatar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCircleXmark,
@@ -13,16 +10,26 @@ import {
   faVideo,
   faMicrophone
 } from '@fortawesome/free-solid-svg-icons';
+import { useAppDispatch } from "@/lib/hooks/storeHooks";
+
+import Avatar from '@/components/ui/Avatar/Avatar';
 import Dropdown from '@/components/ui/Dropdown/Dropdown';
+import { closeRightCanvas } from '@/lib/features/uiSlice';
+import styles from './ProfileView.module.css';
 
 export default function ProfileView() {
+  const dispatch = useAppDispatch();
+
+  const hideContent = () => {
+    dispatch(closeRightCanvas());
+  }
 
   return (
-    <aside className={styles.wrapper}>
-      <ContentWrapper>
+    <div className={styles.wrapper}>
+      <>
         <div className={styles.header}>
           <Avatar imgSrc='' size={200} imgAlt='User name' />
-          <button className={`btn ${styles.closeButton}`}>
+          <button onClick={() => hideContent()} className={`btn ${styles.closeButton}`}>
             <FontAwesomeIcon icon={faCircleXmark} />
           </button>
         </div>
@@ -201,7 +208,7 @@ export default function ProfileView() {
             </div>
           </div>
         </div>
-      </ContentWrapper>
-    </aside>
+      </>
+    </div>
   );
 }

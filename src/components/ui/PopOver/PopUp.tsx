@@ -1,5 +1,5 @@
 import { useRef, useContext, createContext } from "react";
-import { useClickOutside } from "@/utils/hooks";
+import { useClickOutside } from '@/lib/hooks/useClickOutside';
 import styles from "./PopUp.module.css";
 import { capitalize } from "@/utils/helpers";
 

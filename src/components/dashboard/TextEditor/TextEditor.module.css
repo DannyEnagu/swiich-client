@@ -1,26 +1,37 @@
 .wrapper {
-  display: flex;
-  align-items: center;
-  gap: 1.5em;
-  padding: 9px 2em;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.5em;
+  padding: 9px 0.8em;
 }
 
 .editor {
-  flex: 1;
   background-color: var(--clr-dashboard-natural);
   border-radius: 10px;
   display: flex;
   align-items: center;
   gap: 0.3em;
-  padding: 0.5em;
 }
 
+.editor button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 4px 8px;
+}
+
+
 .editorInput {
-  flex: 1;
-  padding: 0 1em;
+  width: 90%;
+  padding: 0.5em;
   border: none;
   background-color: transparent;
   border: none;
   outline: none;
-  font-size: var(--fs-100);
+  font-size: var(--fs-200);
 }
+
+/* .share,
+.voice {
+  border: 1px solid yellow;
+} */

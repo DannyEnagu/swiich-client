@@ -3,6 +3,18 @@
   margin-inline: auto;
 }
 
+/* .dashboard {
+  display: grid;
+  grid-template-columns: var(--dashboard-left-width) 1fr var(--dashboard-right-width);
+  gap: 1rem;
+} */
+
+.dashboard-right {
+  background-color: var(--clr-dashboard-canvas);
+  border-left: 1px solid var(--clr-dashboard-border);
+  width: var(--dashboard-right-width);
+}
+
 .sr-only {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);

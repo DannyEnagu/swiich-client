@@ -1,4 +1,4 @@
-export interface CurrentUser {
+interface CurrentUser {
     id: string | number | undefined;
     email: string;
     name: string;

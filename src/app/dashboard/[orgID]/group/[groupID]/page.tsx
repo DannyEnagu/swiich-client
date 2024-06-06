@@ -61,10 +61,12 @@ export default function page() {
     <div className="dd-content">
       <FilterableNav
         items={groups}
-        showCreateContact
-        createContactText="Create Group"
-        createContactTitle="Create Group"
-        onHandleAdd={handleAdd} 
+        showCreateButton
+        CreateButtonProps={{
+          title: "Create Group",
+          displayText: "Add Group",
+          onAdd: handleAdd
+        }}
       />
       <Header isDm={false} />
       <Main>

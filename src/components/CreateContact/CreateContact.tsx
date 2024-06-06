@@ -3,7 +3,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Modal from "../ui/Modal/Modal";
 import styles from './CreateContact.module.css';
 
-interface CreateContactProps {
+export interface CreateContactProps {
   title: string;
   displayText: string;
   onAdd: (vales: string) => void;

@@ -2,21 +2,17 @@
 import styles from './Nav.module.css';
 import Search from './Search';
 import FilterableNavList from './FilterableNavList';
-import CreateContact from '@/components/CreateContact/CreateContact';
+import CreateContact, { CreateContactProps } from '@/components/CreateContact/CreateContact';
 interface FilterableNavProps {
   items: NavProps[];
-  showCreateContact?: boolean;
-  createContactText?: string;
-  createContactTitle?: string;
-  onHandleAdd?: (vales: any) => void;
+  showCreateButton?: boolean;
+  CreateButtonProps: CreateContactProps;
 }
 
 export default function FilterableNav({
   items,
-  showCreateContact = false,
-  onHandleAdd,
-  createContactText,
-  createContactTitle,
+  CreateButtonProps,
+  showCreateButton = false,
 }: FilterableNavProps) {
   const handleTextChange = (text: string) => {
     // Filter items based on text
@@ -26,12 +22,8 @@ export default function FilterableNav({
       <Search onTextChange={handleTextChange}/>
       <div className={styles.navContent}>
         <FilterableNavList filteredItems={items} />
-        {showCreateContact && (
-          <CreateContact
-            title={createContactTitle || ''}
-            displayText={createContactText || ''}
-            onAdd={onHandleAdd || (() => {})}
-          />
+        {showCreateButton && (
+          <CreateContact {...CreateButtonProps} />
         )}
       </div>
     </nav>

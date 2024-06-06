@@ -1,11 +1,15 @@
 .nav {
   display: flex;
   flex-direction: column;
+  gap: 0.5em;
+  padding-top: 1rem;
   background-color: var(--clr-dashboard-canvas);
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   width: var(--dashboard-left-width);
   height: 100vh;
+  overflow-y: auto;
+  border-right: var(--db-divider);
 }
 
 .navHeader {
@@ -39,11 +43,9 @@
 }
 
 .navContent {
-  /* flex: 1; */
-  height: 90%;
+  height: 95%;
   overflow-y: auto;
-  margin-top: 0.8em;
-  padding: 0.5em;
+  padding: 0 0.2em;
 }
 
 .navList {
@@ -80,6 +82,14 @@
 .visuals,
 .senderImg {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visualsIcon {
+  height: 20px;
+  width: 20px;
 }
 
 .senderStatus {
@@ -146,4 +156,54 @@
   height: 5px;
   width: 5px;
   color: var(--clr-dashboard-accent);
+}
+
+.project {
+  padding: 0.2em 0.5em;
+  color: var(--clr-dashboard-text);
+  width: 100%;
+}
+
+.project:hover,
+.createBoard:hover {
+  background-color: var(--clr-dashboard-hover-chat-bg);
+}
+
+.projectLink {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.projectIsActive {
+  border: var(--border-accent);
+  border-radius: 10px;
+  background-color: var(--clr-dashboard-active-chat-bg);
+}
+
+.projectIsActive:hover {
+  background-color: var(--clr-dashboard-active-chat-bg);
+}
+
+.project summary {
+  font-size: var(--fs-200);
+  font-weight: var(--fw-medium);
+  font-family: var(--ff-title);
+  list-style-type: none;
+}
+
+.project[open] .projectIcon {
+  transform: rotate(180deg);
+}
+
+.project summary > :first-child {
+  padding: 0;
+}
+
+.project summary:hover {
+  cursor: pointer;
+}
+
+.taskList {
+  padding-left: 10px;
 }

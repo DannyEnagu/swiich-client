@@ -6,24 +6,33 @@ import {
   faPaperPlane
  } from '@fortawesome/free-solid-svg-icons';
 import { faFaceLaugh } from '@fortawesome/free-regular-svg-icons';
+import Input from "@/components/ui/Input";
 
 export default function TextEditor() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.share}>
-        <FontAwesomeIcon icon={faPaperclip} />
+        <button className="btn">
+          <FontAwesomeIcon icon={faPaperclip} />
+        </button>
       </div>
       <div className={styles.editor}>
-        <FontAwesomeIcon icon={faFaceLaugh} />
-        <input
+        <button className="btn">
+          <FontAwesomeIcon icon={faFaceLaugh} />
+        </button>
+        <Input
           type="text"
           placeholder="Type a message..."
           className={styles.editorInput}
         />
-        <FontAwesomeIcon icon={faPaperPlane} />
+        <button className="btn">
+          <FontAwesomeIcon icon={faPaperPlane} />
+        </button>
       </div>
       <div className={styles.voice}>
-        <FontAwesomeIcon icon={faMicrophone} />
+        <button className="btn">
+          <FontAwesomeIcon icon={faMicrophone} />
+        </button>
       </div>
     </div>
   );

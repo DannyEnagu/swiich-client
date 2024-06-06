@@ -5,18 +5,7 @@ import StringAvatar from '@/components/ui/Avatar/StringAvatar';
 import styles from './Nav.module.css';
 import Avatar from '@/components/ui/Avatar/Avatar';
 
-interface ContactProps {
-  contactName: string;
-  senderStatus: string;
-  messageStatus: string;
-  profilePic: string;
-  lastMessage: string;
-  messagesCount: number;
-  timeStamps: string;
-  typing?: boolean;
-};
-
-export default function Contact({
+export default function DMContact({
   contactName,
   senderStatus,
   messageStatus,
@@ -24,8 +13,9 @@ export default function Contact({
   profilePic,
   messagesCount,
   lastMessage,
+  contactID,
   typing
-}: ContactProps ) {
+}: DMContactProps) {
   return (
     <div className={styles.sender}>
       <div className={styles.senderImg}>

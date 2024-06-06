@@ -15,22 +15,21 @@ import Modal from '@/components/ui/Modal/Modal';
 import Avatar from '@/components/ui/Avatar/Avatar';
 import CreateTeam from '@/components/CreatTeam/CreateTeam';
 
+
 export default function ToolsBar() {
   const currPathname = usePathname();
   
   useEffect(() => {
-
     const changeActiveTool = () => {
       const toolLinks = document.querySelectorAll(`.${styles.toolLink}`) as NodeListOf<HTMLAnchorElement>;
       toolLinks.forEach((toolLink) => {
         // Remove active class from all tool links
         toolLink.classList.remove(styles.toolLinkIsActive);
-        const extractPathname = toolLink.href.split('/').slice(3).join('/');
-        const toolPathname = `/${extractPathname}`;
-        // Add active class to the tool link that matches the current pathname
-        if (toolPathname === currPathname) {
-          toolLink.classList.add(styles.toolLinkIsActive);
-        } else if (currPathname.includes('boards') && toolPathname.includes('boards')) {
+        // Get the active tool from the data attribute
+        const activeTool = toolLink.dataset.active as string;
+        const dashboardPath = `/dashboard/${1}`;
+        // Add active class to the current tool link
+        if(currPathname.includes(activeTool) || (activeTool == 'inbox' && currPathname === dashboardPath)) {
           toolLink.classList.add(styles.toolLinkIsActive);
         }
       });
@@ -62,6 +61,7 @@ export default function ToolsBar() {
           <Link
             href="/dashboard/1"
             className={styles.toolLink}
+            data-active='inbox'
           >
             <span className={styles.toolIcon}>
               <FontAwesomeIcon icon={faComment} />
@@ -75,6 +75,7 @@ export default function ToolsBar() {
           <Link
             href="/dashboard/1/group/1"
             className={styles.toolLink}
+            data-active='group'
           >
             <span className={styles.toolIcon}>
             <FontAwesomeIcon icon={faUsers} />
@@ -88,6 +89,7 @@ export default function ToolsBar() {
           <Link
             href="/dashboard/1/dm/1"
             className={styles.toolLink}
+            data-active='dm'
           >
             <span className={styles.toolIcon}>
               <FontAwesomeIcon icon={faUser} />
@@ -101,6 +103,7 @@ export default function ToolsBar() {
           <Link
             href="/dashboard/1/boards"
             className={styles.toolLink}
+            data-active='boards'
           >
             <span className={styles.toolIcon}>
               <FontAwesomeIcon icon={faRectangleList} />
@@ -111,22 +114,31 @@ export default function ToolsBar() {
           </Link>
         </li>
         <li className={styles.tool}>
-          <Link
-            href="/dashboard/1/inbox/1"
-            className={styles.toolLink}
-          >
-            <span className={styles.toolIcon}>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </span>
-            <span className={styles.toolLabel}>
-              Search
-            </span>
-          </Link>
+              <Modal title="Deep Search">
+                <Modal.Summary>
+                  <Link
+                    href='#'
+                    className={styles.toolLink}
+                    data-active='search'
+                  >
+                    <span className={styles.toolIcon}>
+                      <FontAwesomeIcon icon={faMagnifyingGlass} size='lg'/>
+                    </span>
+                    <span className={styles.toolLabel}>
+                      Search
+                    </span>
+                  </Link>
+                </Modal.Summary>
+                <Modal.Content>
+                  <input type="text" placeholder="Search..." />
+                </Modal.Content>
+              </Modal>
         </li>
         <li className={styles.tool}>
           <Link
             href="/dashboard/1/settings"
             className={styles.toolLink}
+            data-active='settings'
           >
             <span className={styles.toolIcon}>
               <FontAwesomeIcon icon={faSliders} />

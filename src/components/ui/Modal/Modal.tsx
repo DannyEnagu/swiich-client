@@ -1,17 +1,18 @@
+'use client';
 import {
   useState,
   useContext,
   createContext,
   useRef
 } from 'react';
-import { useClickOutside } from '@/utils/hooks';
 import styles from './Modal.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { useClickOutside } from '@/lib/hooks/useClickOutside';
 
 interface ModalProps {
   children: React.ReactNode;
-  title: string;
+  title: string | undefined;
 }
 
 type DefaultObjectType = {

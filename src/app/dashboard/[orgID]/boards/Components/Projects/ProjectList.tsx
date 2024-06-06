@@ -1,160 +1,270 @@
-"use client";
+import FilterableNav from "@/components/dashboard/Nav/FilterableNav";
 
-import { usePathname } from 'next/navigation';
-import { useCallback, useEffect } from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleDown,
-  faPlus
-} from '@fortawesome/free-solid-svg-icons';
-import Nav from "@/components/dashboard/Nav/Nav";
-import NavItem from "@/components/dashboard/Nav/NavItem";
-import NavList from "@/components/dashboard/Nav/NavList";
-import NavLink from "@/components/dashboard/Nav/NavLink";
-import styles from "./ProjectList.module.css";
-import Modal from "@/components/ui/Modal/Modal";
-import { TaskDetails } from "..";
+const projects: NavProps[] = [
+  {
+    boardName: 'Project 1',
+    boardID: 1,
+    boardImg: '',
+    isStarred: true,
+    boardTasks: [
+      {
+        id: 1,
+        name: 'Task 1',
+        description: 'Task 1 description',
+        dueDate: '2022-01-01',
+        assignee: 'User 1',
+        status: 'In Progress',
+        comments: [
+          {
+            id: 1,
+            comment: 'Comment 1',
+            commenter: 'User 1',
+            date: '2022-01-01',
+          },
+          {
+            id: 2,
+            comment: 'Comment 2',
+            commenter: 'User 2',
+            date: '2022-01-01',
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: 'Task 2',
+        description: 'Task 2 description',
+        dueDate: '2022-01-01',
+        assignee: 'User 2',
+        status: 'In Progress',
+        comments: [
+          {
+            id: 1,
+            comment: 'Comment 1',
+            commenter: 'User 1',
+            date: '2022-01-01',
+          },
+          {
+            id: 2,
+            comment: 'Comment 2',
+            commenter: 'User 2',
+            date: '2022-01-01',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    boardName: 'Project 2',
+    boardID: 2,
+    boardImg: '',
+    isStarred: true,
+    boardTasks: [
+      {
+        id: 1,
+        name: 'Task 1',
+        description: 'Task 1 description',
+        dueDate: '2022-01-01',
+        assignee: 'User 1',
+        status: 'In Progress',
+        comments: [
+          {
+            id: 1,
+            comment: 'Comment 1',
+            commenter: 'User 1',
+            date: '2022-01-01',
+          },
+          {
+            id: 2,
+            comment: 'Comment 2',
+            commenter: 'User 2',
+            date: '2022-01-01',
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: 'Task 2',
+        description: 'Task 2 description',
+        dueDate: '2022-01-01',
+        assignee: 'User 2',
+        status: 'In Progress',
+        comments: [
+          {
+            id: 1,
+            comment: 'Comment 1',
+            commenter: 'User 1',
+            date: '2022-01-01',
+          },
+          {
+            id: 2,
+            comment: 'Comment 2',
+            commenter: 'User 2',
+            date: '2022-01-01',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    boardName: 'Project 3',
+    boardID: 3,
+    boardImg: '',
+    isStarred: true,
+    boardTasks: [
+      {
+        id: 1,
+        name: 'Task 1',
+        description: 'Task 1 description',
+        dueDate: '2022-01-01',
+        assignee: 'User 1',
+        status: 'In Progress',
+        comments: [
+          {
+            id: 1,
+            comment: 'Comment 1',
+            commenter: 'User 1',
+            date: '2022-01-01',
+          },
+          {
+            id: 2,
+            comment: 'Comment 2',
+            commenter: 'User 2',
+            date: '2022-01-01',
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: 'Task 2',
+        description: 'Task 2 description',
+        dueDate: '2022-01-01',
+        assignee: 'User 2',
+        status: 'In Progress',
+        comments: [
+          {
+            id: 1,
+            comment: 'Comment 1',
+            commenter: 'User 1',
+            date: '2022-01-01',
+          },
+          {
+            id: 2,
+            comment: 'Comment 2',
+            commenter: 'User 2',
+            date: '2022-01-01',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    boardName: 'Project 4',
+    boardID: 4,
+    boardImg: '',
+    isStarred: true,
+    boardTasks: [
+      {
+        id: 1,
+        name: 'Task 1',
+        description: 'Task 1 description',
+        dueDate: '2022-01-01',
+        assignee: 'User 1',
+        status: 'In Progress',
+        comments: [
+          {
+            id: 1,
+            comment: 'Comment 1',
+            commenter: 'User 1',
+            date: '2022-01-01',
+          },
+          {
+            id: 2,
+            comment: 'Comment 2',
+            commenter: 'User 2',
+            date: '2022-01-01',
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: 'Task 2',
+        description: 'Task 2 description',
+        dueDate: '2022-01-01',
+        assignee: 'User 2',
+        status: 'In Progress',
+        comments: [
+          {
+            id: 1,
+            comment: 'Comment 1',
+            commenter: 'User 1',
+            date: '2022-01-01',
+          },
+          {
+            id: 2,
+            comment: 'Comment 2',
+            commenter: 'User 2',
+            date: '2022-01-01',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    boardName: 'Project 5',
+    boardID: 5,
+    boardImg: '',
+    isStarred: true,
+    boardTasks: [
+      {
+        id: 1,
+        name: 'Task 1',
+        description: 'Task 1 description',
+        dueDate: '2022-01-01',
+        assignee: 'User 1',
+        status: 'In Progress',
+        comments: [
+          {
+            id: 1,
+            comment: 'Comment 1',
+            commenter: 'User 1',
+            date: '2022-01-01',
+          },
+          {
+            id: 2,
+            comment: 'Comment 2',
+            commenter: 'User 2',
+            date: '2022-01-01',
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: 'Task 2',
+        description: 'Task 2 description',
+        dueDate: '2022-01-01',
+        assignee: 'User 2',
+        status: 'In Progress',
+        comments: [
+          {
+            id: 1,
+            comment: 'Comment 1',
+            commenter: 'User 1',
+            date: '2022-01-01',
+          },
+          {
+            id: 2,
+            comment: 'Comment 2',
+            commenter: 'User 2',
+            date: '2022-01-01',
+          },
+        ],
+      },
+    ],
+  },
+];
 
 export default function ProjectList() {
-  const currPathname = usePathname();
-  
-  const changeActiveProject = useCallback(() => {
-    const projectLinks = document.querySelectorAll(`.${styles.project}`) as NodeListOf<HTMLDetailsElement>;
-    projectLinks.forEach((projectLink) => {
-      // Remove active class from all project links
-
-      // Add active class to the project link that matches the current pathname
-      projectLink.classList.remove(styles.projectIsActive);
-      const anchor = projectLink.querySelector('a') as HTMLAnchorElement;
-      const extractPathname = anchor.href.split('/').slice(3).join('/');
-      const projectPathname = `/${extractPathname}`;
-
-      if (projectPathname === currPathname) {
-        projectLink.classList.add(styles.projectIsActive);
-      }
-    });
-  }, [currPathname]);
-
-  useEffect(() => {
-    changeActiveProject();
-  }, [changeActiveProject]);
-
   return (
-    <Nav showSearch>
-      <NavList>
-        <NavItem>
-          <details className={`${styles.project}`}>
-              <summary className="row justify-between align-center">
-                <NavLink to="/dashboard/1/boards/1">Project 1</NavLink>
-                <FontAwesomeIcon
-                icon={faAngleDown}
-                size="sm"
-                className={styles.projectIcon} />
-              </summary>
-              <ul className={styles.taskList} role="list">
-                  <li>
-                    <Modal title=''>
-                      <Modal.Summary>
-                      <span className={styles.taskSmmry}>Task 1</span>
-                      </Modal.Summary>
-                      <Modal.Content>
-                        <TaskDetails />
-                      </Modal.Content>
-                    </Modal>
-                  </li>
-                  <li>
-                    <Modal title=''>
-                      <Modal.Summary>
-                      <span className={styles.taskSmmry}>Task 2</span>
-                      </Modal.Summary>
-                      <Modal.Content>
-                        <TaskDetails />
-                      </Modal.Content>
-                    </Modal>
-                  </li>
-              </ul>
-          </details>
-        </NavItem>
-        <NavItem>
-          <details className={`${styles.project}`}>
-              <summary className="row justify-between align-center">
-                <NavLink to="/dashboard/1/boards/2">Project 2</NavLink>
-                <FontAwesomeIcon
-                icon={faAngleDown}
-                size="sm"
-                className={styles.projectIcon} />
-              </summary>
-              <ul className={styles.taskList} role="list">
-                  <li>
-                    <Modal title=''>
-                      <Modal.Summary>
-                      <span className={styles.taskSmmry}>Task 1</span>
-                      </Modal.Summary>
-                      <Modal.Content>
-                        <TaskDetails />
-                      </Modal.Content>
-                    </Modal>
-                  </li>
-                  <li>
-                    <Modal title=''>
-                      <Modal.Summary>
-                      <span className={styles.taskSmmry}>Task 2</span>
-                      </Modal.Summary>
-                      <Modal.Content>
-                        <TaskDetails />
-                      </Modal.Content>
-                    </Modal>
-                  </li>
-              </ul>
-          </details>
-        </NavItem>
-        <NavItem>
-          <details className={`${styles.project}`}>
-              <summary className="row justify-between align-center">
-                <NavLink to="/dashboard/1/boards/3">Project 3</NavLink>
-                <FontAwesomeIcon
-                icon={faAngleDown}
-                size="sm"
-                className={styles.projectIcon} />
-              </summary>
-              <ul className={styles.taskList} role="list">
-                  <li>
-                    <Modal title=''>
-                      <Modal.Summary>
-                      <span className={styles.taskSmmry}>Task 1</span>
-                      </Modal.Summary>
-                      <Modal.Content>
-                        <TaskDetails />
-                      </Modal.Content>
-                    </Modal>
-                  </li>
-                  <li>
-                    <Modal title=''>
-                      <Modal.Summary>
-                      <span className={styles.taskSmmry}>Task 2</span>
-                      </Modal.Summary>
-                      <Modal.Content>
-                        <TaskDetails />
-                      </Modal.Content>
-                    </Modal>
-                  </li>
-              </ul>
-          </details>
-        </NavItem>
-        <NavItem>
-          <Modal title=''>
-            <Modal.Summary>
-              <div className={`row align-center ${styles.createBoard}`}>
-                <FontAwesomeIcon icon={faPlus} />
-                <span>Create Board</span>
-              </div>
-            </Modal.Summary>
-            <Modal.Content>
-              <h1>Create Board</h1>
-            </Modal.Content>
-          </Modal>
-        </NavItem>
-      </NavList>
-    </Nav>
+    <FilterableNav items={projects} />
   );
 }

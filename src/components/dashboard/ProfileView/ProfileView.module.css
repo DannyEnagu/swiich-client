@@ -1,9 +1,3 @@
-.wrapper {
-  border-left: 1px solid var(--clr-dashboard-border);
-  background-color: var(--clr-dashboard-canvas);
-  width: var(--dashboard-right-width);
-}
-
 .header {
   position: relative;
   display: flex;

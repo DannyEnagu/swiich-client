@@ -1,6 +1,4 @@
-// Purpose: Layout for the board page.
 
-import ContentWrapper from "@/components/dashboard/ContentWrapper";
 import Main from "@/components/dashboard/MainContainer";
 import { ProjectList, Header } from "./Components";
 
@@ -14,9 +12,7 @@ export default function BoardLayout({
       <ProjectList />
       <Header />
       <Main>
-        <ContentWrapper>
-          {children}
-        </ContentWrapper>
+        {children}
       </Main>
     </div>
   );

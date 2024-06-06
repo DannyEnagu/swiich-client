@@ -1,12 +1,11 @@
 import baseApiRoute from "./baseApiRoute";
-import type { FormData } from "@/types";
 import type { AuthType } from "@/lib/features/authSlice";
 
-export type LoginBody = Pick<FormData, 'email' | 'password'>;
+export type LoginBody = Pick<AuthFormDataType, 'email' | 'password'>;
 
 type LoginResponse = AuthType;
 
-export type RegisterBody = Pick<FormData, 'email' | 'name' | 'password'>;
+export type RegisterBody = Pick<AuthFormDataType, 'email' | 'name' | 'password'>;
 
 export type OtpBody = {
     userId: number | string | undefined,

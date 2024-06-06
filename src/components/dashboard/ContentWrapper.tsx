@@ -2,22 +2,23 @@ import TextEditor from './TextEditor/TextEditor';
 import styles from './dashboard.module.css';
 
 interface ContentWrapperProps {
-  children: React.ReactNode;
+  children: React.FC;
   showEditor?: boolean;
 }
 
-export default function ContentWrapper({ 
-  children, showEditor }: ContentWrapperProps
-) {
-  return (
-    <div className={styles.contentWrapper}>
-      <div className={styles.contentWrapperInner}>
-        { children }
+export default function withContentWrapper(
+  Children: ContentWrapperProps['children'],
+  showEditor: ContentWrapperProps['showEditor'] = false) {
+  return function ContentWrapper(props: any) {
+    return (
+      <div className={styles.contentWrapper}>
+        <div className={styles.contentWrapperInner}>
+          <Children {...props} />
+        </div>
+        { showEditor && <div className={styles.contentWrapperFooter}>
+          <TextEditor />
+        </div>}
       </div>
-
-      { showEditor && <div className={styles.contentWrapperFooter}>
-        <TextEditor />
-      </div>}
-    </div>
-  );
+    );
+  }
 }

@@ -18,7 +18,7 @@ import styles from "./AuthForm.module.css";
 import { RegisterBody} from "@/services/auth";
 import { useRouter, useSearchParams } from 'next/navigation';
 import { setCredentials } from "@/lib/features/authSlice";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@/lib/hooks/storeHooks";
 
 interface UserFormProps {
     type: "sign-up" | "sign-in";
@@ -70,7 +70,7 @@ export default function UserFrom({ type }: UserFormProps) {
     // Get page full url path
     const searchParams = useSearchParams();
     const loginCallbackUrl = searchParams.get('callbackUrl') || '';
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     // omit confirmPassword and name from schema
     const schema = type === "sign-in" ? signInSchema : mainSchema;
 

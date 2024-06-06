@@ -4,18 +4,28 @@ import storage from "redux-persist/lib/storage";
 import { combineReducers } from 'redux';
 import authReducer from './features/authSlice';
 import baseApiRoute from '@/services/baseApiRoute';
+import organizationReducer from './features/organizationSlice';
+import uiReducer from './features/uiSlice';
 // import middleware from '@/middleware';
 
 // configure which key we want to persist
 const authPersistConfig = {
-    key: "auth",
-    storage: storage,
-    // whitelist: ["authState"],
+  key: "auth",
+  storage: storage,
+  // whitelist: ["authState"],
+};
+
+const uiPersistConfig = {
+  key: "ui",
+  storage: storage,
+  // whitelist: ["authState"],
 };
   
 const rootReducer = combineReducers({
   [baseApiRoute.reducerPath]: baseApiRoute.reducer,
   auth: persistReducer(authPersistConfig, authReducer),
+  organization: organizationReducer,
+  ui: persistReducer(uiPersistConfig, uiReducer),
 });
 
 export const makeStore = () => {

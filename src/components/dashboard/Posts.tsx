@@ -7,7 +7,7 @@ export default function Posts() {
       <li>
         <ChatBubble 
           profilePic=""
-          senerName="Jonny Depp"
+          userName="Jonny Depp"
           time="2:30 PM"
           message="Hello, Team?"
           isSender={false}
@@ -16,7 +16,7 @@ export default function Posts() {
       <li>
         <ChatBubble 
           profilePic="https://via.placeholder.com/50"
-          senerName="Tina"
+          userName="Tina"
           time="2:30 PM"
           message="Hello, guys. How are you doing?"
           isSender={false}
@@ -25,7 +25,7 @@ export default function Posts() {
       <li>
         <ChatBubble 
           profilePic=""
-          senerName="Cyntia Morgan" 
+          userName="Cyntia Morgan" 
           time="2:30 PM"
           message="we are doing great, thanks for asking. How about you?"
           isSender={false}
@@ -34,7 +34,7 @@ export default function Posts() {
       <li>
         <ChatBubble 
           profilePic="https://via.placeholder.com/50"
-          senerName="Philip"
+          userName="Philip"
           time="2:30 PM"
           message="The team is doing great, we are making progress."
           isSender={false}
@@ -43,7 +43,7 @@ export default function Posts() {
       <li>
         <ChatBubble 
           profilePic="https://via.placeholder.com/50"
-          senerName="Timothy"
+          userName="Timothy"
           time="2:30 PM"
           message="So happy to hear that, keep up the good work."
           isSender={false}
@@ -52,7 +52,7 @@ export default function Posts() {
       <li>
         <ChatBubble 
           profilePic=""
-          senerName="Jeff Bezos"
+          userName="Jeff Bezos"
           time="2:30 PM"
           message="We will, thanks for the encouragement."
           isSender={false}

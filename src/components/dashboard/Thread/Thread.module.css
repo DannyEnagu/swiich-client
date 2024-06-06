@@ -1,9 +1,10 @@
 .wrapper {
-  border-left: 1px solid var(--clr-dashboard-border);
+  /* border-left: 1px solid var(--clr-dashboard-border); */
   display: flex;
   flex-direction: column;
-  background-color: var(--clr-dashboard-canvas);
+  /* background-color: var(--clr-dashboard-canvas);
   width: var(--dashboard-right-width);
+  border: 1px solid red; */
 }
 
 .header {

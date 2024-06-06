@@ -9,7 +9,7 @@ import styles from './VerifyOtp.module.css';
 import Input from '@/components/ui/Input';
 import Spinner from '../ui/Spinner';
 import { useSession } from 'next-auth/react';
-import { toast } from 'react-toastify';
+import customToast from '@/utils/toast';
 
 export default function VerifyOtp() {
     const [code, setCode] = useState<number | string>('');
@@ -28,8 +28,11 @@ export default function VerifyOtp() {
             await verifyOtp(reqBody).unwrap()
                 .then((res) => {
                     if (res.isSuccess) {
-                        toast.success(res.message, {
-                            position: "top-left"
+                        customToast({
+                            position: "bottom-left",
+                            message: res.message,
+                            type: 'success',
+                            className: 'toast-medium'
                         });
                     }
                 })
@@ -38,9 +41,12 @@ export default function VerifyOtp() {
                     const errMeg = status === 500
                     ? data.message
                     : data.message[0].message;
-                    toast.error(errMeg, {
+
+                    customToast({
                         position: "bottom-left",
-                        className: "toast-medium"
+                        message: errMeg,
+                        type: 'error',
+                        className: 'toast-medium'
                     });
                 });
         } catch (error) {

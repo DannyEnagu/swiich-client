@@ -7,14 +7,13 @@ import {
   faMicrophone,
   faCog,
 } from "@fortawesome/free-solid-svg-icons";
-import Nav from "@/components/dashboard/Nav/FilterableNav";
 import NavItem from "@/components/dashboard/Nav/NavItem";
 import NavList from "@/components/dashboard/Nav/NavList";
 import styles from "./Navigation.module.css";
 
 export default function Navigation() {
   return (
-    <Nav>
+    <nav>
       <div className={styles.header}>
         <h2>Settings</h2>
       </div>
@@ -69,6 +68,6 @@ export default function Navigation() {
           </button>
         </NavItem>
       </NavList>
-    </Nav>
+    </nav>
   );
 }

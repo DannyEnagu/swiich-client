@@ -12,7 +12,7 @@ import { useClickOutside } from '@/lib/hooks/useClickOutside';
 
 interface ModalProps {
   children: React.ReactNode;
-  title: string;
+  title: string | undefined;
 }
 
 type DefaultObjectType = {

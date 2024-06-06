@@ -3,10 +3,11 @@ import styles from './Nav.module.css';
 import Search from './Search';
 import FilterableNavList from './FilterableNavList';
 import CreateContact, { CreateContactProps } from '@/components/CreateContact/CreateContact';
+
 interface FilterableNavProps {
   items: NavProps[];
   showCreateButton?: boolean;
-  CreateButtonProps: CreateContactProps;
+  CreateButtonProps?: CreateContactProps | undefined;
 }
 
 export default function FilterableNav({
@@ -22,7 +23,7 @@ export default function FilterableNav({
       <Search onTextChange={handleTextChange}/>
       <div className={styles.navContent}>
         <FilterableNavList filteredItems={items} />
-        {showCreateButton && (
+        {showCreateButton && CreateButtonProps && (
           <CreateContact {...CreateButtonProps} />
         )}
       </div>

@@ -4,8 +4,8 @@ import Modal from "../ui/Modal/Modal";
 import styles from './CreateContact.module.css';
 
 export interface CreateContactProps {
-  title: string;
-  displayText: string;
+  title: string | undefined;
+  displayText: string | undefined;
   onAdd: (vales: string) => void;
 }
 

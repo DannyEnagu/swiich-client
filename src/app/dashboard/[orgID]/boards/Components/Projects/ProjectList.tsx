@@ -265,6 +265,6 @@ const projects: NavProps[] = [
 
 export default function ProjectList() {
   return (
-    <FilterableNav items={projects}/>
+    <FilterableNav items={projects} />
   );
 }

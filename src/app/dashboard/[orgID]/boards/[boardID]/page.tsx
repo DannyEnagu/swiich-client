@@ -1,4 +1,4 @@
-import withContentWrapper from "@/components/dashboard/ContentWrapper";
+import withContentWrapper from "@/components/dashboard/WithContentWrapper";
 import { Content } from "../Components";
 
 const ContentWrapper = withContentWrapper(Content);

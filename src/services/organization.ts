@@ -13,11 +13,11 @@ type AddBody = {
 export const orgApi = baseApiRoute.injectEndpoints({
     endpoints: (builder) => ({
         getOrganization: builder.query({
-            query: (id) => '/api/organisations/?' + id
+            query: (id) => '/organisations/?orgId=' + id
         }),
         addOrganization: builder.mutation<AddResponse, AddBody>({
             query: (body) => ({
-                url: '/api/organisation/create',
+                url: '/organisation/create',
                 method: 'POST',
                 body
             }),

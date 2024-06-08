@@ -115,7 +115,7 @@ export default function UserFrom({ type }: UserFormProps) {
         const res = await signIn("credentials", reqBody[type]);
         if (res?.error) {
             setError("root", {
-                message: 'Invalid Email or Password',
+                message: type === "sign-in" ? "Invalid email or password" : "Could not sign up. Please try again later.",
             });
             return;
         }
@@ -126,10 +126,20 @@ export default function UserFrom({ type }: UserFormProps) {
                     token: session.token
                 })
             )
+
             // Extract page url path from callbackUrl
-            const url = new URL(loginCallbackUrl);
-            const path = url.pathname;
-            router.push(path);
+            if (loginCallbackUrl) {
+                const url = new URL(loginCallbackUrl);
+                const path = url.pathname;
+                router.push(path);
+            }
+            const organisations = session?.user?.organisations;
+
+            if (organisations.length > 1) {
+                router.push('/');
+                return;
+            }
+            router.push(`/dashboard/${organisations[0].id}`);
         }
     };
 

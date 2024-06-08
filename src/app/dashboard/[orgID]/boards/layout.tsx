@@ -1,6 +1,7 @@
 
 import Main from "@/components/dashboard/MainContainer";
-import { ProjectList, Header } from "./Components";
+import { Header } from "./Components";
+import ProjectList from "./ProjectList";
 
 export default function BoardLayout({
     children,

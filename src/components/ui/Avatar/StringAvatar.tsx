@@ -18,7 +18,7 @@ function stringToColorCode(str: string) {
 
 
 
-export default function StringAvatar({name, size}: StringAvatarProps) {
+export default function StringAvatar({name='user name', size}: StringAvatarProps) {
   return (
     <div 
       className={`${styles.stringAvatar} ${size > 35 ? 'rounded-img' : 'rounded-img-sm'}`}
@@ -28,7 +28,10 @@ export default function StringAvatar({name, size}: StringAvatarProps) {
         height: size
       }}
     >
-      {`${name.split(' ')[0][0]}${name.split(' ')[1] ? name.split(' ')[1][0] : ''}`}
+      {name && `${name.split(' ')[0][0]}${name.split(' ')[1]
+        ? name.split(' ')[1][0]
+        : ''}
+      `}
     </div>
   );
 }

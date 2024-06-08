@@ -1,4 +1,4 @@
-import withContentWrapper from "@/components/dashboard/ContentWrapper";
+import withContentWrapper from "@/components/dashboard/WithContentWrapper";
 import Main from "@/components/dashboard/MainContainer";
 import Header from "@/components/dashboard/Header/Header";
 import { General, Navigation } from "./Components";

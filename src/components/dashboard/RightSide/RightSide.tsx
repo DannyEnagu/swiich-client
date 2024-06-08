@@ -1,6 +1,6 @@
 import ProfileView from "../ProfileView/ProfileView";
 import Thread from "../Thread/Thread";
-import withContentWrapper from '../ContentWrapper';
+import withContentWrapper from '../WithContentWrapper';
 
 
 const ProfileViewWrapper = withContentWrapper(ProfileView);

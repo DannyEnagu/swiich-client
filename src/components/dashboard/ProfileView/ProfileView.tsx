@@ -1,35 +1,67 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCircleXmark,
-  faImage,
-  faFile
-} from '@fortawesome/free-regular-svg-icons';
-import {
-  faCircleInfo,
-  faUsersLine,
-  faVideo,
-  faMicrophone
-} from '@fortawesome/free-solid-svg-icons';
-import { useAppDispatch } from "@/lib/hooks/storeHooks";
+'use client'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
+import { faCircleInfo, faPlus } from '@fortawesome/free-solid-svg-icons';
 import Avatar from '@/components/ui/Avatar/Avatar';
-import Dropdown from '@/components/ui/Dropdown/Dropdown';
-import { closeRightCanvas } from '@/lib/features/uiSlice';
 import styles from './ProfileView.module.css';
+import Input from '@/components/ui/Input';
+import GroupsInCommon from './GroupsView';
+import Attachments from './AttachmentView';
+import { useState } from 'react';
+import { useSession } from 'next-auth/react';
+import AccountSettings from './Account';
+import { useAppSelector } from '@/lib/hooks/storeHooks';
+import { selectRightCanvasState } from '@/lib/features/uiSlice';
+import useActiveCanvas from '@/lib/hooks/useActiveCanvas';
 
 export default function ProfileView() {
-  const dispatch = useAppDispatch();
+  const [inputValues, setInputValues] = useState({
+    fullName: 'John Doe',
+    phoneNumber: '+123 8267397732',
+    emailAddress: 'JohnDoe@gmail.com',
+    profilePic: '',
+    pwdOld: '',
+    pwdNew: '',
+  });
 
-  const hideContent = () => {
-    dispatch(closeRightCanvas());
-  }
+  const rightCanvas = useAppSelector(selectRightCanvasState);
+
+  const {data: session} = useSession();
+  const isActiveUser = session?.user?.id === rightCanvas.contentID;
+
+  const {closeRightSide: hideRightSide} = useActiveCanvas();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
+    setInputValues({
+      ...inputValues,
+      [name]: value
+    })
+    console.log(name, value)
+  };
+
+  const save = () => {};
 
   return (
     <div className={styles.wrapper}>
       <>
         <div className={styles.header}>
-          <Avatar imgSrc='' size={200} imgAlt='User name' />
-          <button onClick={() => hideContent()} className={`btn ${styles.closeButton}`}>
+          <div className={styles.profileImg}>
+            <Avatar imgSrc='' size={200} imgAlt='User name' />
+            {isActiveUser && (
+              <label htmlFor='file-picker' className={`btn btn-primary ${styles.filePicker}`}>
+                <Input
+                  type='file'
+                  id='file-picker'
+                  name='profilePic'
+                  onChange={handleChange}
+                />
+                <FontAwesomeIcon icon={faPlus} size='xl' />
+              </label>
+            )}
+          </div>
+          <button onClick={() => hideRightSide()} className={`btn ${styles.closeButton}`}>
             <FontAwesomeIcon icon={faCircleXmark} />
           </button>
         </div>
@@ -37,177 +69,89 @@ export default function ProfileView() {
           <div className={styles.userInfo}>
             <h3 className='row justify-between'>
               <span>User Information</span>
-              <FontAwesomeIcon icon={faCircleInfo} />
+              <FontAwesomeIcon title='Click on the text =to change values' icon={faCircleInfo} />
             </h3>
             <p>
               <span className={styles.label}>Full Name:</span>
-              <span className={styles.value}>John Doe</span>
+              <span className={`${styles.value} ${isActiveUser ? styles.bordered : ''}`}>
+                <Input
+                  type='text'
+                  disabled={!isActiveUser}
+                  value={inputValues.fullName}
+                  onChange={handleChange}
+                  name='fullName'
+                  placeholder='Enter full name'
+                />
+              </span>
             </p>
             <p>
               <span className={styles.label}>Phone:</span>
-              <span className={styles.value}>User name</span>
+              <span className={`${styles.value} ${isActiveUser ? styles.bordered : ''}`}>
+                <Input
+                  type='text'
+                  value={inputValues.phoneNumber}
+                  name='phoneNumber'
+                  onChange={handleChange}
+                  placeholder='Enter phone number'
+                />
+              </span>
             </p>
             <p>
               <span className={styles.label}>Email:</span>
-              <span className={styles.value}>
-                adeadebobola0@gmail.com
+              <span className={`${styles.value} ${isActiveUser ? styles.bordered : ''}`}>
+                <Input
+                  type='email'
+                  value={inputValues.emailAddress}
+                  name='emailAddress'
+                  placeholder='Enter email address'
+                  onChange={handleChange}
+                />
               </span>
             </p>
           </div>
-          <div className={styles.userGroups}>
-            <h3 className='row justify-between'>
-              <span>Groups In Common</span>
-              <FontAwesomeIcon icon={faUsersLine} />
-            </h3>
-            <ul className={styles.groupsList} role='list'>
-              <li>Group 1</li>
-              <li>Group 2</li>
-              <li>Group 3</li>
-              <li>Group 4</li>
-              <li>Group 5</li>
-            </ul>
-          </div>
-          <div className={styles.attachments}>
-            <h3 className='row justify-between'>
-              <span>Attachments</span>
-              <span>{`(400 Files)`}</span>
-            </h3>
-            <div className={styles.attachment}>
-              <Dropdown
-                summary={
-                  <span className={`row align-center ${styles.toggle}`}>
-                    <FontAwesomeIcon icon={faImage} className='db-txt-accent' />
-                    <span className={styles.files}>
-                      <span className={styles.fileType}>Photo</span>
-                      <span className={styles.fileInfo}>
-                        <span>54 Files. 350MB</span>
-                      </span>
-                    </span>
-                  </span>
-                }
-              >
-                <ul
-                  className={`${styles.filesList} ${styles.photoFiles}`}
-                  role='list'
-                >
-                  <li>
-                    <Avatar imgSrc='' size={100} imgAlt='User Files' />
-                  </li>
-                  <li>
-                    <Avatar imgSrc='' size={100} imgAlt='User Files' />
-                  </li>
-                  <li>
-                    <Avatar imgSrc='' size={100} imgAlt='User Files' />
-                  </li>
-                  <li>
-                    <button className={`btn ${styles.viewMore}`}>
-                      +51 More
-                    </button>
-                  </li>
-                </ul>
-              </Dropdown>
-              <Dropdown
-                summary={
-                  <span className={`row align-center ${styles.toggle}`}>
-                    <FontAwesomeIcon icon={faVideo} className='db-txt-accent' />
-                    <span className={styles.files}>
-                      <span className={styles.fileType}>Video</span>
-                      <span className={styles.fileInfo}>
-                        <span>10 Files. 50MB</span>
-                      </span>
-                    </span>
-                  </span>
-                }
-              >
-                <ul
-                  className={`${styles.filesList} ${styles.photoFiles}`}
-                  role='list'
-                >
-                  <li>
-                    <Avatar imgSrc='' size={100} imgAlt='User Files' />
-                  </li>
-                  <li>
-                    <Avatar imgSrc='' size={100} imgAlt='User Files' />
-                  </li>
-                  <li>
-                    <Avatar imgSrc='' size={100} imgAlt='User Files' />
-                  </li>
-                  <li>
-                    <button className={`btn ${styles.viewMore}`}>
-                      +51 More
-                    </button>
-                  </li>
-                </ul>
-              </Dropdown>
-              <Dropdown
-                summary={
-                  <span className={`row align-center ${styles.toggle}`}>
-                    <FontAwesomeIcon icon={faFile} className='db-txt-accent' />
-                    <span className={styles.files}>
-                      <span className={styles.fileType}>Document</span>
-                      <span className={styles.fileInfo}>
-                        <span>120 Files. 550MB</span>
-                      </span>
-                    </span>
-                  </span>
-                }
-              >
-                <ul
-                  className={`${styles.filesList} ${styles.photoFiles}`}
-                  role='list'
-                >
-                  <li>
-                    <Avatar imgSrc='' size={100} imgAlt='User Files' />
-                  </li>
-                  <li>
-                    <Avatar imgSrc='' size={100} imgAlt='User Files' />
-                  </li>
-                  <li>
-                    <Avatar imgSrc='' size={100} imgAlt='User Files' />
-                  </li>
-                  <li>
-                    <button className={`btn ${styles.viewMore}`}>
-                      +51 More
-                    </button>
-                  </li>
-                </ul>
-              </Dropdown>
-              <Dropdown
-                summary={
-                  <span className={`row align-center ${styles.toggle}`}>
-                    <FontAwesomeIcon icon={faMicrophone} className='db-txt-accent' />
-                    <span className={styles.files}>
-                      <span className={styles.fileType}>Voice</span>
-                      <span className={styles.fileInfo}>
-                        <span>125 Files. 250MB</span>
-                      </span>
-                    </span>
-                  </span>
-                }
-              >
-                <ul
-                  className={`${styles.filesList} ${styles.photoFiles}`}
-                  role='list'
-                >
-                  <li>
-                    <Avatar imgSrc='' size={100} imgAlt='User Files' />
-                  </li>
-                  <li>
-                    <Avatar imgSrc='' size={100} imgAlt='User Files' />
-                  </li>
-                  <li>
-                    <Avatar imgSrc='' size={100} imgAlt='User Files' />
-                  </li>
-                  <li>
-                    <button className={`btn ${styles.viewMore}`}>
-                      +51 More
-                    </button>
-                  </li>
-                </ul>
-              </Dropdown>
+          {!isActiveUser && (
+            <>
+              <GroupsInCommon />
+              <Attachments />
+            </>
+          )}
+          {isActiveUser && (<>
+            <div className={styles.password}>
+              <h3>Change Password</h3>
+              <p>
+                <span className={styles.label}>Old Password:</span>
+                <span className={`${styles.value} ${isActiveUser ? styles.bordered : ''}`}>
+                  <Input
+                    type='password'
+                    value={inputValues.pwdOld}
+                    name='pwdOld'
+                    onChange={handleChange}
+                    placeholder='Enter old password'
+                  />
+                </span>
+              </p>
+                <p>
+                <span className={styles.label}>New Password:</span>
+                <span className={`${styles.value} ${isActiveUser ? styles.bordered : ''}`}>
+                  <Input
+                    type='password'
+                    value={inputValues.pwdNew}
+                    name='pwdNew'
+                    placeholder='Enter new password'
+                    onChange={handleChange}
+                  />
+                </span>
+              </p>
             </div>
-          </div>
+            <AccountSettings />
+          </>)}
         </div>
+          {isActiveUser && (
+            <div className={styles.formButtons}>
+              <button className='btn btn-primary' onClick={() => hideRightSide() }>Cancel</button>
+              <button className='btn btn-primary' onClick={() => save}>Save</button>
+            </div>
+          )}
       </>
     </div>
   );

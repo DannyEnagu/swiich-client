@@ -5,7 +5,8 @@ export default function Posts() {
   return (
     <ul role="list" className={styles.posts}>
       <li>
-        <ChatBubble 
+        <ChatBubble
+          userID='1'
           profilePic=""
           userName="Jonny Depp"
           time="2:30 PM"
@@ -14,7 +15,8 @@ export default function Posts() {
         />
       </li>
       <li>
-        <ChatBubble 
+        <ChatBubble
+          userID='2'
           profilePic="https://via.placeholder.com/50"
           userName="Tina"
           time="2:30 PM"
@@ -23,7 +25,8 @@ export default function Posts() {
         />
       </li>
       <li>
-        <ChatBubble 
+        <ChatBubble
+          userID='3'
           profilePic=""
           userName="Cyntia Morgan" 
           time="2:30 PM"
@@ -32,7 +35,8 @@ export default function Posts() {
         />
       </li>
       <li>
-        <ChatBubble 
+        <ChatBubble
+          userID='1'
           profilePic="https://via.placeholder.com/50"
           userName="Philip"
           time="2:30 PM"
@@ -41,7 +45,8 @@ export default function Posts() {
         />
       </li>
       <li>
-        <ChatBubble 
+        <ChatBubble
+          userID='5'
           profilePic="https://via.placeholder.com/50"
           userName="Timothy"
           time="2:30 PM"
@@ -51,6 +56,7 @@ export default function Posts() {
       </li>
       <li>
         <ChatBubble 
+          userID='1'
           profilePic=""
           userName="Jeff Bezos"
           time="2:30 PM"

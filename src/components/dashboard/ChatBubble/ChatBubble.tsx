@@ -2,12 +2,12 @@
 import styles from './ChatBubble.module.css';
 import Avatar from '@/components/ui/Avatar/Avatar';
 import StringAvatar from '@/components/ui/Avatar/StringAvatar';
-import { setRightCanvas } from '@/lib/features/uiSlice';
-import { useAppDispatch } from "@/lib/hooks/storeHooks";
+import useActiveCanvas from '@/lib/hooks/useActiveCanvas';
 
 interface ChatBubbleProps {
   profilePic: string;
   userName: string;
+  userID: string | number;
   time: string;
   message: string;
   isSender: boolean;
@@ -15,20 +15,15 @@ interface ChatBubbleProps {
 }
 
 export default function ChatBubble({
+  userID,
   profilePic,
   userName,
   time,
   message,
   isSender
  }: ChatBubbleProps) {
-  const dispatch = useAppDispatch();
 
-  const openRightCanvas = (contentType: 'thread' | 'profile') => {
-    dispatch(setRightCanvas({
-      content: contentType,
-      isOpen: true
-    }))
-  };
+  const {openRightSide: openRightCanvas} = useActiveCanvas();
   return (
     <div
     className={`
@@ -38,7 +33,11 @@ export default function ChatBubble({
     }>
       <button
         className='btn'
-        onClick={() => openRightCanvas('profile')}
+        onClick={() => openRightCanvas({
+          contentID: userID,
+          content: 'profile',
+          isOpen: true
+        })}
       >
         {profilePic 
           ? <Avatar

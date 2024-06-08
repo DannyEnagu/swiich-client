@@ -1,24 +1,37 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Input from '../ui/Input';
-import styles from './CreateTeam.module.css';
 import { faClone } from '@fortawesome/free-regular-svg-icons';
 import { useCallback, useRef, useState } from 'react';
 import { faSpinner, faUpload } from '@fortawesome/free-solid-svg-icons';
 import CustomAutocomplete from '../CustomAutocomplete/CustomAutocomplete';
-import { useAppDispatch } from "@/lib/hooks/storeHooks";
-import { useAddOrganizationMutation } from '@/services/organization';
-import customToast from '@/utils/toast';
-import { setOrganization } from '@/lib/features/organizationSlice';
-import { useSession } from 'next-auth/react';
+import styles from './UpdateForm.module.css';
 
+interface CreateTeamProps {
+    title: string;
+    copyLink: string;
+    submitButtonLabel: string;
+    emailList: string[];
+    isLoading?: boolean;
+    onSubmit: (values: CreateTeamState) => void;
+}
 
-export default function CreateTeam() {
-    const { data: session } = useSession();
-    const dispatch = useAppDispatch();
-    const [addOrganization, { isLoading }] = useAddOrganizationMutation();
+export interface CreateTeamState {
+    teamName: string;
+    teamMembers: string[];
+    teamLogo: string;
+    teamLink: string;
+}
+
+export default function UpdateForm({
+    title,
+    copyLink,
+    submitButtonLabel,
+    emailList = [],
+    onSubmit,
+    isLoading = false
+}: CreateTeamProps) {
     const copyInputRef = useRef<HTMLInputElement | null>(null);
-    const uploadInputRef = useRef<HTMLInputElement | null>(null);
-    const [inputValues, setInputValues] = useState({
+    const [inputValues, setInputValues] = useState<CreateTeamState>({
         teamName: '',
         teamMembers: [''],
         teamLogo: '',
@@ -38,43 +51,13 @@ export default function CreateTeam() {
             ...inputValues,
             [e.target.id]: value
         });
-        console.log(value);
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        try {
-            const reqBody = {
-                userId: session?.user?.id,
-                name: inputValues.teamName
-            };
-            
-            await addOrganization(reqBody).unwrap()
-                .then((res) => {
-                    if (res?.isSuccess) {
-                        const { isSuccess, message, ...rest } = res;
-                        customToast({
-                            message: message,
-                            type: 'success'
-                        });
-                        dispatch(
-                            setOrganization({ ...rest })
-                        )
-                        console.log(res);
-                    }
-                })
-                .catch((error) => {
-                    const { data, status } = error;
-                    customToast({
-                        message: status === 500 ? 'Server error!': data.error,
-                        type: 'error'
-                    });
-                });
-        } catch (error) {
-            console.error(error);
-        }
+        onSubmit(inputValues);
     }
+
     const copyToClipboard = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         // Copy to clipboard
@@ -86,12 +69,6 @@ export default function CreateTeam() {
         // Close the modal
         console.log('Ignore Changes');
     }
-    const options: string[] = ['email1', 'email2', 'email3.com', 'email4', 'email5',
-    'mail1', 'mail2.com', 'mail3', 'mail4', 'mail5',
-    'gmail1', 'gmail2.com', 'gmail3', 'gmail4', 'gmail5',
-    'yahoo1.com', 'yahoo2', 'yahoo3', 'yahoo4', 'yahoo5',
-    'outlook1', 'outlook2.com', 'outlook3', 'outlook4', 'outlook5'
-    ];
 
     return (
         <form
@@ -99,13 +76,13 @@ export default function CreateTeam() {
             className={styles.form}
         >
             <div className={styles.formGroup}>
-                <label htmlFor="teamName">Enter your team name</label>
+                <label htmlFor="teamName">{title}</label>
                 <Input
                     type="text"
                     id="teamName"
                     value={inputValues.teamName}
                     onChange={handelChange}
-                    placeholder='Enter team name'
+                    placeholder={title}
                 />
             </div>
             <div className={styles.formGroup}>
@@ -114,7 +91,7 @@ export default function CreateTeam() {
                     <div className={styles.addEmails}>
                     <CustomAutocomplete
                         label='Enter email address(s) separated by commas'
-                        options={options}
+                        options={emailList}
                         onChange={(value) => onCustomAutocompleteChange(value)}
                         type='input'
                     />
@@ -123,7 +100,7 @@ export default function CreateTeam() {
             </div>
             <div className={styles.formGroup}>
                 <label htmlFor="teamLogo">
-                    Upload team logo
+                    Upload logo
                 </label>
                 <div className={styles.upLoadArea}>
                     <label htmlFor="teamLogo">
@@ -132,8 +109,9 @@ export default function CreateTeam() {
                             type="file"
                             id="teamLogo"
                             multiple={false}
+                            value={inputValues.teamLogo}
+                            onChange={() => handelChange}
                             accept='png, jpg, jpeg'
-                            ref={uploadInputRef}
                         />
                         <span>Click to upload</span>
                         or drag and drop
@@ -148,7 +126,7 @@ export default function CreateTeam() {
                         type="text"
                         id="teamLink"
                         ref={copyInputRef}
-                        value="https://www.example.com"
+                        value={copyLink}
                         onChange={() => handelChange}
                     />
                     <button
@@ -175,7 +153,7 @@ export default function CreateTeam() {
                             icon={faSpinner}
                             spinPulse
                         />
-                        : 'Create Team'}
+                        : submitButtonLabel}
                 </button>
             </div>
         </form>

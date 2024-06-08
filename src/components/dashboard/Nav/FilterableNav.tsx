@@ -6,14 +6,12 @@ import CreateContact, { CreateContactProps } from '@/components/CreateContact/Cr
 
 interface FilterableNavProps {
   items: NavProps[];
-  showCreateButton?: boolean;
   CreateButtonProps?: CreateContactProps | undefined;
 }
 
 export default function FilterableNav({
   items,
   CreateButtonProps,
-  showCreateButton = false,
 }: FilterableNavProps) {
   const handleTextChange = (text: string) => {
     // Filter items based on text
@@ -23,7 +21,7 @@ export default function FilterableNav({
       <Search onTextChange={handleTextChange}/>
       <div className={styles.navContent}>
         <FilterableNavList filteredItems={items} />
-        {showCreateButton && CreateButtonProps && (
+        {CreateButtonProps && (
           <CreateContact {...CreateButtonProps} />
         )}
       </div>

@@ -1,3 +1,4 @@
+'use client'
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,11 +14,13 @@ import { usePathname } from 'next/navigation';
 import styles from './ToolsBar.module.css';
 import Modal from '@/components/ui/Modal/Modal';
 import Avatar from '@/components/ui/Avatar/Avatar';
-import CreateTeam from '@/components/CreatTeam/CreateTeam';
+import { getOrgID } from '@/utils/helpers';
+import CreateTeam from '../CreateTeam';
 
 
 export default function ToolsBar() {
   const currPathname = usePathname();
+  const orgID = getOrgID(currPathname);
   
   useEffect(() => {
     const changeActiveTool = () => {
@@ -27,16 +30,15 @@ export default function ToolsBar() {
         toolLink.classList.remove(styles.toolLinkIsActive);
         // Get the active tool from the data attribute
         const activeTool = toolLink.dataset.active as string;
-        const dashboardPath = `/dashboard/${1}`;
+        const dashboardPath = `/dashboard/${orgID}`;
         // Add active class to the current tool link
         if(currPathname.includes(activeTool) || (activeTool == 'inbox' && currPathname === dashboardPath)) {
           toolLink.classList.add(styles.toolLinkIsActive);
         }
       });
     }
-    
     changeActiveTool();
-  }, [currPathname]);
+  }, [currPathname, orgID]);
 
   return (
     <div className={styles.wrapper}>
@@ -59,7 +61,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
           <Link
-            href="/dashboard/1"
+            href={`/dashboard/${orgID}`}
             className={styles.toolLink}
             data-active='inbox'
           >
@@ -73,7 +75,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
           <Link
-            href="/dashboard/1/group/1"
+            href={`/dashboard/${orgID}/group/1`}
             className={styles.toolLink}
             data-active='group'
           >
@@ -87,7 +89,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
           <Link
-            href="/dashboard/1/dm/1"
+            href={`/dashboard/${orgID}/dm/1`}
             className={styles.toolLink}
             data-active='dm'
           >
@@ -101,7 +103,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
           <Link
-            href="/dashboard/1/boards"
+            href={`/dashboard/${orgID}/boards/1`}
             className={styles.toolLink}
             data-active='boards'
           >
@@ -136,7 +138,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
           <Link
-            href="/dashboard/1/settings"
+            href={`/dashboard/${orgID}/settings`}
             className={styles.toolLink}
             data-active='settings'
           >

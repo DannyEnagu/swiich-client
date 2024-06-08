@@ -10,10 +10,11 @@ import {
 import NavItem from "@/components/dashboard/Nav/NavItem";
 import NavList from "@/components/dashboard/Nav/NavList";
 import styles from "./Navigation.module.css";
+import NavBar from "@/components/dashboard/Nav/NavBar";
 
 export default function Navigation() {
   return (
-    <nav>
+    <NavBar>
       <div className={styles.header}>
         <h2>Settings</h2>
       </div>
@@ -40,7 +41,9 @@ export default function Navigation() {
             ${styles.settingsButton}
           `}>
             <FontAwesomeIcon icon={faBell} className={styles.settingsIcon} />
-            <span className={styles.settingsLable}>Notification</span>
+            <span className={styles.settingsLable}>
+              Notification
+            </span>
           </button>
         </NavItem>
         <NavItem>
@@ -68,6 +71,6 @@ export default function Navigation() {
           </button>
         </NavItem>
       </NavList>
-    </nav>
+    </NavBar>
   );
 }

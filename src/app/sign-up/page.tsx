@@ -33,7 +33,7 @@ export default function page() {
                     </div>
                     <p className="auth__help">
                         Already have an account? &nbsp; 
-                        <Link href="/signin">Sign In</Link>
+                        <Link href="/sign-in">Sign In</Link>
                     </p>
                 </div>
             </div>

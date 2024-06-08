@@ -31,6 +31,7 @@ interface Canvas {
 
 interface CanvasRight {
     content: 'thread' | 'profile';
+    contentID: string | number;
     isOpen: boolean; 
 };
 

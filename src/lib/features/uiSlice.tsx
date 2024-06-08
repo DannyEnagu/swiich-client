@@ -6,6 +6,7 @@ import type { RootState } from "../store";
 const initialState: UISettings = {
     rightCanvas: {
         content: 'thread',
+        contentID: '',
         isOpen: false
     },
     activeCanvas: {

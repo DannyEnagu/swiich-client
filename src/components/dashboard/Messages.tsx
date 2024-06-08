@@ -6,7 +6,8 @@ export default function Messages() {
   return (
     <ul role="list" className={styles.messages}>
       <li>
-        <ChatBubble 
+        <ChatBubble
+          userID='1'
           profilePic="https://via.placeholder.com/50"
           userName="John"
           time="2:30 PM"
@@ -15,7 +16,8 @@ export default function Messages() {
         />
       </li>
       <li>
-        <ChatBubble 
+        <ChatBubble
+          userID='1'
           profilePic="https://via.placeholder.com/50"
           userName="Dami"
           time="2:30 PM"
@@ -24,7 +26,8 @@ export default function Messages() {
         />
       </li>
       <li>
-        <ChatBubble 
+        <ChatBubble
+          userID='1'
           profilePic="https://via.placeholder.com/50"
           userName="John"
           time="2:30 PM"
@@ -33,7 +36,8 @@ export default function Messages() {
         />
       </li>
       <li>
-        <ChatBubble 
+        <ChatBubble
+          userID='1'
           profilePic="https://via.placeholder.com/50"
           userName="Dami"
           time="2:30 PM"
@@ -42,7 +46,8 @@ export default function Messages() {
         />
       </li>
       <li>
-        <ChatBubble 
+        <ChatBubble
+          userID='1'
           profilePic="https://via.placeholder.com/50"
           userName="John"
           time="2:30 PM"
@@ -51,7 +56,8 @@ export default function Messages() {
         />
       </li>
       <li>
-        <ChatBubble 
+        <ChatBubble
+          userID='1'
           profilePic="https://via.placeholder.com/50"
           userName="Dami"
           time="2:30 PM"
@@ -60,7 +66,8 @@ export default function Messages() {
         />
       </li>
       <li>
-        <ChatBubble 
+        <ChatBubble
+          userID='1'
           profilePic="https://via.placeholder.com/50"
           userName="John"
           time="2:30 PM"
@@ -69,7 +76,8 @@ export default function Messages() {
         />
       </li>
       <li>
-        <ChatBubble 
+        <ChatBubble
+          userID='1'
           profilePic="https://via.placeholder.com/50"
           userName="Dami"
           time="2:30 PM"
@@ -78,7 +86,8 @@ export default function Messages() {
         />
       </li>
       <li>
-        <ChatBubble 
+        <ChatBubble
+          userID='1'
           profilePic="https://via.placeholder.com/50"
           userName="John"
           time="2:30 PM"

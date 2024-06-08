@@ -3,9 +3,13 @@ export function limitString (str: string, limit: number): string {
 };
 
 export function capitalize (strParam: string): string {
-    // convert position string to TitleCase
-    // e.g. top-start => TopStart
-    return strParam.split('-').map((str) => {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    }).join('');
+  // convert position string to TitleCase
+  // e.g. top-start => TopStart
+  return strParam.split('-').map((str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }).join('');
 };
+
+export const getOrgID = (pathname: string): string => {
+  return pathname.split('/')[2];
+}

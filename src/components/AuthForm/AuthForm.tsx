@@ -1,5 +1,6 @@
 
 "use client";
+import { useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -109,37 +110,44 @@ export default function UserFrom({ type }: UserFormProps) {
         }
     };
 
-
-    const onSubmit: SubmitHandler<FormData> = async (params) => {
-        const reqBody = generateReqBody(params);
-        const res = await signIn("credentials", reqBody[type]);
-        if (res?.error) {
-            setError("root", {
-                message: type === "sign-in" ? "Invalid email or password" : "Could not sign up. Please try again later.",
-            });
-            return;
-        }
-        if (session?.user) {
+    useEffect(() => {
+        if (session?.user && Object.keys(session?.user).length > 0) {
             dispatch(
                 setCredentials({
                     user: session.user,
                     token: session.token
                 })
             )
-
             // Extract page url path from callbackUrl
             if (loginCallbackUrl) {
                 const url = new URL(loginCallbackUrl);
                 const path = url.pathname;
                 router.push(path);
             }
-            const organisations = session?.user?.organisations;
 
-            if (organisations.length > 1) {
-                router.push('/');
+            const organisations = session?.user?.organisations;
+            if (organisations.length === 1) {
+                router.push(`/dashboard/${organisations[0].id}`);
                 return;
             }
-            router.push(`/dashboard/${organisations[0].id}`);
+
+            router.push('/');
+            return;
+        }
+
+        // router.push('/');
+    }, [session, dispatch, router, loginCallbackUrl]);
+
+    const onSubmit: SubmitHandler<FormData> = async (params) => {
+        const reqBody = generateReqBody(params);
+        const res = await signIn("credentials", reqBody[type]);
+        if (res?.error) {
+            setError("root", {
+                message: type === "sign-in"
+                ? "Invalid email or password"
+                : "Could not sign up. Please try again later.",
+            });
+            return;
         }
     };
 

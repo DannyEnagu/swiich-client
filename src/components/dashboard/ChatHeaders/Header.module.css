@@ -26,6 +26,7 @@
 
 .headerName {
   margin: 0;
+  padding: 0;
   font-size: var(--fs-100);
 }
 
@@ -61,23 +62,7 @@
   align-items: center;
   gap: 0.5em;
   background-color: var(--clr-dashboard-active-chat-bg);
-  padding: 2px;
-  border-radius: 10px;
-}
-
-.groupUsersAvatarList {
-  display: flex;
-  align-items: center;
-}
-
-.groupUsersAvatarList * + * {
-  margin-left: -5px;
-}
-
-
-.groupUsersCount {
-  font-size: var(--fs-100);
-  font-weight: var(--fw-bold);
+  padding: 1px 5px;
 }
 
 .divider {
@@ -86,7 +71,16 @@
   width: 1px;
 }
 
+.addUsers {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em;
+  border-radius: 10px;
+  width: 500px;
+}
 
-.groupUsersAdd button {
-  padding: 0;
+.addUsers button {
+  padding: 10px 1em;
+  align-self: flex-end;
 }

@@ -2,15 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import styles from './Thread.module.css';
 import Posts from "../Posts";
-import { closeRightCanvas } from '@/lib/features/uiSlice';
 import { useAppDispatch } from "@/lib/hooks/storeHooks";
+import useSetActiveCanvas from '@/lib/hooks/useSetActiveCanvas';
 
 export default function Thread() {
-  const dispatch = useAppDispatch();
-
-  const hideContent = () => {
-    dispatch(closeRightCanvas());
-  }
+  const { closeRightSidebar: hideContent } = useSetActiveCanvas();
   return (
     <div className={styles.wrapper}>
         <div className={styles.header}>
@@ -18,7 +14,7 @@ export default function Thread() {
             <span>Thread</span>
             <button
               className={`btn btn-icon ${styles.closeButton}`}
-              onClick={() => hideContent}
+              onClick={() => hideContent('thread')}
               >
               <FontAwesomeIcon icon={faTimes} size='xl' />
             </button>

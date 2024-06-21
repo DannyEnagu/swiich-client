@@ -1,9 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckDouble, faUsersLine } from '@fortawesome/free-solid-svg-icons';
+import { faCheckDouble } from '@fortawesome/free-solid-svg-icons';
 import { limitString } from '@/utils/helpers';
-import StringAvatar from '@/components/ui/Avatar/StringAvatar';
 import styles from './Nav.module.css';
-import Avatar from '@/components/ui/Avatar/Avatar';
+import DMAvatar from '../Avatar/DMAvatar';
 
 export default function DMContact({
   contactName,
@@ -19,19 +18,11 @@ export default function DMContact({
   return (
     <div className={styles.sender}>
       <div className={styles.senderImg}>
-        {/* Display user image if available */}
-        {/* Display user icon if no image is available */}
-        {profilePic 
-        ? <Avatar
-            imgSrc={profilePic}
-            size={46}
-            imgAlt={`user ${contactName} profile picture`}
-          />
-        : <StringAvatar 
-            name={contactName}
-            size={46}
-          />}
-
+        <DMAvatar
+          userName={contactName}
+          profilePic={profilePic}
+          size={43}
+        />
         {senderStatus === 'Online' && (
           <span className={styles.senderStatus} />)
         }

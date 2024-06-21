@@ -113,9 +113,6 @@ export default function InboxContact() {
           typing: false,
         },
     ]; 
-    const handleAdd = (vales: any) => {
-        console.log(vales);
-    };
     return (
         <FilterableNav items={inboxItems}/>
     );

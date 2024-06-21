@@ -1,7 +1,7 @@
 'use client';
 
 import NavLink from './NavLink';
-import useActiveCanvas from '@/lib/hooks/useActiveCanvas';
+import useSetActiveCanvas from '@/lib/hooks/useSetActiveCanvas';
 import DMContact from './DMContact';
 import GroupContact from './GroupContact';
 import { getOrgID } from '@/utils/helpers';
@@ -13,7 +13,7 @@ import { usePathname } from 'next/navigation';
 
 
 export default function Contact({ contact }: any) {
-  const { setCanvas: changeActiveCanvas } = useActiveCanvas();
+  const { switchOpenCanvas: changeActiveCanvas } = useSetActiveCanvas();
   const currPathname = usePathname();
   const { type } = contact;
   // Useful for dashboard inbox page to prevent broken links
@@ -23,13 +23,22 @@ export default function Contact({ contact }: any) {
   const orgID = getOrgID(currPathname);
   const linkRef = `/dashboard/${orgID}/${type}/${getContactID}`;
 
+  const updateActiveCanvas = () => {
+    try {
+      changeActiveCanvas({
+        id: getContactID,
+        url: linkRef,
+        name: contact.contactName || contact.groupTitle || contact.boardName,
+        type: type === 'group' ? 'department' : type,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (<NavLink
       href={linkRef}
-      onClick={() => changeActiveCanvas({
-        id: contact.contactID || contact.groupID,
-        url: linkRef,
-        name: contact.contactName || contact.groupTitle || contact.boardName
-      })}>
+      onClick={() => updateActiveCanvas()}>
       {isDM ? (
         <DMContact {...contact} />
       ) : (

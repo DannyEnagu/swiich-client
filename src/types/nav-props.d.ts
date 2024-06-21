@@ -16,6 +16,7 @@ interface GroupContactProps {
     groupID: string | number;
     groupTitle: string;
     groupMsgCount: number;
+    groupMembers: string[];
     groupImg?: string;
     isPublicGroup: boolean;
     type?: 'group';

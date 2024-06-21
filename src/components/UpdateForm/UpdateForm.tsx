@@ -8,10 +8,13 @@ import styles from './UpdateForm.module.css';
 
 interface CreateTeamProps {
     title: string;
-    copyLink: string;
+    defaultName?: string;
+    copyLink?: string;
     submitButtonLabel: string;
-    emailList: string[];
+    emailingList?: string[];
     isLoading?: boolean;
+    autoCompleteType?: 'select' | 'input';
+    autoCompleteLabel?: string;
     onSubmit: (values: CreateTeamState) => void;
 }
 
@@ -19,31 +22,36 @@ export interface CreateTeamState {
     teamName: string;
     teamMembers: string[];
     teamLogo: string;
-    teamLink: string;
 }
 
 export default function UpdateForm({
     title,
+    defaultName,
     copyLink,
     submitButtonLabel,
-    emailList = [],
+    emailingList=[],
     onSubmit,
-    isLoading = false
+    isLoading = false,
+    autoCompleteType = 'input',
+    autoCompleteLabel
 }: CreateTeamProps) {
     const copyInputRef = useRef<HTMLInputElement | null>(null);
     const [inputValues, setInputValues] = useState<CreateTeamState>({
         teamName: '',
-        teamMembers: [''],
+        teamMembers: [],
         teamLogo: '',
-        teamLink: ''
     });
 
-    const onCustomAutocompleteChange = useCallback((values: string[]) => {
-        setInputValues({
-            ...inputValues,
-            teamMembers: values
+    const onCustomAutocompleteChange = useCallback((value: string) => {
+        if (!value || value === '') return;
+        setInputValues((prev) => {
+            return {
+                ...prev,
+                teamMembers: [...prev.teamMembers, value.trim()]
+            }
+        
         });
-    }, [inputValues]);
+    }, []);
 
     const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
@@ -80,20 +88,22 @@ export default function UpdateForm({
                 <Input
                     type="text"
                     id="teamName"
-                    value={inputValues.teamName}
+                    value={inputValues.teamName || defaultName}
                     onChange={handelChange}
                     placeholder={title}
                 />
             </div>
             <div className={styles.formGroup}>
-                <label htmlFor="teamMembers">Add team members by email</label>
+                <label htmlFor="teamMembers">
+                    {autoCompleteLabel || 'Add team members'}
+                </label>
                 <div className={styles.emails}>
                     <div className={styles.addEmails}>
                     <CustomAutocomplete
                         label='Enter email address(s) separated by commas'
-                        options={emailList}
-                        onChange={(value) => onCustomAutocompleteChange(value)}
-                        type='input'
+                        options={emailingList}
+                        onChange={onCustomAutocompleteChange}
+                        type={autoCompleteType}
                     />
                     </div>
                 </div>
@@ -118,26 +128,28 @@ export default function UpdateForm({
                     </label>
                 </div>
             </div>
-            <div className={styles.formGroup}>
-                <label htmlFor="teamLink">Copy Link</label>
-                <div className={styles.copyLink}>
-                    <Input
-                        disabled
-                        type="text"
-                        id="teamLink"
-                        ref={copyInputRef}
-                        value={copyLink}
-                        onChange={() => handelChange}
-                    />
-                    <button
-                        onClick={copyToClipboard}
-                        className={`btn ${styles.btnCopy}`}
-                    >
-                        <span>Copy</span>
-                        <FontAwesomeIcon icon={faClone} />
-                    </button>
+            {copyLink && (
+                <div className={styles.formGroup}>
+                    <label htmlFor="teamLink">Copy Link</label>
+                    <div className={styles.copyLink}>
+                        <Input
+                            disabled
+                            type="text"
+                            id="teamLink"
+                            ref={copyInputRef}
+                            value={copyLink}
+                            onChange={() => handelChange}
+                        />
+                        <button
+                            onClick={copyToClipboard}
+                            className={`btn ${styles.btnCopy}`}
+                        >
+                            <span>Copy</span>
+                            <FontAwesomeIcon icon={faClone} />
+                        </button>
+                    </div>
                 </div>
-            </div>
+            )}
             <div className={styles.formButtons}>
                 <button
                     onClick={IgnoreChanges}

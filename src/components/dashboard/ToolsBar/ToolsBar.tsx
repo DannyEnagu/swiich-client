@@ -15,12 +15,21 @@ import styles from './ToolsBar.module.css';
 import Modal from '@/components/ui/Modal/Modal';
 import Avatar from '@/components/ui/Avatar/Avatar';
 import { getOrgID } from '@/utils/helpers';
-import CreateTeam from '../CreateTeam';
+import UpdateTeamInfo from '../UpdateTeamInfo';
+import { useAppSelector } from '@/lib/hooks';
+import {
+  selectActiveDM,
+  selectActiveDepartment,
+  selectActiveProject,
+ } from '@/lib/features/uiSlice';
 
 
 export default function ToolsBar() {
   const currPathname = usePathname();
   const orgID = getOrgID(currPathname);
+  const groupID = useAppSelector(selectActiveDepartment)?.id;
+  const dmID = useAppSelector(selectActiveDM)?.id;
+  const projectID = useAppSelector(selectActiveProject)?.id;
   
   useEffect(() => {
     const changeActiveTool = () => {
@@ -45,7 +54,7 @@ export default function ToolsBar() {
       <ul className={styles.tools} role='list'>
         <li className={styles.tool}>
           <span className={styles.toolIcon}>
-            <Modal title="Create a Team">
+            <Modal title="Update organization details">
               <Modal.Summary>
                 <Avatar
                   size={35}
@@ -54,7 +63,7 @@ export default function ToolsBar() {
                 />
               </Modal.Summary>
               <Modal.Content>
-                <CreateTeam />
+                <UpdateTeamInfo />
               </Modal.Content>
             </Modal>
           </span>
@@ -75,7 +84,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
           <Link
-            href={`/dashboard/${orgID}/group/1`}
+            href={`/dashboard/${orgID}/group/${groupID || 0}`}
             className={styles.toolLink}
             data-active='group'
           >
@@ -89,7 +98,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
           <Link
-            href={`/dashboard/${orgID}/dm/1`}
+            href={`/dashboard/${orgID}/dm/${dmID || 0}`}
             className={styles.toolLink}
             data-active='dm'
           >
@@ -103,7 +112,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
           <Link
-            href={`/dashboard/${orgID}/boards/1`}
+            href={`/dashboard/${orgID}/boards/${projectID || 0}`}
             className={styles.toolLink}
             data-active='boards'
           >
@@ -130,7 +139,7 @@ export default function ToolsBar() {
                       Search
                     </span>
                   </Link>
-                </Modal.Summary>
+                </Modal.Summary> 
                 <Modal.Content>
                   <input type="text" placeholder="Search..." />
                 </Modal.Content>

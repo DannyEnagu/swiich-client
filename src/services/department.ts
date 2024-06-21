@@ -12,15 +12,22 @@ type AddBody = {
 };
 
 type AddUserToDeptBody = {
-    adminOrDeptHeadId: string | number;
-    userIds: string[] | number[];
-    departmentId: string | number;
+    adminOrDeptHeadId: CurrentUser['id'];
+    userIds: CurrentUser['id'][];
+    departmentId: Department['id'];
+};
+
+type DepartmentUsersType = {
+    departmentUsers: Department['members'];
 };
 
 export const deptApi = baseApiRoute.injectEndpoints({
     endpoints: (builder) => ({
         getDept: builder.query({
             query: (id) => '/department/?departmentId=' + id
+        }),
+        getDeptUsers: builder.query<DepartmentUsersType, Department['id']>({
+            query: (id) => '/department/users/?departmentId=' + id
         }),
         getAllDept: builder.query({
             query: (id) => '/departments/?orgId=' + id
@@ -45,6 +52,7 @@ export const deptApi = baseApiRoute.injectEndpoints({
 export const {
     useGetDeptQuery,
     useGetAllDeptQuery,
+    useGetDeptUsersQuery,
     useAddDeptMutation,
     useAddUserToDeptMutation,
 } = deptApi;

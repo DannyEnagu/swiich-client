@@ -7,7 +7,7 @@ const ProfileViewWrapper = withContentWrapper(ProfileView);
 const ThreadWrapper = withContentWrapper(Thread, true);
 
 interface RightSideProps {
-  contentType: string;
+  contentType: string | undefined;
 }
 
 export default function RightSide({ contentType }: RightSideProps) {

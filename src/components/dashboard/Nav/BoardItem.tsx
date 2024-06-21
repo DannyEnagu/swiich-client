@@ -4,12 +4,10 @@ import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import NavLink from "./NavLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faAngleDown
-} from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { TaskDetails } from "@/app/dashboard/[orgID]/boards/Components";
 import Modal from "@/components/ui/Modal/Modal";
-import useActiveCanvas from "@/lib/hooks/useActiveCanvas";
+import useSetActiveCanvas from "@/lib/hooks/useSetActiveCanvas";
 import styles from './Nav.module.css';
 import { getOrgID } from '@/utils/helpers';
 
@@ -20,7 +18,7 @@ export default function BoardItem({
   boardImg,
   boardTasks
 }: BoardProps) {
-  const changeActiveCanvas = useActiveCanvas();
+  const { switchOpenCanvas: changeActiveCanvas } = useSetActiveCanvas();
   const currPathname = usePathname();
   const linkRef = `/dashboard/${getOrgID(currPathname)}/boards/${boardID}`;
   
@@ -67,6 +65,7 @@ export default function BoardItem({
             id: boardID,
             name: boardName,
             url: linkRef,
+            type: 'project'
           })}
           className={styles.projectLink}
         >

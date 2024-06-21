@@ -184,7 +184,7 @@
   padding-inline-end: 0.5em;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
   gap: 0.5em;
 }
 

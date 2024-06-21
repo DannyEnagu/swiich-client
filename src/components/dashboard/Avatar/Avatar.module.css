@@ -1,0 +1,15 @@
+.userGroup,
+.userGroupAvatars {
+    display: flex;
+    align-items: center;
+}
+
+.userGroupAvatars > * + * {
+    margin-left: -5px;
+}
+
+.userGroupCount {
+    margin-left: 3px;
+    font-size: var(--fs-100);
+    font-weight: var(--fw-bold);
+}

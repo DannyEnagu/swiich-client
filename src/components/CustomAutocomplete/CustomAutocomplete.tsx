@@ -4,14 +4,20 @@ import styles from './Autocomplete.module.css';
 import { useEffect, useRef, useState } from 'react';
 import { faCaretDown, faCaretUp, faCheck, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useClickOutside } from '@/lib/hooks/useClickOutside';
+import ProfileAvatar from '../ProfileAvatar';
 
+// type optionTypes = Record<keyof any, any>;
+export interface optionTypes {
+    value: string;
+    label: string;
+}
 
 interface AutocompleteProps {
     label: string;
-    options: string[];
+    options: optionTypes[];
     showPopper?: boolean;
     border?: boolean;
-    onChange?: (value: string[]) => void;
+    onChange?: (values: optionTypes[]) => void;
     type?: 'select' | 'input';
 }
 
@@ -26,8 +32,10 @@ export default function CustomAutocomplete({
     const [showDrop, setShowDrop] = useState(showPopper);
     const [isFocus, setIsFocus] = useState(false);
     const [inputValue, setInputValue] = useState('');
-    const [getOptions, setOptions] = useState(options);
-    const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+    const [filteredOptions, setFilteredOptions] = useState<optionTypes[]>([]);
+    const [selectedOptions, setSelectedOptions] = useState<optionTypes[]>([]);
+    const dropdownOptions = filteredOptions.length > 0 ? filteredOptions : options;
+
 
     const autocompleteRef = useRef<HTMLDivElement | null>(null);
 
@@ -38,66 +46,70 @@ export default function CustomAutocomplete({
     useEffect(() => {
         const values = inputValue.split(',');
         if (values.length > 1) {
-            values.map((value, i) => {
-                if (value.trim() === '') {
-                    values.splice(i, 1);
+            // Remove empty values and add the values to the options
+            values.forEach(value => {
+                if (value.trim() !== '') {
+                    options.push({
+                        value: value.trim(),
+                        label: value.trim()
+                    });
                 }
-                return value.trim();
             });
             setInputValue('');
-            setOptions([...getOptions, ...values]);
         }
+    }, [inputValue, options]);
 
-
-    }, [inputValue, getOptions]);
-
-
+    const handleChange = () => {
+        // Pass the last selected option to the parent component
+        if (options.length > 0 && type === 'input') {
+            onChange && onChange([...options]);
+        } else if (selectedOptions.length > 0 && type === 'select') {
+            onChange && onChange([...selectedOptions]);
+        }
+    };
 
     useEffect(() => {
-        if (selectedOptions.length > 0 && type === 'input') {
-            onChange && onChange(getOptions);
-        } else if (selectedOptions.length > 0 && type === 'select') {
-            onChange && onChange(selectedOptions);
+        if (!showDrop) {
+            handleChange();
         }
-    }, [getOptions, onChange, selectedOptions, type]);
+       // eslint-disable-next-line
+    }, [showDrop]);
 
     const addOrRemoveOption = (i: number, actionType: 'add' | 'sub'): void => {
-        if (getOptions.length > 0) {
-            const selectedOption = getOptions[i];
+        if (options.length > 0) {
+            const selectedOption = options[i];
             switch (actionType) {
                 case 'add':
                     // Check if the option is already selected
-                    if (selectedOptions.find(option => option === selectedOption) !== undefined) {
+                    if (selectedOptions.find(option => option.value === selectedOption.value) !== undefined) {
                         return;
                     }
                     setSelectedOptions([...selectedOptions, selectedOption]);
                     break;
                 case 'sub':
-                    setSelectedOptions(selectedOptions.filter(option => option !== selectedOption));
+                    setSelectedOptions(selectedOptions.filter(option => option.value !== selectedOption.value));
                     if (type === 'input') {
-                        setOptions(getOptions.filter(option => option !== selectedOption));
+                        options.splice(i, 1);
                     }
                     break;
-                    default:
+                default:
                     setInputValue('');
                     break;
             }
         }
     };
 
-    const checkSelectedOptions = (option: string): Boolean => {
-        return selectedOptions.find(op => op === option) !== undefined ? true : false;
+    const checkSelectedOptions = (option: optionTypes): Boolean => {
+        return selectedOptions.find(op => op.value === option.value) !== undefined ? true : false;
     };
 
     const filterOptions = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setInputValue(value);
-        if (value === '') {
-            setOptions(options);
-        } else {
-            if (type === 'select') {
-                setOptions(options.filter(option => !selectedOptions.includes(option) && option.toLowerCase().includes(value.toLowerCase())));
-            }
+        if (type === 'select') {
+            // Filter the options
+            const filteredOptions = options.filter(option => option.value.toLowerCase().includes(value.toLowerCase()));
+            setFilteredOptions(filteredOptions);
         }
     };
 
@@ -112,12 +124,20 @@ export default function CustomAutocomplete({
                     htmlFor="autocompleteInput"
                     className={styles.optionsLabel}
                     >
-                    {getOptions.length > 0 && (
-                        <span>
+                    {options.length > 0 && (
+                        <>
                             {type === 'select' && (<>
                                     {selectedOptions.map((option, index) => (<span className={styles.selectedOptions}
-                                    key={index + option}>
-                                        {option}
+                                    key={index + option.value}>
+                                        <ProfileAvatar
+                                            size={24}
+                                            src={option.value.includes('/') ? option.value: ''}
+                                            name={option.label}
+                                            alt={`${option.label} Profile Icon`}
+                                        />
+                                        <span>
+                                         {option.label}
+                                        </span>
                                     </span>)
                                     )}
                                 </>)
@@ -125,26 +145,27 @@ export default function CustomAutocomplete({
                             {type === 'input' && (
                                 <span className={styles.firstOption}>
                                     <span>
-                                        {getOptions[getOptions.length - 1]}
+                                        {options[options.length - 1]?.label}
                                     </span>
                                 </span>
                             )}
-                            {getOptions.length > 1 && type === 'input' && (
+                            {options.length > 1 && type === 'input' && (
                                 <span className={styles.optionsCount}>
                                     <FontAwesomeIcon
                                         icon={faPlus}
                                         size='xs'
                                     />
-                                    {getOptions.length - 1}
+                                    {options.length - 1}
                                 </span>
                             )}
-                        </span>
+                        </>
                     )}
+                    
                     <Input
                         type="text"
                         id="autocompleteInput"
                         className={`${styles.optionsLabelInput} ${
-                            getOptions.length > 0 ? styles.hasOptions : ''
+                            options.length > 0 ? styles.hasOptions : ''
                         }`}
                         value={inputValue}
                         onChange={(e) => filterOptions(e)}
@@ -153,7 +174,12 @@ export default function CustomAutocomplete({
                             setShowDrop(true)
                         }}
                         onBlur={() => setIsFocus(false)}
-                        placeholder={getOptions.length > 0 ? '' : label}
+                        placeholder={options.length > 0
+                            ? type === 'select'
+                                ? 'Select options'
+                                : 'Add options'
+                            : label
+                        }
                     />
                 </label>
                 <span
@@ -167,13 +193,13 @@ export default function CustomAutocomplete({
             </div>
             {showDrop && (
                 <div className={styles.autocompleteDrop}>
-                    {getOptions.length > 0 && (
+                    {dropdownOptions.length > 0 && (
                         <ul role='list'>
-                            {getOptions.map((option, index) => (
+                            {dropdownOptions.map((option, index) => (
                                 <li key={index}>
                                     <span className='row align-center'>
                                         <span>
-                                            {option}
+                                            {option.label}
                                         </span>
                                         {type === 'select' && checkSelectedOptions(option) && (
                                             <FontAwesomeIcon
@@ -211,7 +237,7 @@ export default function CustomAutocomplete({
                             ))}
                         </ul>)
                     }
-                    {getOptions.length < 1 && (
+                    {options.length < 1 && (
                         <span className={styles.noOptions}>
                             No data
                         </span>)

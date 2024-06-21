@@ -2,7 +2,8 @@
 import styles from './ChatBubble.module.css';
 import Avatar from '@/components/ui/Avatar/Avatar';
 import StringAvatar from '@/components/ui/Avatar/StringAvatar';
-import useActiveCanvas from '@/lib/hooks/useActiveCanvas';
+import useSetActiveCanvas from '@/lib/hooks/useSetActiveCanvas';
+import { usePathname } from 'next/navigation';
 
 interface ChatBubbleProps {
   profilePic: string;
@@ -23,7 +24,8 @@ export default function ChatBubble({
   isSender
  }: ChatBubbleProps) {
 
-  const {openRightSide: openRightCanvas} = useActiveCanvas();
+  const {switchOpenCanvas: openRightCanvas} = useSetActiveCanvas();
+  const pathname = usePathname();
   return (
     <div
     className={`
@@ -34,9 +36,12 @@ export default function ChatBubble({
       <button
         className='btn'
         onClick={() => openRightCanvas({
-          contentID: userID,
-          content: 'profile',
-          isOpen: true
+          id: userID,
+          name: userName,
+          url: pathname,
+          type: 'profile',
+          isRightSidebarOpen: true,
+          rightSidebarContentType: 'profile'
         })}
       >
         {profilePic 

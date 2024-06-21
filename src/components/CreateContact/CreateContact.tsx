@@ -9,8 +9,8 @@ import customToast from '@/utils/toast';
 import { useAddDeptMutation } from '@/services/department';
 import { useCallback } from 'react';
 import { CreateTeamState } from '../UpdateForm/UpdateForm';
-import { usePathname } from 'next/navigation';
-import { getOrgID } from '@/utils/helpers';
+import { useAppSelector } from '@/lib/hooks/storeHooks';
+import { selectOrganization } from '@/lib/features/organizationSlice';
 
 export interface CreateContactProps {
   title: string | undefined;
@@ -24,14 +24,14 @@ export default function CreateContact ({
   const { data: session } = useSession();
   // const dispatch = useAppDispatch();
   const [addDept, { isLoading }] = useAddDeptMutation();
-  const currPathname = usePathname();
-  const orgID = getOrgID(currPathname);
+  const orgID = useAppSelector(selectOrganization)?.id;
 
   const Submit = async (values: CreateTeamState) => {
+    console.log(values);
     try {
       const reqBody = {
         userId: session?.user?.id,
-        organisationId: parseInt(orgID),
+        organisationId: parseInt(orgID as string),
         departmentName: values.teamName
       };
       
@@ -72,11 +72,10 @@ export default function CreateContact ({
         <Modal.Content>
           <UpdateForm
             title="Enter group name"
-            copyLink="https://www.google.com"
             submitButtonLabel="Create Group"
-            emailList={[]}
             onSubmit={handleSubmit}
             isLoading={isLoading}
+            autoCompleteType='input'
           />
         </Modal.Content>
       </Modal>

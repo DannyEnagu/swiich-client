@@ -1,6 +1,7 @@
 interface Department {
-    id: string | number;
+    id: string | number | undefined;
     name: string;
+    members: CurrentUser[];
     organisationID: string;
     createdAt: string;
     updatedAt: string;
@@ -10,6 +11,8 @@ interface Organization {
     id: string | number;
     name: string;
     departments: Department[];
+    members: CurrentUser[];
+    inviteLink: string;
     createdAt: string;
     updatedAt: string;
 };
@@ -35,7 +38,19 @@ interface CanvasRight {
     isOpen: boolean; 
 };
 
+interface ActiveCanvas {
+    id: string | number | undefined;
+    name: string | undefined;
+    url?: string;
+    type: 'project' | 'department' | 'dm' | 'profile' | 'thread';
+    isRightSidebarOpen?: boolean;
+    rightSidebarContentType?: 'thread' | 'profile';
+}
+
 interface UISettings {
-    rightCanvas: CanvasRight;
-    activeCanvas: Canvas;
+    activeProject: ActiveCanvas;
+    activeDepartment: ActiveCanvas;
+    activeDM: ActiveCanvas;
+    profile: ActiveCanvas;
+    activeThread: ActiveCanvas;
 };

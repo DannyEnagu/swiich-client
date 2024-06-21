@@ -12,8 +12,8 @@ import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import AccountSettings from './Account';
 import { useAppSelector } from '@/lib/hooks/storeHooks';
-import { selectRightCanvasState } from '@/lib/features/uiSlice';
-import useActiveCanvas from '@/lib/hooks/useActiveCanvas';
+import { selectActiveProfile } from '@/lib/features/uiSlice';
+import useSetActiveCanvas from '@/lib/hooks/useSetActiveCanvas';
 
 export default function ProfileView() {
   const [inputValues, setInputValues] = useState({
@@ -25,12 +25,12 @@ export default function ProfileView() {
     pwdNew: '',
   });
 
-  const rightCanvas = useAppSelector(selectRightCanvasState);
+  const activeProfile = useAppSelector(selectActiveProfile);
 
   const {data: session} = useSession();
-  const isActiveUser = session?.user?.id === rightCanvas.contentID;
+  const isActiveUser = session?.user?.id === activeProfile?.id;
 
-  const {closeRightSide: hideRightSide} = useActiveCanvas();
+  const {closeRightSidebar: hideRightSide} = useSetActiveCanvas();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -61,7 +61,7 @@ export default function ProfileView() {
               </label>
             )}
           </div>
-          <button onClick={() => hideRightSide()} className={`btn ${styles.closeButton}`}>
+          <button onClick={() => hideRightSide('profile')} className={`btn ${styles.closeButton}`}>
             <FontAwesomeIcon icon={faCircleXmark} />
           </button>
         </div>
@@ -148,7 +148,7 @@ export default function ProfileView() {
         </div>
           {isActiveUser && (
             <div className={styles.formButtons}>
-              <button className='btn btn-primary' onClick={() => hideRightSide() }>Cancel</button>
+              <button className='btn btn-primary' onClick={() => hideRightSide('profile') }>Cancel</button>
               <button className='btn btn-primary' onClick={() => save}>Save</button>
             </div>
           )}

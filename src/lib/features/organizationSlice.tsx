@@ -6,6 +6,8 @@ const initialState: Organization = {
     id: '',
     name: '',
     departments: [],
+    members: [],
+    inviteLink: '',
     createdAt: '',
     updatedAt: ''
 };
@@ -19,11 +21,17 @@ const organizationSlice = createSlice({
         }: PayloadAction<Organization>) => {
             Object.assign(state, payload)
         },
+        setOrgMembers: (state, {
+            payload: payload,
+        }: PayloadAction<CurrentUser[]>) => {
+            state.members = [...payload];
+        }
     }
 });
 
-export const { setOrganization } = organizationSlice.actions;
+export const { setOrganization, setOrgMembers } = organizationSlice.actions;
 
 export default organizationSlice.reducer;
 
 export const selectOrganization = (state: RootState) => state.organization;
+export const selectOrgMembers = (state: RootState) => state.organization.members;

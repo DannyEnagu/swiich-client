@@ -27,7 +27,7 @@ const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   organization: organizationReducer,
   ui: persistReducer(uiPersistConfig, uiReducer),
-  department: departmentReducer
+  departments: departmentReducer
 });
 
 export const makeStore = () => {

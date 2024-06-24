@@ -26,6 +26,19 @@ interface Project {
     updatedAt: string;
 };
 
+interface Message {
+    id: string | number;
+    senderId: string | number;
+    senderName: string;
+    senderEmail: string;
+    recipientId?: string | number;
+    departmentId?: string | number;
+    messageType: 'private' | 'group';
+    content: string;
+    createdAt: string;
+    updatedAt: string;
+};
+
 interface Canvas {
     id: string | number;
     name: string;

@@ -7,6 +7,7 @@ import baseApiRoute from '@/services/baseApiRoute';
 import organizationReducer from './features/organizationSlice';
 import uiReducer from './features/uiSlice';
 import departmentReducer from './features/departmentSlice';
+import messageReducer from './features/messageSlice';
 // import middleware from '@/middleware';
 
 // configure which key we want to persist
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   organization: organizationReducer,
   ui: persistReducer(uiPersistConfig, uiReducer),
-  departments: departmentReducer
+  departments: departmentReducer,
+  messages: messageReducer,
 });
 
 export const makeStore = () => {

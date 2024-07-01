@@ -15,7 +15,7 @@ export default function withContentWrapper(
         <div className={styles.contentWrapperInner}>
           <Children {...props} />
         </div>
-        { showEditor && <div className={styles.contentWrapperFooter}>
+        {showEditor && <div className={styles.contentWrapperFooter}>
           <TextEditor />
         </div>}
       </div>

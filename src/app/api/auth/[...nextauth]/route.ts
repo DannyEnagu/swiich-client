@@ -26,7 +26,7 @@ const providers = [
             return user;
           }
           // Return null if user data could not be retrieved
-          return null;
+        return null;
     }
   }),
 //   GoogleProvider({}),

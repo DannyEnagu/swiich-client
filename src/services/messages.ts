@@ -1,4 +1,3 @@
-import { get } from "http";
 import baseApiRoute from "./baseApiRoute";
 
 interface AddResponse {

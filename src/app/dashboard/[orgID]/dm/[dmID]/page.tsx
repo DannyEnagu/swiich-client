@@ -1,10 +1,8 @@
 import Main from "@/components/dashboard/MainContainer";
-import withContentWrapper from "@/components/dashboard/WithContentWrapper";
-import Messages from "@/components/dashboard/Messages";
 import PrivateContacts from "../PrivateContacts";
 import DMHeader from "@/components/dashboard/ChatHeaders/DirectMessagesHeader";
+import PrivateMessagesWrapper from "../PrivateMessagesWrapper";
 
-const MessagesWrapper = withContentWrapper(Messages, true);
 
 export default function page() {
   return (
@@ -12,7 +10,7 @@ export default function page() {
       <PrivateContacts />
       <DMHeader />
       <Main>
-        <MessagesWrapper />
+        <PrivateMessagesWrapper />
       </Main>
     </div>
   );

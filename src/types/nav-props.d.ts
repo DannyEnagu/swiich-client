@@ -13,10 +13,10 @@ interface DMContactProps {
 };
 
 interface GroupContactProps {
-    groupID: string | number;
-    groupTitle: string;
+    groupID: Department['id'];
+    groupTitle: Department['name'];
     groupMsgCount: number;
-    groupMembers: string[];
+    groupMembers: Department['members'];
     groupImg?: string;
     isPublicGroup: boolean;
     type?: 'group';

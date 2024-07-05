@@ -9,7 +9,7 @@ interface DMContactProps {
     messagesCount: number;
     timeStamps: string;
     typing?: boolean;
-    type?: 'dm' | 'group';
+    type: 'dm';
 };
 
 interface GroupContactProps {
@@ -19,7 +19,7 @@ interface GroupContactProps {
     groupMembers: Department['members'];
     groupImg?: string;
     isPublicGroup: boolean;
-    type?: 'group';
+    type: 'group';
 };
 
 interface BoardProps {
@@ -28,6 +28,11 @@ interface BoardProps {
     boardImg?: string;
     isStarred: boolean;
     boardTasks: any[];
+    type: 'board';
 };
 
-type NavProps = DMContactProps | GroupContactProps | BoardProps;
+interface Inbox extends DMContactProps {
+    type: 'inbox';
+};
+
+type NavProps = DMContactProps | GroupContactProps | BoardProps | Inbox;

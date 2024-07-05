@@ -21,15 +21,23 @@
   width: 100%;
 }
 
-.posts,
 .messages {
   margin: 0;
   padding: 1em;
+  height: 100%;
 }
 
-.posts > li + li,
 .messages > li + li {
   margin-top: 1em;
+}
+
+.emptyMessages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: var(--fs-200);
+  font-weight: var(--fw-medium);
 }
 
 .welcome {

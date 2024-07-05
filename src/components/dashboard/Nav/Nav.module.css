@@ -16,6 +16,20 @@
   padding-top: 2em;
 }
 
+.navLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.navEmpty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 .navSearch {
   border: var(--border);
   border-radius: 15px;

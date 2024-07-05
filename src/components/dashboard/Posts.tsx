@@ -11,7 +11,6 @@ export default function Posts() {
           userName="Jonny Depp"
           time="2:30 PM"
           message="Hello, Team?"
-          isSender={false}
         />
       </li>
       <li>

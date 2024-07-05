@@ -42,6 +42,7 @@ export default function GMHeader() {
             updatedAt: ''
         }
     }, [deptByID]);
+    
     const membersNames = department?.members.map((member) => member.name);
     const orgMembersEmail = orgMembers.map((member) => ({value: member.email, label: member.name}));
     // only fetch department members if

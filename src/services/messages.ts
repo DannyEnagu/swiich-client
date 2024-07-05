@@ -37,10 +37,10 @@ export const msgApi = baseApiRoute.injectEndpoints({
             query: ({receiverId, senderId}: {
                 receiverId: CurrentUser['id'];
                 senderId: CurrentUser['id'];
-            }) => `/messages/private?receiverId=${receiverId}&senderId=${senderId}`
+            }) => `/message/private?receiverId=${receiverId}&senderId=${senderId}`
         }),
         getGroupMessages: builder.query({
-            query: (groupId: Department['id']) => `/messages/group?departmentId=${groupId}`
+            query: (groupId: Department['id']) => `/message/group?departmentId=${groupId}`
         }),
     })
 });

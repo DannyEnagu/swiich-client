@@ -1,71 +1,44 @@
 'use client';
 
 import FilterableNav from "@/components/dashboard/Nav/FilterableNav";
+import { addMenu, selectMenuByType } from "@/lib/features/reusableContextualMenuSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useGetPrivateContactsQuery } from "@/services/reusableContextualMenuService";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
 export default function PrivateContacts() {
-    const directMessages: NavProps[] = [
-        {
-          contactID: 1,
-          contactName: "John Doe",
-          profilePic: "",
-          type: "dm",
-          senderStatus: "Online",
-          messageStatus: "read",
-          timeStamps: "10:00 AM",
-          messagesCount: 7,
-          lastMessage: "Hello there",
-          typing: false,
-        },
-        {
-          contactID: 2,
-          contactName: "Christopher Nolan",
-          type: "dm",
-          profilePic: "",
-          senderStatus: "Online",
-          messageStatus: "unread",
-          timeStamps: "10:00 AM",
-          messagesCount: 4,
-          lastMessage: "Hello there",
-          typing: true,
-        },
-        {
-          contactID: 3,
-          contactName: "Linus Torvalds",
-          profilePic: "",
-          type: "dm",
-          senderStatus: "Online",
-          messageStatus: "read",
-          timeStamps: "10:00 AM",
-          messagesCount: 0,
-          lastMessage: "Hello there",
-          typing: false,
-        },
-        {
-          contactID: 4,
-          contactName: "Tina gregory",
-          type: "dm",
-          profilePic: "",
-          senderStatus: "Online",
-          messageStatus: "read",
-          timeStamps: "10:00 AM",
-          messagesCount: 0,
-          lastMessage: "Hello there",
-          typing: false,
-        },
-        {
-          contactID: 5,
-          contactName: "Alice Doe",
-          profilePic: "",
-          senderStatus: "Online",
-          messageStatus: "read",
-          timeStamps: "10:00 AM",
-          messagesCount: 0,
-          lastMessage: "Hello there",
-          typing: false,
-          type: "dm",
-        },
-      ];
-    return (
-    <FilterableNav items={directMessages} />
-  );
+  const {data: session} = useSession();
+  const dispatch = useAppDispatch();
+  const privateContacts =  useAppSelector((state) => selectMenuByType(state, "dm"));
+  const authUserID = session?.user?.id;
+  const { data, isError, isLoading } = useGetPrivateContactsQuery(authUserID);
+
+  useEffect(() => {
+    if (data && !isError && !isLoading) {
+      const contacts: NavProps[] = data.map((contact: any) => ({
+        contactID: contact.senderId === authUserID ? contact.recipientId : contact.senderId,
+        contactName: contact.senderId === authUserID ? contact.
+        recipient.name : contact.sender.name,
+        profilePic: '',
+        type: "dm",
+        senderStatus: "Online",
+        messageStatus: "read",
+        timeStamps: contact.createdAt,
+        messagesCount: 1,
+        lastMessage: contact.content,
+        typing: false,
+      }));
+      dispatch(addMenu(contacts))
+    };
+  }, [
+    data,
+    isError,
+    isLoading,
+    dispatch,
+    authUserID,
+  ]);
+  return (<FilterableNav
+    items={privateContacts}
+    isLoading={isLoading} />);
 }

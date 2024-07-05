@@ -1,9 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
+import { stat } from "fs";
 
+interface Messages {
+    [key: string]: Message[];
+};
 
-const initialState = new Map<string, Message[]>();
+const initialState: Messages = {};
 
 const messageSlice = createSlice({
     name: 'messages',
@@ -11,61 +15,35 @@ const messageSlice = createSlice({
     reducers: {
         setMessages: (state, {
             payload: payload,
-        }: PayloadAction<Message[]>) => {
-            payload.forEach((msg) => {
-                if (msg.messageType === 'private') {
-                    const dmKey = `dm-${msg.senderId}-${msg.recipientId}`;
-                    if (state.has(dmKey)) {
-                        state.get(dmKey)?.push(msg);
-                    } else {
-                        state.set(dmKey, [msg]);
-                    }
-                } else {
-                    const groupKey = `group-${msg.departmentId}`;
-                    if (state.has(groupKey)) {
-                        state.get(groupKey)?.push(msg);
-                    } else {
-                        state.set(groupKey, [msg]);
-                    }
-                }
-            });
+        }: PayloadAction<{key: string, value: Message[]}>) => {
+            state[payload.key] = payload.value;
         },
         addMessage: (state, {
             payload: payload,
-        }: PayloadAction<Message>) => {
-            if (payload.messageType === 'private') {
-                const dmKey = `dm-${payload.senderId}-${payload.recipientId}`;
-                if (state.has(dmKey)) {
-                    state.get(dmKey)?.push(payload);
-                } else {
-                    state.set(dmKey, [payload]);
-                }
+        }: PayloadAction<{key: string, value: Message[]}>) => {
+            if (state[payload.key]) {
+                state[payload.key] = [...state[payload.key], ...payload.value];
             } else {
-                const groupKey = `group-${payload.departmentId}`;
-                if (state.has(groupKey)) {
-                    state.get(groupKey)?.push(payload);
-                } else {
-                    state.set(groupKey, [payload]);
-                }
+                state[payload.key] = payload.value;
             }
         },
         updateMessage: (state, {
             payload: payload,
         }: PayloadAction<{key: string, value: Message}>) => {
-            if (state.has(payload.key)) {
-                const index = state.get(payload.key)?.findIndex((msg) => msg.id === payload.value.id);
+            if (state[payload.key]) {
+                const index = state[payload.key]?.findIndex((msg) => msg.id === payload.value.id);
                 if (index) {
-                    state.get(payload.key)?.splice(index, 1, payload.value);
+                    state[payload.key]?.splice(index, 1, payload.value);
                 }
             }
         },
         deleteMessage: (state, {
             payload: payload,
         }: PayloadAction<{key: string, value: Message}>) => {
-            if (state.has(payload.key)) {
-                const index = state.get(payload.key)?.findIndex((msg) => msg.id === payload.value.id);
+            if (state[payload.key]) {
+                const index = state[payload.key]?.findIndex((msg) => msg.id === payload.value.id);
                 if (index) {
-                    state.get(payload.key)?.splice(index, 1);
+                    state[payload.key]?.splice(index, 1);
                 }
             }  
         },
@@ -81,6 +59,10 @@ export const {
     deleteMessage
 } = messageSlice.actions;
 
-export const selectMessagesByKey = (state: RootState, key: string) => state.messages.get(key) || [];
+const selectMessages = (state: RootState) => state.messages;
+const selectMessagesKey = (state: RootState, key: string) => key;
 
-// export const selectMessagesByUserID = (state: RootState, userID: CurrentUser['id']) => state.messages.filter((msg) => msg.senderId === userID || msg.recipientId === userID);
+export const selectMessagesByKey = createSelector(
+    [selectMessages, selectMessagesKey],
+    (messages, key) => messages[key] || []
+);

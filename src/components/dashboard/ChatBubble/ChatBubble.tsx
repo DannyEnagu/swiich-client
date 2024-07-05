@@ -11,7 +11,7 @@ interface ChatBubbleProps {
   userID: string | number;
   time: string;
   message: string;
-  isSender: boolean;
+  isSender?: boolean;
   isSent?: boolean;
 }
 

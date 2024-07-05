@@ -8,6 +8,7 @@ import organizationReducer from './features/organizationSlice';
 import uiReducer from './features/uiSlice';
 import departmentReducer from './features/departmentSlice';
 import messageReducer from './features/messageSlice';
+import reuseableMenuReducer from './features/reusableContextualMenuSlice';
 // import middleware from '@/middleware';
 
 // configure which key we want to persist
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   ui: persistReducer(uiPersistConfig, uiReducer),
   departments: departmentReducer,
   messages: messageReducer,
+  reuseableMenu: reuseableMenuReducer,
 });
 
 export const makeStore = () => {

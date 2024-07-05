@@ -1,14 +1,7 @@
 import TextEditor from './TextEditor/TextEditor';
 import styles from './dashboard.module.css';
 
-interface ContentWrapperProps {
-  children: React.FC;
-  showEditor?: boolean;
-}
-
-export default function withContentWrapper(
-  Children: ContentWrapperProps['children'],
-  showEditor: ContentWrapperProps['showEditor'] = false) {
+export default function withContentWrapper<P>(Children: React.ComponentType<P>, showEditor: boolean = false) {
   return function ContentWrapper(props: any) {
     return (
       <div className={styles.contentWrapper}>

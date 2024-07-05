@@ -1,10 +1,8 @@
 import Main from "@/components/dashboard/MainContainer";
 import GroupContacts from "../GroupContacts";
-import Posts from "@/components/dashboard/Posts";
-import withContentWrapper from "@/components/dashboard/WithContentWrapper";
 import GMHeader from "@/components/dashboard/ChatHeaders/GroupMessagesHeader";
+import GroupMessagesWrapper from "../GroupMessagesWrapper";
 
-const PostsWrapper = withContentWrapper(Posts, true);
 
 export default function page() {
   return (
@@ -12,7 +10,7 @@ export default function page() {
       <GroupContacts />
       <GMHeader />
       <Main>
-        <PostsWrapper />
+        <GroupMessagesWrapper />
       </Main>
     </div>);
 }

@@ -33,7 +33,7 @@ interface Message {
     senderEmail: string;
     recipientId?: string | number;
     departmentId?: string | number;
-    messageType: 'private' | 'group';
+    messageType: 'private' | 'group' | 'thread';
     content: string;
     createdAt: string;
     updatedAt: string;

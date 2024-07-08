@@ -8,7 +8,18 @@ import { faFaceLaugh } from '@fortawesome/free-regular-svg-icons';
 import Input from "@/components/ui/Input";
 import styles from "./TextEditor.module.css";
 
-export default function TextEditor() {
+interface TextEditorProps {
+  sendMessage: (message: string) => void;
+}
+
+export default function TextEditor({ sendMessage }: TextEditorProps) {
+  const handleSend = (e: React.FormEvent) => {
+    e.preventDefault();
+    const message = (e.target as HTMLFormElement).message.value;
+    // console.log(message);
+    sendMessage(message);
+    (e.target as HTMLFormElement).reset();
+  };
   return (
     <div className={styles.wrapper}>
       <div className={styles.share}>
@@ -16,12 +27,13 @@ export default function TextEditor() {
           <FontAwesomeIcon icon={faPaperclip} />
         </button>
       </div>
-      <form className={styles.editor}>
+      <form onSubmit={handleSend} className={styles.editor}>
         <button className="btn">
           <FontAwesomeIcon icon={faFaceLaugh} />
         </button>
         <Input
           type="text"
+          name='message'
           placeholder="Type a message..."
           className={styles.editorInput}
         />

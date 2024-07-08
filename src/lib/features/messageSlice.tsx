@@ -20,11 +20,11 @@ const messageSlice = createSlice({
         },
         addMessage: (state, {
             payload: payload,
-        }: PayloadAction<{key: string, value: Message[]}>) => {
+        }: PayloadAction<{key: string, value: Message}>) => {
             if (state[payload.key]) {
-                state[payload.key] = [...state[payload.key], ...payload.value];
+                state[payload.key] = [...state[payload.key], payload.value];
             } else {
-                state[payload.key] = payload.value;
+                state[payload.key] = [payload.value];
             }
         },
         updateMessage: (state, {

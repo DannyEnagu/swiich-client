@@ -29,22 +29,16 @@ export default function useActiveCanvas() {
     useEffect(() => {
       if (activeProfile?.isRightSidebarOpen && activeProfile.url === pathname) {
         setActiveCanvas(activeProfile);
-        console.log(activeProfile, 'activeProfile')
       } else if (activeDepartment.url === pathname) {
         setActiveCanvas(activeDepartment);
-        console.log(activeDepartment, 'activeDepartment')
       } else if (activeDM.url === pathname) {
         setActiveCanvas(activeDM);
-        console.log(activeDM, 'activeDM')
       } else if (activeProject.url === pathname) {
         setActiveCanvas(activeProject);
-        console.log(activeProject, 'activeProject')
       } else if (activeProject.url === pathname) {
         setActiveCanvas(activeProject);
-        console.log(activeProject, 'activeProject')
       } else if (activeThread.url === pathname) {
         setActiveCanvas(activeProject);
-        console.log(activeThread, 'activeThread')
       }
       else {
         setActiveCanvas(null);

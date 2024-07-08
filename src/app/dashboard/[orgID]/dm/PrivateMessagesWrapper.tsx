@@ -1,17 +1,18 @@
 'use client';
 import { useSession } from "next-auth/react";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import Messages from "@/components/dashboard/Messages";
 import withContentWrapper from "@/components/dashboard/WithContentWrapper";
 import { selectActiveDM } from "@/lib/features/uiSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { useGetPrivateMessagesQuery } from "@/services/messages";
-import { selectMessagesByKey, setMessages } from "@/lib/features/messageSlice";
+import { useGetPrivateMessagesQuery, usePostPrivateMessageMutation } from "@/services/messages";
+import { addMessage, selectMessagesByKey, setMessages } from "@/lib/features/messageSlice";
 
 
 const MessagesWrapper = withContentWrapper(Messages, true);
 
 export default function PrivateMessagesWrapper() {
+  const [postPrivateMessage, { isLoading: isSending }] = usePostPrivateMessageMutation();
   const dispatch = useAppDispatch();
   const activeDm = useAppSelector(selectActiveDM);
   const session = useSession();
@@ -45,11 +46,31 @@ export default function PrivateMessagesWrapper() {
     msgKey
   ]);
 
+  const handleSend = async (message: string) => {
+    try {      
+      const res = await postPrivateMessage({
+        senderId: authUserID as string,
+        recipientId: activeDm?.id,
+        content: message
+      }).unwrap();
+      
+      if (res.isSuccess && !isSending) {
+        dispatch(addMessage({
+          key: msgKey,
+          value: res?.response
+        }));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <MessagesWrapper
       messages={messages}
       isLoading={isDmMessagesLoading}
       isLoadingMore={false}
+      onSend={handleSend}
     />
   );
 }

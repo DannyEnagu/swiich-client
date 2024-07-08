@@ -1,13 +1,9 @@
 import baseApiRoute from "./baseApiRoute";
 
-interface AddResponse {
+export type messagesResponse = {
     isSuccess: boolean;
-    message: string;
-}
-
-export interface messagesResponse {
-    isSuccess: boolean;
-    messages: Message[];
+    response: Message;
+    message: Message;
 };
 
 type AddBody = {
@@ -19,14 +15,14 @@ type AddBody = {
 
 export const msgApi = baseApiRoute.injectEndpoints({
     endpoints: (builder) => ({
-        postPrivateMessage: builder.mutation<AddResponse, AddBody>({
+        postPrivateMessage: builder.mutation<messagesResponse, AddBody>({
             query: (body) => ({
                 url: '/message/private',
                 method: 'POST',
                 body
             }),
         }),
-        postGroupMessage: builder.mutation<AddResponse, AddBody>({
+        postGroupMessage: builder.mutation<messagesResponse, AddBody>({
             query: (body) => ({
                 url: '/message/group',
                 method: 'POST',

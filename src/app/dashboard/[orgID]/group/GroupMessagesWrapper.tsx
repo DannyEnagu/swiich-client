@@ -1,16 +1,23 @@
 'use client';
 import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 import withContentWrapper from "@/components/dashboard/WithContentWrapper";
-import { useGetGroupMessagesQuery } from "@/services/messages";
+import { useGetGroupMessagesQuery, usePostGroupMessageMutation } from "@/services/messages";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { selectActiveDepartment } from "@/lib/features/uiSlice";
-import { selectMessagesByKey, setMessages } from "@/lib/features/messageSlice";
+import {
+  addMessage,
+  selectMessagesByKey,
+  setMessages
+} from "@/lib/features/messageSlice";
 import Messages from "@/components/dashboard/Messages";
 
 const PostsWrapper = withContentWrapper(Messages, true);
 
 export default function GroupMessagesWrapper() {
-    const dispatch = useAppDispatch();
+  const {data: session} = useSession();
+  const [postGroupMessage, { isLoading: isSending }] = usePostGroupMessageMutation();
+  const dispatch = useAppDispatch();
   const activeDept = useAppSelector(selectActiveDepartment);
   const msgKey = `group-${activeDept?.id}`;
   const messages = useAppSelector((state) => selectMessagesByKey(state, msgKey));
@@ -38,11 +45,28 @@ export default function GroupMessagesWrapper() {
     isGroupMessagesError,
     msgKey
   ]);
-
-  console.log(messages, isGroupMessagesError);
+    const handleSend = async (message: string) => {
+      try {      
+        const res = await postGroupMessage({
+          senderId: session?.user.id as string,
+          departmentId: activeDept?.id,
+          content: message
+        }).unwrap();
+        
+        if (res.isSuccess && !isSending) {
+          dispatch(addMessage({
+            key: msgKey,
+            value: res?.message
+          }));
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
     return (<PostsWrapper
         messages={messages}
         isLoading={isGroupMessagesLoading}
         isLoadingMore={false}
+        onSend={handleSend}
     />);
 }

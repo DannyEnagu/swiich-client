@@ -9,7 +9,7 @@ export default function withContentWrapper<P>(Children: React.ComponentType<P>, 
           <Children {...props} />
         </div>
         {showEditor && <div className={styles.contentWrapperFooter}>
-          <TextEditor />
+          <TextEditor sendMessage={props.onSend} />
         </div>}
       </div>
     );

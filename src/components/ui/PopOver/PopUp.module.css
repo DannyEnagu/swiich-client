@@ -12,6 +12,12 @@
     z-index: 1000;
 }
 
+.popupContent.positionTopStart {
+    bottom: 100%;
+    left: 0;
+    margin-bottom: 15px;
+}
+
 .popupContent.positionBottomStart {
     right: 0;
 }

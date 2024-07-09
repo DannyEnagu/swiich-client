@@ -40,7 +40,7 @@ export default function Messages({
             userName={message?.sender?.name}
             time={message.createdAt}
             message={message.content}
-            isSender={message.senderId === authUserID && message.messageType === 'private'}
+            isSender={message.senderId === authUserID && message.type === 'private'}
           />
         </li>
       ))}

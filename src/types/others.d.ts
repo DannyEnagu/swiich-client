@@ -33,7 +33,7 @@ interface Message {
     senderEmail: string;
     recipientId?: string | number;
     departmentId?: string | number;
-    messageType: 'private' | 'group' | 'thread';
+    type: 'private' | 'group' | 'thread';
     content: string;
     createdAt: string;
     updatedAt: string;
@@ -67,3 +67,8 @@ interface UISettings {
     profile: ActiveCanvas;
     activeThread: ActiveCanvas;
 };
+
+interface EmojiStyles extends React.CSSProperties {
+    '--epr-emoji-size': string;
+    '--epr-preview-height': string;
+}

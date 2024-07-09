@@ -9,27 +9,38 @@
   background-color: var(--clr-dashboard-natural);
   border-radius: 10px;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   gap: 0.3em;
 }
 
+.editor span,
 .editor button {
   background-color: transparent;
   border: none;
   outline: none;
-  padding: 4px 8px;
+  align-self: start;
+  padding-inline: 8px;
+  padding-block: auto;
+}
+
+.editor button {
+  margin-left: auto;
 }
 
 
 .editorInput {
-  width: 90%;
+  flex: 1;
+  max-height: 150px;
   padding: 0.5em;
   border: none;
   background-color: transparent;
   border: none;
   outline: none;
   font-size: var(--fs-200);
+  resize: none;
 }
+
+
 
 /* .share,
 .voice {

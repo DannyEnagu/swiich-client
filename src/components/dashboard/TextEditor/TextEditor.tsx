@@ -1,4 +1,7 @@
+'use client';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import EmojiPicker, { EmojiClickData } from 'emoji-picker-react';
 import {
   faMicrophone,
   faPaperclip,
@@ -7,18 +10,36 @@ import {
 import { faFaceLaugh } from '@fortawesome/free-regular-svg-icons';
 import Input from "@/components/ui/Input";
 import styles from "./TextEditor.module.css";
+import PopUp from '@/components/ui/PopOver/PopUp';
+import { useState } from 'react';
 
 interface TextEditorProps {
   sendMessage: (message: string) => void;
 }
 
+const  emojiStyles: EmojiStyles = {
+  '--epr-emoji-size': '1.5rem',
+  '--epr-preview-height': '40px'
+}
+
 export default function TextEditor({ sendMessage }: TextEditorProps) {
+  const [message, setMessage] = useState('');
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
-    const message = (e.target as HTMLFormElement).message.value;
-    // console.log(message);
+    if (!message) return;
     sendMessage(message);
-    (e.target as HTMLFormElement).reset();
+    setMessage('');
+  };
+  const emojiClick = (emoji: EmojiClickData) => {
+    setMessage(prev => prev + emoji.emoji);
+  };
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    // Update message state
+    setMessage(e.target.value);
+    // Auto resize textarea height as content grows
+    e.target.style.height = 'auto';
+    e.target.style.height = e.target.scrollHeight + 'px';
+
   };
   return (
     <div className={styles.wrapper}>
@@ -28,12 +49,26 @@ export default function TextEditor({ sendMessage }: TextEditorProps) {
         </button>
       </div>
       <form onSubmit={handleSend} className={styles.editor}>
-        <button className="btn">
-          <FontAwesomeIcon icon={faFaceLaugh} />
-        </button>
-        <Input
-          type="text"
+        <span className="btn">
+          <PopUp position='top-start'>
+            <PopUp.Summary>
+              <FontAwesomeIcon icon={faFaceLaugh} />
+            </PopUp.Summary>
+            <PopUp.Content>
+              <EmojiPicker
+                onEmojiClick={emojiClick}
+                height={400}
+                width={280}
+                style={emojiStyles}
+              />
+            </PopUp.Content>
+          </PopUp>
+        </span>
+        <textarea
+          rows={1}
           name='message'
+          value={message}
+          onChange={handleChange}
           placeholder="Type a message..."
           className={styles.editorInput}
         />

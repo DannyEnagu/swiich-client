@@ -15,7 +15,6 @@ export default function Messages({
 }: MessagesProps) {
   const session = useSession();
   const authUserID = session.data?.user?.id;
-
   if (isLoading) {
     return (
       <div className={styles.messages}>
@@ -33,14 +32,14 @@ export default function Messages({
         </li>
       )}
       {messages.map((message) => (
-        <li key={message.id}>
+        <li key={message?.id}>
           <ChatBubble
             userID={authUserID}
             profilePic='https://via.placeholder.com/50'
-            userName={message?.sender?.name}
-            time={message.createdAt}
-            message={message.content}
-            isSender={message.senderId === authUserID && message.type === 'private'}
+            userName={message.type === 'Group' ? message?.senderName : message?.senderId === authUserID ? 'You' : message?.senderName}
+            time={message?.createdAt}
+            message={message?.content}
+            isSender={message?.senderId === authUserID && message.type === 'Private'}
           />
         </li>
       ))}

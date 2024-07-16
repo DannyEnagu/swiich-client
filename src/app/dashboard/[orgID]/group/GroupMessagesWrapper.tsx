@@ -2,21 +2,21 @@
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import withContentWrapper from "@/components/dashboard/WithContentWrapper";
-import { useGetGroupMessagesQuery, usePostGroupMessageMutation } from "@/services/messages";
+import { useGetGroupMessagesQuery } from "@/services/messages";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { selectActiveDepartment } from "@/lib/features/uiSlice";
 import {
-  addMessage,
   selectMessagesByKey,
   setMessages
 } from "@/lib/features/messageSlice";
 import Messages from "@/components/dashboard/Messages";
+import useSocket from "@/lib/hooks/useSocket";
 
 const PostsWrapper = withContentWrapper(Messages, true);
 
 export default function GroupMessagesWrapper() {
+  const socket = useSocket();
   const {data: session} = useSession();
-  const [postGroupMessage, { isLoading: isSending }] = usePostGroupMessageMutation();
   const dispatch = useAppDispatch();
   const activeDept = useAppSelector(selectActiveDepartment);
   const msgKey = `group-${activeDept?.id}`;
@@ -35,7 +35,7 @@ export default function GroupMessagesWrapper() {
     if (groupMessages && !isGroupMessagesLoading && !isGroupMessagesError) {
       dispatch(setMessages({
         key: msgKey,
-        value: groupMessages.messages
+        value: groupMessages.response
       }));
     }
   }, [
@@ -45,28 +45,30 @@ export default function GroupMessagesWrapper() {
     isGroupMessagesError,
     msgKey
   ]);
-    const handleSend = async (message: string) => {
-      try {      
-        const res = await postGroupMessage({
+
+  useEffect(() => {
+    if (activeDept && socket) {
+      socket.emit("join-department", activeDept.id);
+    }
+  }, [activeDept, socket]);
+
+  const handleSend = async (message: string) => {
+    try {
+      socket.emit("groupMessage",
+        {
           senderId: session?.user.id as string,
           departmentId: activeDept?.id,
           content: message
-        }).unwrap();
-        
-        if (res.isSuccess && !isSending) {
-          dispatch(addMessage({
-            key: msgKey,
-            value: res?.message
-          }));
         }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    return (<PostsWrapper
-        messages={messages}
-        isLoading={isGroupMessagesLoading}
-        isLoadingMore={false}
-        onSend={handleSend}
-    />);
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  return (<PostsWrapper
+      messages={messages}
+      isLoading={isGroupMessagesLoading}
+      isLoadingMore={false}
+      onSend={handleSend}
+  />);
 }

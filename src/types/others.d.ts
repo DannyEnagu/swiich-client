@@ -32,13 +32,27 @@ interface Message {
     senderName: string;
     senderEmail: string;
     recipientId?: string | number;
+    recipientName?: string;
+    recipientEmail?: string;
     departmentId?: string | number;
-    type: 'private' | 'group' | 'thread';
+    type: 'Private' | 'Group' | 'Thread';
     content: string;
     createdAt: string;
     updatedAt: string;
 };
 
+interface MessagesResponse {
+    isSuccess: boolean;
+    response: Message;
+    message: Message;
+};
+
+interface MessagePayload {
+    senderId: CurrentUser['id'];
+    recipientId?: CurrentUser['id'];
+    departmentId?: Department['id'];
+    content: string;
+};
 interface Canvas {
     id: string | number;
     name: string;
@@ -71,4 +85,16 @@ interface UISettings {
 interface EmojiStyles extends React.CSSProperties {
     '--epr-emoji-size': string;
     '--epr-preview-height': string;
+}
+
+interface ServerToClientEvents {
+    'groupMessage': (message: Message) => void;
+    'private-message': (message: Message) => void;
+}
+
+interface ClientToServerEvents {
+    "userConnected": (userId: CurrentUser['id']) => void;
+    "join-department": (departmentId: Department['id']) => void;
+    'groupMessage': (message: MessagePayload) => void;
+    'private-message': (message: MessagePayload) => void;
 }

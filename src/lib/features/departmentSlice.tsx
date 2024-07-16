@@ -18,7 +18,7 @@ const departmentSlice = createSlice({
                     members: [],
                 }
             });
-            state.push(...newState);
+            Object.assign(state, newState);
         },
         addDept: (state, {
             payload: payload,

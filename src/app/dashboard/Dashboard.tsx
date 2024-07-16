@@ -1,13 +1,17 @@
 'use client';
+import { useCallback, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import ProfileToggle from "@/components/dashboard/UserIcon";
 import ToolsBar from "@/components/dashboard/ToolsBar/ToolsBar";
-import { setDepartments } from "@/lib/features/departmentSlice";
-import { setOrganization, setOrgMembers } from "@/lib/features/organizationSlice";
+import { setDepartments, selectDept } from "@/lib/features/departmentSlice";
+import { setOrganization, setOrgMembers, selectOrganization } from "@/lib/features/organizationSlice";
 import { useAppDispatch } from "@/lib/hooks/storeHooks";
 import { useGetOrganizationQuery, useGetOrgMembersQuery } from "@/services/organization";
 import { getOrgID } from "@/utils/helpers";
-import { usePathname } from "next/navigation";
-import { useCallback, useEffect } from "react";
+import { useAppSelector } from "@/lib/hooks";
+import { selectUser } from "@/lib/features/authSlice";
+import useSocketConnection from "@/lib/hooks/useSocketConnection";
+
 
 export default function Dashboard({
     children,
@@ -18,6 +22,7 @@ export default function Dashboard({
     const pathname = usePathname();
     const orgID = getOrgID(pathname);
     const dispatch = useAppDispatch();
+    const userId = useAppSelector(selectUser)?.id;
     const {
         data: orqData,
         isFetching: isOrgFetching,
@@ -45,6 +50,8 @@ export default function Dashboard({
             console.error(error);
         }
     }, [orqData, OrgMembers, dispatch]);
+
+    useSocketConnection(userId);
 
     useEffect(() => {
         if (orqData && !isFetching) {

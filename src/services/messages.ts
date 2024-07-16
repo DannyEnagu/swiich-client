@@ -1,28 +1,15 @@
 import baseApiRoute from "./baseApiRoute";
 
-export type messagesResponse = {
-    isSuccess: boolean;
-    response: Message;
-    message: Message;
-};
-
-type AddBody = {
-    senderId: CurrentUser['id'];
-    recipientId?: CurrentUser['id'];
-    departmentId?: Department['id'];
-    content: string;
-};
-
 export const msgApi = baseApiRoute.injectEndpoints({
     endpoints: (builder) => ({
-        postPrivateMessage: builder.mutation<messagesResponse, AddBody>({
+        postPrivateMessage: builder.mutation<MessagesResponse, MessagePayload>({
             query: (body) => ({
                 url: '/message/private',
                 method: 'POST',
                 body
             }),
         }),
-        postGroupMessage: builder.mutation<messagesResponse, AddBody>({
+        postGroupMessage: builder.mutation<MessagesResponse, MessagePayload>({
             query: (body) => ({
                 url: '/message/group',
                 method: 'POST',

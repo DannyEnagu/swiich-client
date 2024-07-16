@@ -16,7 +16,8 @@ export default function PrivateContacts() {
 
   useEffect(() => {
     if (data && !isError && !isLoading) {
-      const contacts: NavProps[] = data.map((contact: any) => ({
+      const filteredData = data.filter((contact: any) => contact.senderId !== authUserID || contact.recipientId !== authUserID);
+      const contacts: NavProps[] = filteredData.map((contact: any) => ({
         contactID: contact.senderId === authUserID ? contact.recipientId : contact.senderId,
         contactName: contact.senderId === authUserID ? contact.
         recipient.name : contact.sender.name,
@@ -29,6 +30,7 @@ export default function PrivateContacts() {
         lastMessage: contact.content,
         typing: false,
       }));
+      
       dispatch(addMenu(contacts))
     };
   }, [

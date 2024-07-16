@@ -1,7 +1,6 @@
 'use client'
+import ProfileAvatar from '@/components/ProfileAvatar';
 import styles from './ChatBubble.module.css';
-import Avatar from '@/components/ui/Avatar/Avatar';
-import StringAvatar from '@/components/ui/Avatar/StringAvatar';
 import useSetActiveCanvas from '@/lib/hooks/useSetActiveCanvas';
 import { usePathname } from 'next/navigation';
 
@@ -44,16 +43,12 @@ export default function ChatBubble({
           rightSidebarContentType: 'profile'
         })}
       >
-        {profilePic 
-          ? <Avatar
-              imgSrc={profilePic}
-              size={45}
-              imgAlt={`user ${userName} profile picture`}
-            />
-          : <StringAvatar 
-              name={userName}
-              size={45}
-            />}
+        <ProfileAvatar
+          name={userName}
+          size={45}
+          src={profilePic}
+          alt={`user ${userName} profile picture`}
+        />
       </button>
 
       <div className={styles.bubbleContent}>

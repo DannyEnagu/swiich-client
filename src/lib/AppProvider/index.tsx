@@ -1,6 +1,7 @@
 import SessionProvider from "./SessionProvider";
 import StoreProvider from "./StoreProvider";
 import ToastProvider from "./ToastProvider";
+import SocketProvider from "./SocketProvider";
 import { getServerSession } from "next-auth/next";
 
 interface AppProviderProps {
@@ -13,7 +14,9 @@ export default async function AppProvider({ children }: AppProviderProps) {
         <ToastProvider>
             <StoreProvider>
                 <SessionProvider session={session}>
-                    {children}
+                    <SocketProvider>
+                        {children}
+                    </SocketProvider>
                 </SessionProvider>
             </StoreProvider>
         </ToastProvider>

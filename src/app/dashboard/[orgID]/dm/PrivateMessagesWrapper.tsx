@@ -7,11 +7,13 @@ import { selectActiveDM } from "@/lib/features/uiSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useGetPrivateMessagesQuery, usePostPrivateMessageMutation } from "@/services/messages";
 import { addMessage, selectMessagesByKey, setMessages } from "@/lib/features/messageSlice";
+import useSocket from "@/lib/hooks/useSocket";
 
 
 const MessagesWrapper = withContentWrapper(Messages, true);
 
 export default function PrivateMessagesWrapper() {
+  const socket = useSocket();
   const [postPrivateMessage, { isLoading: isSending }] = usePostPrivateMessageMutation();
   const dispatch = useAppDispatch();
   const activeDm = useAppSelector(selectActiveDM);
@@ -47,19 +49,12 @@ export default function PrivateMessagesWrapper() {
   ]);
 
   const handleSend = async (message: string) => {
-    try {      
-      const res = await postPrivateMessage({
+    try {
+      socket.emit("private-message", {
         senderId: authUserID as string,
         recipientId: activeDm?.id,
         content: message
-      }).unwrap();
-      
-      if (res.isSuccess && !isSending) {
-        dispatch(addMessage({
-          key: msgKey,
-          value: res?.response
-        }));
-      }
+      });
     } catch (error) {
       console.error(error);
     }

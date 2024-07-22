@@ -12,9 +12,13 @@ const reuseableMenuSlice = createSlice({
     name: "contact",
     initialState: initialState,
     reducers: {
-        addMenu: (state, { payload }: PayloadAction<NavProps[]>) => {
+        setMenu: (state, { payload }: PayloadAction<NavProps[]>) => {
             const key = payload[0].type;
             state[key] = payload;
+        },
+        addMenu: (state, { payload }: PayloadAction<NavProps>) => {
+            const key = payload.type;
+            state[key].push({...payload});
         },
         updateMenu: (state, { payload }: PayloadAction<NavProps>) => {
             const key = payload.type;
@@ -27,7 +31,7 @@ const reuseableMenuSlice = createSlice({
     }
 });
 
-export const { addMenu, updateMenu, removeMenu } = reuseableMenuSlice.actions;
+export const { addMenu, setMenu, updateMenu, removeMenu } = reuseableMenuSlice.actions;
 
 export default reuseableMenuSlice.reducer;
 

@@ -26,7 +26,8 @@ export default function GroupContacts() {
             items={departments}
             CreateButtonProps={{
                 title: "Create Group",
-                displayText: "Add Group"
+                displayText: "Add Group",
+                type: "group",
             }}
         />
     );

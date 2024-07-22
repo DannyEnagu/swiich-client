@@ -3,7 +3,11 @@ import { faHashtag, faLock } from '@fortawesome/free-solid-svg-icons';
 import styles from './Nav.module.css';
 import Avatar from '@/components/ui/Avatar/Avatar';
 
-
+/**
+ * GroupContact component - renders a group contact in the dashboard nav
+ * 
+ * @param {GroupContactProps} props - The props object containing the group contact object to render in the nav item.
+ */ 
 export default function GroupContact({
   groupID,
   groupTitle,

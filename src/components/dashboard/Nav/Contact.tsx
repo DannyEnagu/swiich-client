@@ -11,7 +11,12 @@ import { usePathname } from 'next/navigation';
 //   contact: DMContactProps | GroupContactProps;
 // };
 
-
+/**
+ * Contact component - renders a contact item in the dashboard nav
+ * Can be a DM or Group contact item depending on the type of contact passed in the props object.
+ * @param {ContactProps} props - The props object containing the contact object to render in the nav item. 
+ * 
+ */
 export default function Contact({ contact }: any) {
   const { switchOpenCanvas: changeActiveCanvas } = useSetActiveCanvas();
   const currPathname = usePathname();

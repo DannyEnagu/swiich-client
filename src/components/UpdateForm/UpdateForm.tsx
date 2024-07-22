@@ -3,15 +3,16 @@ import Input from '../ui/Input';
 import { faClone } from '@fortawesome/free-regular-svg-icons';
 import { useCallback, useRef, useState } from 'react';
 import { faSpinner, faUpload } from '@fortawesome/free-solid-svg-icons';
-import CustomAutocomplete from '../CustomAutocomplete/CustomAutocomplete';
+import CustomAutocomplete, { optionTypes } from '@/components/CustomAutocomplete/CustomAutocomplete';
 import styles from './UpdateForm.module.css';
 
 interface CreateTeamProps {
     title: string;
     defaultName?: string;
+    description?: string;
     copyLink?: string;
     submitButtonLabel: string;
-    emailingList?: string[];
+    emailingList?: optionTypes[];
     isLoading?: boolean;
     autoCompleteType?: 'select' | 'input';
     autoCompleteLabel?: string;
@@ -20,6 +21,7 @@ interface CreateTeamProps {
 
 export interface CreateTeamState {
     teamName: string;
+    description?: string;
     teamMembers: string[];
     teamLogo: string;
 }
@@ -27,6 +29,7 @@ export interface CreateTeamState {
 export default function UpdateForm({
     title,
     defaultName,
+    description,
     copyLink,
     submitButtonLabel,
     emailingList=[],
@@ -40,21 +43,21 @@ export default function UpdateForm({
         teamName: '',
         teamMembers: [],
         teamLogo: '',
+        description: ''
     });
 
-    const onCustomAutocompleteChange = useCallback((value: string) => {
-        if (!value || value === '') return;
+    const onCustomAutocompleteChange = useCallback((options: optionTypes[] ) => {
+        if (!options.length) return;
         setInputValues((prev) => {
             return {
                 ...prev,
-                teamMembers: [...prev.teamMembers, value.trim()]
+                teamMembers: [...prev.teamMembers, ...options.map((option) => option.value)]
             }
-        
         });
     }, []);
 
-    const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.target;
+    const handelChange = (e: React.ChangeEvent) => {
+        const { value } = e.target as HTMLInputElement;
         setInputValues({
             ...inputValues,
             [e.target.id]: value
@@ -91,6 +94,16 @@ export default function UpdateForm({
                     value={inputValues.teamName || defaultName}
                     onChange={handelChange}
                     placeholder={title}
+                />
+            </div>
+            <div className={styles.formGroup}>
+                <label htmlFor="description">Description  (Optional)</label>
+                <textarea
+                    rows={2}
+                    id="description"
+                    value={inputValues.description || description}
+                    onChange={handelChange}
+                    placeholder="Enter description"
                 />
             </div>
             <div className={styles.formGroup}>

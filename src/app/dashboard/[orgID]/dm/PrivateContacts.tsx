@@ -1,7 +1,7 @@
 'use client';
 
 import FilterableNav from "@/components/dashboard/Nav/FilterableNav";
-import { addMenu, selectMenuByType } from "@/lib/features/reusableContextualMenuSlice";
+import { setMenu, selectMenuByType } from "@/lib/features/reusableContextualMenuSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useGetPrivateContactsQuery } from "@/services/reusableContextualMenuService";
 import { useSession } from "next-auth/react";
@@ -31,7 +31,7 @@ export default function PrivateContacts() {
         typing: false,
       }));
       
-      dispatch(addMenu(contacts))
+      dispatch(setMenu(contacts))
     };
   }, [
     data,

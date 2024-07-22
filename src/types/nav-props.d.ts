@@ -36,3 +36,9 @@ interface Inbox extends DMContactProps {
 };
 
 type NavProps = DMContactProps | GroupContactProps | BoardProps | Inbox;
+
+interface CreateContactProps {
+    title: string | undefined;
+    displayText: string | undefined;
+    type?: 'board' | 'group' | 'dm';
+}

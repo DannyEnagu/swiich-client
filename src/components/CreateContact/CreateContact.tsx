@@ -2,20 +2,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useSession } from 'next-auth/react';
 import Modal from "../ui/Modal/Modal";
-import styles from './CreateContact.module.css';
-import UpdateForm from '../UpdateForm/UpdateForm';
+import UpdateForm, { CreateTeamState } from '../UpdateForm/UpdateForm';
 import customToast from '@/utils/toast';
 // import { useAppDispatch } from "@/lib/hooks/storeHooks";
 import { useAddDeptMutation } from '@/services/department';
 import { useCallback } from 'react';
-import { CreateTeamState } from '../UpdateForm/UpdateForm';
 import { useAppSelector } from '@/lib/hooks/storeHooks';
 import { selectOrganization } from '@/lib/features/organizationSlice';
-
-export interface CreateContactProps {
-  title: string | undefined;
-  displayText: string | undefined;
-}
+import styles from './CreateContact.module.css';
 
 export default function CreateContact ({
   title,
@@ -38,7 +32,10 @@ export default function CreateContact ({
       await addDept(reqBody).unwrap()
         .then((res) => {
             if (res?.isSuccess) {
+              // TODO: Add the new group to the redux store
+              // Not being returned from the API for now
                 const { message } = res;
+                console.log(res);
                 customToast({
                     message: message,
                     type: 'success'

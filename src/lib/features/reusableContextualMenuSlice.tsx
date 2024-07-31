@@ -18,6 +18,9 @@ const reuseableMenuSlice = createSlice({
         },
         addMenu: (state, { payload }: PayloadAction<NavProps>) => {
             const key = payload.type;
+            if (!state[key]) {
+                state[key] = [];
+            }
             state[key].push({...payload});
         },
         updateMenu: (state, { payload }: PayloadAction<NavProps>) => {

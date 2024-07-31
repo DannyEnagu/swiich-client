@@ -62,7 +62,9 @@
   align-items: center;
   gap: 0.5em;
   background-color: var(--clr-dashboard-active-chat-bg);
-  padding: 1px 5px;
+  padding-block: 1px;
+  padding-left: 1px;
+  padding-right: 8px;
 }
 
 .divider {

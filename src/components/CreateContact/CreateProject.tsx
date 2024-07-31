@@ -1,17 +1,16 @@
 'use client';
+import { useCallback, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import UpdateForm, { CreateTeamState } from '../UpdateForm/UpdateForm';
 import Modal from "../ui/Modal/Modal";
-import styles from './CreateContact.module.css';
-import { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { selectOrganization } from '@/lib/features/organizationSlice';
 import { useSession } from 'next-auth/react';
-import { usePostPrivateMessageMutation } from '@/services/messages';
 import customToast from '@/utils/toast';
 import { usePostProjectMutation } from '@/services/reusableContextualMenuService';
 import { addMenu } from '@/lib/features/reusableContextualMenuSlice';
+import styles from './CreateContact.module.css';
 
 export default function CreateProject({
     title,
@@ -20,10 +19,11 @@ export default function CreateProject({
     const dispatch = useAppDispatch();
     const orgID = useAppSelector(selectOrganization)?.id;
     const { data: session } = useSession();
-    const [postProject, { isLoading }] = usePostProjectMutation();
+    const [isCreating, setIsCreating] = useState(false);
+    const [postProject] = usePostProjectMutation();
 
     const Submit = async (values: CreateTeamState) => {
-      console.log(values);
+      setIsCreating(true);
       try {
         const reqBody = {
           title: values.teamName,
@@ -32,27 +32,29 @@ export default function CreateProject({
           memberEmails: values.teamMembers
         };
         
-        await postProject(reqBody).unwrap()
-          .then((res) => {
-              if (res?.isSuccess) {
-                  const { message } = res;
-                  console.log(res);
-                  dispatch(addMenu(res.project));
-                  customToast({
-                      message: message,
-                      type: 'success'
-                  });
-              }
-          })
-          .catch((error) => {
-            const { data, status } = error;
-            customToast({
-                message: status === 500 ? 'Server error!': data.error,
-                type: 'error'
-            });
+        const res = await postProject(reqBody).unwrap()
+        const { message, project } = res;
+        dispatch(addMenu({
+          type: 'board',
+          isStarred: false,
+          boardName: project.title,
+          boardImg: '',
+          boardID: project.id,
+          boardTasks: [],
+          description: project.description,
+        }));
+        customToast({
+          message: message,
+          type: 'success'
         });
+        setIsCreating(false);
       } catch (error) {
         console.error(error);
+        customToast({
+          message: 'Operation failed!',
+          type: 'error'
+        });
+        setIsCreating(false);
       }
     };
   
@@ -70,10 +72,10 @@ export default function CreateProject({
           </Modal.Summary>
           <Modal.Content>
             <UpdateForm
-                title="Enter Project title"
+                title="Enter project title"
                 submitButtonLabel="Create Project"
                 onSubmit={handleSubmit}
-                isLoading={isLoading}
+                isLoading={isCreating}
                 autoCompleteType='input'
             />
           </Modal.Content>

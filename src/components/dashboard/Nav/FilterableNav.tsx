@@ -4,6 +4,7 @@ import FilterableNavList from './FilterableNavList';
 import CreateContact from '@/components/CreateContact/CreateContact';
 import Spinner from "@/components/ui/Spinner";
 import styles from './Nav.module.css';
+import CreateProject from '@/components/CreateContact/CreateProject';
 
 interface FilterableNavProps {
   items: NavProps[];
@@ -42,7 +43,7 @@ export default function FilterableNav({
         )}
         {/* Display the create button */}
         {CreateButtonProps && CreateButtonProps.type === 'group' && <CreateContact {...CreateButtonProps} />}
-        {/* {CreateButtonProps && CreateButtonProps.type === 'board' && <CreateProject {...CreateButtonProps} />} */}
+        {CreateButtonProps && CreateButtonProps.type === 'board' && <CreateProject {...CreateButtonProps} />}
       </div>
     </nav>
   );

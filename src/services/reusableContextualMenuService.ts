@@ -3,7 +3,7 @@ import baseApiRoute from "./baseApiRoute";
 interface PostProjectBodyResponse {
     isSuccess: boolean;
     message: string;
-    project: NavProps;
+    project: Record<string, any>;
 }
 
 type PostProjectBody = {

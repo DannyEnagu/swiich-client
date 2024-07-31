@@ -112,7 +112,7 @@ export default function GMHeader() {
             <div className={styles.headerLeft}>
                 <div className={styles.headerInfo}>
                     <PopUp>
-                        <PopUp.Summary>
+                        <PopUp.Trigger>
                             <span role='button'
                                 className={`btn ${styles.headerName} row align-center`}
                             >
@@ -126,7 +126,7 @@ export default function GMHeader() {
                                 </span>
                                 <FontAwesomeIcon icon={faAngleDown} />
                             </span>
-                        </PopUp.Summary>
+                        </PopUp.Trigger>
                         <PopUp.Content>
                             <div>Group Info</div>
                         </PopUp.Content>
@@ -139,16 +139,16 @@ export default function GMHeader() {
                         <>
                             <UserGroupAvatars
                                 userNames={membersNames || []}
-                                avatarSize={24}
+                                avatarSize={22}
                             />
                             <div className={styles.divider} />
                         </>
                         )}
                     <div className={styles.groupUsersAdd}>
                         <PopUp position='bottom-start'>
-                            <PopUp.Summary>
+                            <PopUp.Trigger>
                                 <FontAwesomeIcon icon={faUserPlus} size='sm' />
-                            </PopUp.Summary>
+                            </PopUp.Trigger>
                             <PopUp.Content>
                                 <div className={styles.addUsers}>
                                     <CustomAutocomplete

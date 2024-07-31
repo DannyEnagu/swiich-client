@@ -51,9 +51,9 @@ export default function TextEditor({ sendMessage }: TextEditorProps) {
       <form onSubmit={handleSend} className={styles.editor}>
         <span className="btn">
           <PopUp position='top-start'>
-            <PopUp.Summary>
+            <PopUp.Trigger>
               <FontAwesomeIcon icon={faFaceLaugh} />
-            </PopUp.Summary>
+            </PopUp.Trigger>
             <PopUp.Content>
               <EmojiPicker
                 onEmojiClick={emojiClick}

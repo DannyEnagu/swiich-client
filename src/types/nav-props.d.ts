@@ -24,10 +24,11 @@ interface GroupContactProps {
 
 interface BoardProps {
     boardName: string;
+    description: string;
     boardID: string | number;
     boardImg?: string;
     isStarred: boolean;
-    boardTasks: any[];
+    boardTasks: Task[];
     type: 'board';
 };
 

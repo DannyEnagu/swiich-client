@@ -51,5 +51,5 @@ const PopUpContent = ({ children }: PopUpProps) => {
     );
 };
 
-PopUp.Summary = PopUpSummary;
+PopUp.Trigger = PopUpSummary;
 PopUp.Content = PopUpContent;

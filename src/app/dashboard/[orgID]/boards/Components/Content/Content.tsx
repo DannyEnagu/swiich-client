@@ -1,3 +1,4 @@
+'use client';
 import { TaskGrid } from "..";
 import styles from "./Content.module.css";
 

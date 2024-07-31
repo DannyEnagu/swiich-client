@@ -28,8 +28,8 @@ export interface CreateTeamState {
 
 export default function UpdateForm({
     title,
-    defaultName,
-    description,
+    defaultName='',
+    description='',
     copyLink,
     submitButtonLabel,
     emailingList=[],

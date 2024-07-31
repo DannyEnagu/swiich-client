@@ -5,7 +5,7 @@ import { selectOrganization } from "@/lib/features/organizationSlice";
 import { selectMenuByType, setMenu } from "@/lib/features/reusableContextualMenuSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useGetProjectListQuery } from "@/services/reusableContextualMenuService";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const projects: NavProps[] = [
   {
@@ -277,11 +277,12 @@ const projects: NavProps[] = [
 
 
 export default function ProjectList() {
+  // const [isFetching, setIsFetching] = useState(true);
   const dispatch = useAppDispatch();
   const orgID = useAppSelector(selectOrganization).id;
-  const { data, isError, isLoading } = useGetProjectListQuery(orgID);
-
   // const projects = useAppSelector((state) => selectMenuByType(state, 'board'));
+  const { data, isError, isLoading } = useGetProjectListQuery(orgID, { skip: projects.length > 0 });
+
 
   useEffect(() => {
     if (data && !isError && !isLoading) {
@@ -308,6 +309,7 @@ export default function ProjectList() {
       }));
 
       dispatch(setMenu(projects));
+      // setIsFetching(false);
     }
   }, [
     dispatch,
@@ -320,7 +322,11 @@ export default function ProjectList() {
     <FilterableNav
       items={projects}
       isLoading={isLoading}
-      CreateButtonProps={{ title: 'Create Project', displayText: 'Add Project', type: 'board' }}
+      CreateButtonProps={{
+        title: 'Create Project',
+        displayText: 'Add Project',
+        type: 'board'
+      }}
     />
   );
 }

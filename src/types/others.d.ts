@@ -82,6 +82,23 @@ interface UISettings {
     activeThread: ActiveCanvas;
 };
 
+interface CommentType {
+    id: string | number;
+    comment: string;
+    commenter: string;
+    date: string;
+};
+
+interface Task {
+    id: string | number;
+    name: string;
+    description: string;
+    dueDate: string;
+    assignee: string;
+    status: string;
+    comments: CommentType[];
+};
+
 interface EmojiStyles extends React.CSSProperties {
     '--epr-emoji-size': string;
     '--epr-preview-height': string;

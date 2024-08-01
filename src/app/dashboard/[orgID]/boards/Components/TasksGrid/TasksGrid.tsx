@@ -9,68 +9,21 @@ import {
 import styles from './TasksGrid.module.css';
 import PopUp from '@/components/ui/PopOver/PopUp';
 import { useState } from 'react';
-
-const Task = () => {
-    return (
-        <div className={styles.task}>
-            <div className={styles.taskHeader}>
-                <h5>Task 1</h5>
-                <button className={`btn ${styles.quickActionBtn}`}>
-                    <FontAwesomeIcon icon={faEllipsisH} />
-                </button>
-            </div>
-            <div className={styles.taskBody}>
-                <div className='row align-center justify-between'>
-                    <div className={`${styles.taskStatus} ${styles.taskStatusDone}`}>
-                        <span>Completed</span>
-                    </div>
-                    <div className={`${styles.priority} ${styles.priorityHigh}`}>
-                        <FontAwesomeIcon icon={faCircle} size='2xs' />
-                        <span>High Priority</span>
-                    </div>
-                </div>
-                <div className={styles.assigntees}>
-                </div>
-            </div>
-            <hr className={styles.taskDivider}/>
-            <div className={styles.taskFooter}>
-                <div className={styles.taskRange}>
-                    <span>
-                        Task Done: 50/100
-                    </span>
-                    <div className={styles.taskRangeBar}>
-                        <div className={styles.taskRangeProgress} style={{width: '30%'}}/>
-                    </div>
-                </div>
-                <div className={styles.taskDueDate}>
-                <span>Due Date: 14th May</span>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-const AddTask = () => {
-    const [showAddTask, setShowAddTask] = useState(false);
-    const addTask = () => {
-        setShowAddTask(!showAddTask);
-    }
-    return (
-        <div className={styles.addTask}>
-            {showAddTask && <input type="text" placeholder="Add Task" />}
-            <button className={`btn btn-primary ${styles.addTaskBtn}`}
-                onClick={() => addTask()}
-            >
-                {showAddTask ? 'Add' : 'New'}
-            </button>
-        </div>
-    );
-}
+import AddTask from './AddTask';
+import Task from './Task';
+import { useGetTasksQuery } from '@/services/task';
+import { useAppSelector } from '@/lib/hooks';
+import { selectUser } from '@/lib/features/authSlice';
 
 export default function TasksGrid() {
+    const userId = useAppSelector(selectUser)?.id
+    const {data: userTasks, isFetching, isError} = useGetTasksQuery(userId); 
     const [isSearchFocused, setIsSearchFocused] = useState(false);
-    const tasks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((task) => {
-        return <Task key={task} />;
+    const tasks = userTasks?.map((task) => {
+        return <Task
+                key={task.id}
+                {...task}
+            />;
     });
     return (
         <div className={styles.tasksGrid}>

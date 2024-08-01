@@ -91,13 +91,24 @@ interface CommentType {
 
 interface Task {
     id: string | number;
-    name: string;
+    title: string;
     description: string;
-    dueDate: string;
-    assignee: string;
+    deadline: string;
+    checklists: TaskCheckList[];
+    assignees: CurrentUser[];
     status: string;
+    createdBy: CurrentUser['id']
     comments: CommentType[];
+    createdAt: string;
+    updatedAt: string;
+    project: Project;
 };
+
+interface TaskCheckList {
+    title: string;
+    assignedTo?: CurrentUser['email']
+    status: 'Pending' | 'InProgress' | 'Completed' 
+}
 
 interface EmojiStyles extends React.CSSProperties {
     '--epr-emoji-size': string;

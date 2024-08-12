@@ -36,7 +36,7 @@ export default function Messages({
           <ChatBubble
             userID={authUserID}
             profilePic='https://via.placeholder.com/50'
-            userName={message.type === 'Group' ? message?.senderName : message?.senderId === authUserID ? 'You' : message?.senderName}
+            userName={message.type === 'Group' ? message?.senderName : message?.senderId === authUserID || message.recipientId === authUserID ? 'You' : message?.senderName}
             time={message?.createdAt}
             message={message?.content}
             isSender={message?.senderId === authUserID && message.type === 'Private'}

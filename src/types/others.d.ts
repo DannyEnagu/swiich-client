@@ -102,6 +102,7 @@ interface Task {
     createdAt: string;
     updatedAt: string;
     project: Project;
+    priority: 'Low' | 'Medium' | 'High';
 };
 
 interface TaskCheckList {

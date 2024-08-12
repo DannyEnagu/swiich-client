@@ -62,14 +62,14 @@ export default function CreateProject({
 
     return (<div className={styles.createWrapper}>
         <Modal title={title}>
-          <Modal.Summary>
+          <Modal.Trigger>
             <span className="py-sm row">
               <FontAwesomeIcon className={styles.createIcon} icon={faPlus} size="xl" />
               <span className={`mx-sm ${styles.createLabel}`}>
                 {displayText}
               </span>
             </span>
-          </Modal.Summary>
+          </Modal.Trigger>
           <Modal.Content>
             <UpdateForm
                 title="Enter project title"

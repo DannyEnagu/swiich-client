@@ -55,13 +55,13 @@ export default function ToolsBar() {
         <li className={styles.tool}>
           <span className={styles.toolIcon}>
             <Modal title="Update organization details">
-              <Modal.Summary>
+              <Modal.Trigger>
                 <Avatar
                   size={35}
                   imgSrc=""
                   imgAlt=""
                 />
-              </Modal.Summary>
+              </Modal.Trigger>
               <Modal.Content>
                 <UpdateTeamInfo />
               </Modal.Content>
@@ -126,7 +126,7 @@ export default function ToolsBar() {
         </li>
         <li className={styles.tool}>
               <Modal title="Deep Search">
-                <Modal.Summary>
+                <Modal.Trigger>
                   <Link
                     href='#'
                     className={styles.toolLink}
@@ -139,7 +139,7 @@ export default function ToolsBar() {
                       Search
                     </span>
                   </Link>
-                </Modal.Summary> 
+                </Modal.Trigger> 
                 <Modal.Content>
                   <input type="text" placeholder="Search..." />
                 </Modal.Content>

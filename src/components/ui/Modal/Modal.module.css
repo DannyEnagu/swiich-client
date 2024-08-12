@@ -56,8 +56,23 @@
   padding: 20px;
   border: 1px solid var(--clr-dashboard-border);
   width: 80%;
-  width: min(80%, 500px);
   border-radius: 10px;
   position: relative;
   z-index: 100;
+}
+
+.modalContentSizeSm {
+  width: min(80%, 400px);
+}
+
+.modalContentSizeMd {
+  width: min(80%, 500px);
+}
+
+.modalContentSizeLg {
+  width: min(80%, 800px);
+}
+
+.modalContentSizeXl {
+  width: min(80%, 1000px);
 }

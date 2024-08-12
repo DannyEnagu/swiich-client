@@ -46,13 +46,13 @@ export default function BoardItem({
   const tasks = boardTasks.map((task) => (
     <li key={task.id}>
         <Modal title=''>
-        <Modal.Summary>
+        <Modal.Trigger>
         <span className={styles.taskSummary}>
-            {task.name}
+            {task.title}
         </span>
-        </Modal.Summary>
+        </Modal.Trigger>
         <Modal.Content>
-            <TaskDetails task={task} />
+            <TaskDetails {...task} />
         </Modal.Content>
         </Modal>
     </li>)) 

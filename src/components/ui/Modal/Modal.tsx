@@ -13,17 +13,20 @@ import { useClickOutside } from '@/lib/hooks/useClickOutside';
 interface ModalProps {
   children: React.ReactNode;
   title: string | undefined;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
 type DefaultObjectType = {
   isModalOpen: boolean,
   title?: string,
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 };
 
 const defaultObj: DefaultObjectType = {
   isModalOpen: false,
   title: '',
+  size: 'md',
   setIsModalOpen: () => {}
 };
 
@@ -50,18 +53,31 @@ const ModalSummary = ({ children }:
 const ModalContent = ({ children }:
   Pick<ModalProps, 'children'>) => {
   const modalContentRef = useRef<HTMLDivElement | null>(null);
-  const { isModalOpen, setIsModalOpen, title } = useContext(ModalContext);
+  const { isModalOpen, setIsModalOpen, title, size } = useContext(ModalContext);
 
   useClickOutside(modalContentRef, () => {
     setIsModalOpen(false);
   });
+
+  const getModalSize = () => {
+    switch (size) {
+      case 'sm':
+        return styles.modalContentSizeSm;
+      case 'lg':
+        return styles.modalContentSizeLg;
+      case 'xl':
+        return styles.modalContentSizeXl;
+      default:
+        return styles.modalContentSizeMd;
+    }
+  };
 
   return (
     <div
       className={`${styles.modalContentBackdrop} ${isModalOpen ? styles.modalContentShow : styles.modalContentHidden}`} 
     >
       <div
-        className={styles.modalContent}
+        className={`${styles.modalContent} ${size ? getModalSize() : styles.modalContentSizeMd}`}
         ref={modalContentRef}
        >
         <header className={styles.modalHeader}>
@@ -87,7 +103,8 @@ const ModalContent = ({ children }:
  */
 export default function Modal({
   children,
-  title
+  title,
+  size = 'md'
 }: ModalProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -97,14 +114,14 @@ export default function Modal({
         {
           isModalOpen,
           setIsModalOpen,
-          title
+          title,
+          size
         }
       }
     >
-
       {children}
     </ModalContext.Provider>);
 }
 
-Modal.Summary = ModalSummary;
+Modal.Trigger = ModalSummary;
 Modal.Content = ModalContent;

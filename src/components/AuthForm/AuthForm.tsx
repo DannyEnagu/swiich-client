@@ -149,6 +149,7 @@ export default function UserFrom({ type }: UserFormProps) {
             });
             return;
         }
+        router.push('/');
     };
 
     return (

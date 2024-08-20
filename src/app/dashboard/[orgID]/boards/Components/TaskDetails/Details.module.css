@@ -1,0 +1,239 @@
+.taskHeader {
+    margin-bottom: 2.5em;
+}
+
+.taskHeader h2 {
+    margin-top: 0;
+    font-size: var(--fs-300);
+    font-weight: var(--fw-medium);
+}
+
+.taskAttachments,
+.taskDetails {
+    margin-bottom: 2.5em;
+}
+
+.taskDetailsItem {
+    display: flex;
+    align-items: center;
+    gap: 2.5em;
+    margin-bottom: 1.5em;
+}
+
+.taskDetailsItem > h4,
+.taskDetailsItem > span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0;
+    font-weight: var(--fw-medium);
+}
+
+.taskDetailsItem > h4 {
+    font-size: var(--fs-200);
+    font-weight: var(--fw-body);
+    width: 120px;
+}
+
+.taskDetailsItem > span {
+    flex: 1;
+}
+
+.taskDescription {
+    display: block;
+}
+
+.taskDescription h4 {
+    margin-bottom: 1.5em;
+}
+
+.taskDescription textarea {
+    width: 100%;
+    border-radius: 5px;
+    padding: 8px 5px;
+}
+
+.taskAttachments h3 {
+    font-size: var(--fs-200);
+    font-weight: var(--fw-body);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0;
+    margin-bottom: 1.5em;
+}
+
+.taskAttachments > div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.taskAttachmentList {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    max-width: 90%;
+    overflow: auto;
+}
+
+.taskAttachmentAdd {
+    width: 10%;
+    justify-content: center;
+    align-self: stretch;
+}
+
+.taskAttachmentAdd,
+.taskAttachmentItem {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.taskAttachmentDetails {
+    padding-inline-end: 10px;
+    padding-block: 5px;
+    width: 120px;
+}
+
+.taskAttachmentDetails > h6 {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: var(--fs-100);
+}
+
+.taskAttachmentDetails > span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #00000080;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.taskSeparator {
+    display: inline-block;
+    height: 5px;
+    width: 5px;
+    border-radius: .01px;
+    background-color: #000000;
+}
+
+.taskTabsHeader {
+    border-bottom: var(--db-divider);
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.taskTabSwitch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.taskTabSwitchIsActive {
+    position: relative;
+    color: var(--clr-dashboard-accent);
+    font-weight: var(--fw-medium);
+    border-radius: 0;
+    border-width: 3px;
+}
+
+.taskTabSwitchIsActive::after {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--clr-dashboard-accent);
+}
+
+.taskTab {
+    display: none;
+}
+
+.taskTabIsActive {
+    display: block;
+}
+
+.taskTabHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.taskTabHeader h3 {
+    margin: 2em 0 1.5em 0;
+    font-size: var(--fs-200);
+    font-weight: var(--fw-medium);
+}
+
+.taskTabHeader > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: var(--fw-medium);
+}
+
+.taskComments > * + * {
+    margin-top: 1.5em;
+}
+
+.commentInput {
+    border-top: var(--db-divider);
+    padding: 1em 0;
+}
+
+.commentInput form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-left: 1.5em;
+}
+
+.commentInput textarea {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 8px 5px;
+    resize: none;
+}
+
+.taskActivity {
+    display: flex;
+    /* align-items: center; */
+    gap: 10px;
+    margin-bottom: 1.5em;
+}
+
+.taskActivityTitle > p {
+    margin: 0;
+    font-size: var(--fs-100);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.taskActivityTitle > p span {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.taskActivityBody p {
+    margin: 1em 0;
+    font-size: var(--fs-100);
+    background-color: rgba(235, 237, 240, 1);
+    border-radius: 5px;
+    padding: 10px 5px;
+}
